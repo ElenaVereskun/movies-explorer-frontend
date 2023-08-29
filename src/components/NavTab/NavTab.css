@@ -1,0 +1,22 @@
+.navtab {
+    border-radius: 3px;
+    border: 1px solid #FFF;
+    opacity: 0.6;
+    padding: 10px 20px 10px 20px;
+    height: 36px;
+    width: 129px;    
+    margin-left: 70px;
+    margin-top: 146px;
+    margin-bottom: 75px;
+}
+
+.navtab__text {
+    margin: 0;
+    color: white;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+}

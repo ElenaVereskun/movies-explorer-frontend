@@ -1,0 +1,72 @@
+.about-me {
+    background-color: #202020;
+    font-style: normal;
+    color: #FFF;
+    font-family: Inter;
+}
+
+.about-me__student {
+    display: flex;
+    flex-direction: row;
+}
+
+.about-me__info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 70px;
+}
+
+.about-me__title {
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+}
+
+.about-me__subtitle {
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.about-me__text {
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.about-me__link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.about-me__portfolio {
+    color: #8B8B8B;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-left: 70px;
+}
+.about-me__website{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.about-me__web {
+    color: #FFF;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: -1.2px;
+    padding-bottom: 19px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #424242;
+    margin-left: 70px;
+    margin-right: 70px;
+}
