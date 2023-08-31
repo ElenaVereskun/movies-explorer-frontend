@@ -3,17 +3,19 @@
     font-style: normal;
     color: #FFF;
     font-family: Inter;
+    padding-left: 70px;
+    padding-right: 70px;
 }
 
 .about-me__student {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .about-me__info {
     display: flex;
     flex-direction: column;
-    padding-left: 70px;
 }
 
 .about-me__title {
@@ -21,43 +23,59 @@
     font-weight: 400;
     line-height: 58px;
     letter-spacing: -2px;
+    padding-top: 66px;
+    padding-bottom: 18px;
+    margin: 0;
 }
 
 .about-me__subtitle {
-    font-feature-settings: 'clig' off, 'liga' off;
     font-size: 18px;
     font-weight: 500;
     line-height: 20px;
+    padding-bottom: 26px;
+    margin: 0;
 }
 
 .about-me__text {
-    font-feature-settings: 'clig' off, 'liga' off;
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
+    margin: 0;
+    max-width: 600px;
 }
 
 .about-me__link {
     font-size: 14px;
     font-weight: 500;
     line-height: normal;
+    padding-top: 87px;
+    padding-bottom: 101px;
+    margin: 0;
 }
 
-.about-me__portfolio {
+.about-me__photo {
+    height: 327px;
+    padding-top: 66px;
+    border-radius: 10px;
+}
+
+.about-me__elements {
     color: #8B8B8B;
-    font-feature-settings: 'clig' off, 'liga' off;
     font-size: 18px;
     font-weight: 400;
     line-height: 20px;
-    padding-left: 70px;
+    padding-bottom: 50px;
+    margin: 0;
 }
-.about-me__website{
+
+.about-me__element {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    border-bottom: 1px solid #424242;
 }
-.about-me__web {
+
+.about-me__item {
     color: #FFF;
     font-size: 30px;
     font-weight: 400;
@@ -66,7 +84,44 @@
     padding-bottom: 19px;
     margin-top: 0px;
     margin-bottom: 0px;
-    border-bottom: 1px solid #424242;
-    margin-left: 70px;
-    margin-right: 70px;
+}
+
+.about-me__element:last-child {
+    border-color: #202020;
+    padding-bottom: 125px;
+}
+
+.about-me__arrow {
+    width: 29px;
+}
+
+@media screen and (max-width: 1280px) {
+    .about-me {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .about-me__title {
+        padding-bottom: 16px;
+    }
+
+    .about-me__subtitle {
+        padding-bottom: 20px;
+    }
+
+    .about-me__photo {
+        height: 307px;
+    }
+
+    .about-me__item {
+        font-size: 28px;
+    }
+
+    .about-me__arrow {
+        width: 27px;
+    }
+
+    .about-me__item:last-child {
+        padding-bottom: 90px;
+    }
 }

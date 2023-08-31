@@ -1,12 +1,14 @@
 .techs {
-    background-color: #272727;
+    background-color: #272727;    
+    padding-left: 70px;
+    padding-right: 70px;
 }
 
 .techs__container {
     display: flex;
-    /* justify-content: center; */
     color: #FFF;
     text-align: center;
+    align-items: center;
     font-family: Inter;
     font-style: normal;
     flex-direction: column;
@@ -28,9 +30,7 @@
     line-height: 20px;
     letter-spacing: -0.56px;
     margin: 0;
-    
-    /* width: 460px; */
-    
+    width: 460px;    
 }
 
 .techs__items {
@@ -41,6 +41,9 @@
 }
 
 .techs__item {
+    display: flex;
+    align-items: center;    
+    justify-content: center;
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
@@ -51,4 +54,19 @@
     margin: 100px 0 100px 0;
     width: 90px;
     height: 60px;
+}
+@media screen and (max-width: 1280px) {
+    .techs {  
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .techs__title {
+        padding-top: 80px;
+        padding-bottom: 22px;
+    }
+    .techs__item {
+        margin: 83px 0 90px 0;
+        width: 84px;
+        height: 57px;
+    }
 }

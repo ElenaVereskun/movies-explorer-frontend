@@ -1,22 +1,28 @@
-.navtab {
+.navtab {}
+
+.navtab__text {
     border-radius: 3px;
     border: 1px solid #FFF;
     opacity: 0.6;
     padding: 10px 20px 10px 20px;
     height: 36px;
-    width: 129px;    
-    margin-left: 70px;
-    margin-top: 146px;
+    width: 129px;
     margin-bottom: 75px;
-}
-
-.navtab__text {
-    margin: 0;
+    margin-top: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     font-family: Inter;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
-    text-align: center;
+}
+
+@media screen and (max-width: 1280px) {
+    .navtab {
+        display: flex;
+        justify-content: center;
+    }
 }

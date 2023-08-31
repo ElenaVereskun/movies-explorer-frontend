@@ -1,0 +1,36 @@
+.navigation {}
+
+.navigation__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 30px;
+    padding-top: 21px;
+}
+.navigation__items{
+    display: flex;
+    align-items: center;
+}
+.navigation__register {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    margin: 0;
+}
+
+.navigation__button {
+    color: #000;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    background-color: #3DDC84;
+    border-radius: 3px;
+    padding: 8px 20px 8px 20px;
+    border: none;
+}

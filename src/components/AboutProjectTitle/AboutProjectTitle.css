@@ -10,6 +10,9 @@
     margin-top: 0px;
     margin-bottom: 0px;
     border-bottom: 1px solid #DADADA;
-    margin-left: 70px;
-    margin-right: 70px;
+}
+@media screen and (max-width: 1280px){
+    .title{
+        padding-top: 90px;
+    }
 }

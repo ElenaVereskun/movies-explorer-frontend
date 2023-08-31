@@ -3,14 +3,16 @@
     font-family: Inter;
     font-style: normal;
     color: white;
+    margin-left: 70px;
+    margin-right: 70px;
 }
 
 .about-project__tab {
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
     list-style-type: none;
     column-gap: 26px;
     row-gap: 40px;
-    margin-left: 70px;
     padding-left: 0;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -32,27 +34,29 @@
     font-weight: 400;
     line-height: 20px;
     margin: 0;
-    width: 550px;
+    /* width: 550px; */
 }
 
 .about-project__tab-timing {
     display: grid;
-    grid-template-columns: 228px 912px;
+    grid-template-columns: 20% 80%;
     margin: 0;
     list-style-type: none;
+    padding-left: 0;
     padding-top: 110px;
     padding-bottom: 110px;
-    padding-left: 70px;
 }
 
 .about-project__title-timing {
     height: 36px;
-    text-align: center;
     color: #000;
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
     margin: 0;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 .about-project__description-timing {
@@ -65,4 +69,21 @@
     font-weight: 500;
     line-height: 17px;
     margin: 0;
+}
+
+@media screen and (max-width: 1280px) {
+    .about-project__tab {
+        column-gap: 22px;
+        row-gap: 30px;
+    }
+/*     .about-project__description {
+        width: 319px;
+    }
+    .about-project__title {
+        width: 319px;
+    } */
+    .about-project__tab-timing {        
+        padding-top: 93px;
+        padding-bottom: 121px;
+    }
 }
