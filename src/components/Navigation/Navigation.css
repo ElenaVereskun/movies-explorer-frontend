@@ -34,3 +34,18 @@
     padding: 8px 20px 8px 20px;
     border: none;
 }
+@media screen and (max-width: 767px) {
+    .navigation__container {
+        column-gap: 14px;
+        padding-top: 21px;
+    }
+    .navigation__button {
+        padding: 5px 12px 5px 12px;
+    }
+    .navigation__register {
+        font-size: 10px;
+    }
+    .navigation__button {
+        font-size: 10px;
+    }
+}

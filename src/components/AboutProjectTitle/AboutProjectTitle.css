@@ -5,14 +5,22 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.88px;
-    padding-top: 110px;
+    padding-top: 100px;
     padding-bottom: 23px;
     margin-top: 0px;
     margin-bottom: 0px;
     border-bottom: 1px solid #DADADA;
 }
-@media screen and (max-width: 1280px){
+@media screen and (max-width: 1279px){
     .title{
         padding-top: 90px;
+    }
+}
+@media screen and (max-width: 767px){
+    .title{
+        padding-top: 70px;
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        padding-bottom: 28px;
     }
 }

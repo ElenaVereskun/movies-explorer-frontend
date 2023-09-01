@@ -5,6 +5,7 @@
     color: white;
     margin-left: 70px;
     margin-right: 70px;
+    padding-top: 10px;
 }
 
 .about-project__tab {
@@ -14,6 +15,7 @@
     column-gap: 26px;
     row-gap: 40px;
     padding-left: 0;
+    padding-top: 70px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -23,7 +25,6 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.8px;
-    padding-top: 70px;
     padding-left: 0px;
     padding-bottom: 26px;
     margin: 0;
@@ -34,7 +35,7 @@
     font-weight: 400;
     line-height: 20px;
     margin: 0;
-    /* width: 550px; */
+    max-width: 550px;
 }
 
 .about-project__tab-timing {
@@ -44,7 +45,7 @@
     list-style-type: none;
     padding-left: 0;
     padding-top: 110px;
-    padding-bottom: 110px;
+    padding-bottom: 90px;
 }
 
 .about-project__title-timing {
@@ -71,19 +72,69 @@
     margin: 0;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
+    .about-project {
+        margin-left: 50px;
+        margin-right: 50px;
+        padding-top: 0px;
+    }
+
     .about-project__tab {
-        column-gap: 22px;
-        row-gap: 30px;
+        column-gap: 15px;
     }
-/*     .about-project__description {
-        width: 319px;
+
+    .about-project__description {
+        font-size: 12px;
     }
+
     .about-project__title {
-        width: 319px;
-    } */
-    .about-project__tab-timing {        
-        padding-top: 93px;
-        padding-bottom: 121px;
+        padding-bottom: 20px;
+    }
+
+    .about-project__tab-timing {
+        grid-template-columns: 21% 79%;
+        padding-top: 90px;
+        padding-bottom: 70px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .about-project {
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+
+    .about-project__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        padding-bottom: 15px;
+    }
+
+    .about-project__tab {
+        display: flex;
+        flex-direction: column;
+        row-gap: 60px;
+        padding-top: 62px;
+    }
+
+    .about-project__tab-timing {
+        grid-template-columns: 35% 65%;
+        padding-bottom: 69px;
+        padding-top: 60px;
+    }
+
+    .about-project__title-timing {
+        font-size: 11px;
+    }
+
+    .about-project__description-timing {
+        font-size: 11px;
+        padding-top: 10px;
+    }
+
+    .about-project__description {
+        font-weight: 400;
+        max-width: 284px;
+        line-height: 16px
     }
 }
