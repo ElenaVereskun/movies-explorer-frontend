@@ -144,6 +144,7 @@
     .about-me {
         padding-left: 14px;
         padding-right: 14px;
+        padding-top: 11px;
     }
 
     .about-me__student {
@@ -153,6 +154,7 @@
 
     .about-me__photo {
         height: 352px;
+        width: 292px;
         padding-top: 60px;
     }
 
@@ -180,8 +182,23 @@
         font-size: 18px;
         line-height: 28px;
         letter-spacing: -0.72px;
-        padding-bottom: 19px;
+        padding-bottom: 18px;
         padding-top: 20px;
     }
-
+    .about-me__link {
+        padding-top: 10px;
+        padding-bottom: 52px;
+    }
+    .about-me__elements {
+        font-size: 14px;
+        padding-bottom: 22px;
+    }
+    .about-me__element {
+        padding-top: 0px;
+        align-items: center;
+    }
+    .about-me__arrow {
+        width: 12px;
+        height: 34px;
+    }
 }

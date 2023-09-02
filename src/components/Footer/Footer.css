@@ -25,6 +25,7 @@
 }
 
 .footer__year {
+    color: #8B8B8B;
     margin: 0;
 }
 
@@ -36,11 +37,44 @@
 .footer__item {
     margin: 0;
 }
+
 @media screen and (max-width: 1279px) {
     .footer__about {
         margin: 0 30px 0 30px;
     }
+
     .footer__elements {
         padding: 20px 30px 20px 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .footer {
+        font-size: 12px;
+    }
+
+    .footer__about {
+        font-size: 12px;
+        margin: 0 10px 0 10px;
+        padding-top: 61px;
+    }
+
+    .footer__elements {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 30px 30px 20px 30px;
+    }
+
+    .footer__items {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 12px;
+        padding-bottom: 30px;
+    }
+
+    .footer__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

@@ -9,7 +9,7 @@ function Promo() {
                 <img src={promoLogo} className='promo__logo' alt='промоЛого' />
                 <div>
                     <h1 className='promo__title'>Учебный проект студента
-                        факультета Веб-разработки.</h1>
+                        факультета Веб&#8209;разработки.</h1>
                     <p className='promo__subtitle'>Листайте ниже,
                         чтобы узнать больше про этот проект и его создателя.</p>
                 </div>
