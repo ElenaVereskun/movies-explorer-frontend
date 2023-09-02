@@ -1,0 +1,30 @@
+.movies-list__container {
+    background-color: #202020;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 32px;
+    padding: 70px 70px 10px 70px;
+}
+
+.movies__more {
+    padding-top: 50px;
+    padding-bottom: 80px;
+    padding-left: 70px;
+    padding-right: 70px;
+    border-radius: 6px;
+    border: 1px solid #2F2F2F;
+}
+
+.movies__button-more {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+    background-color: #2F2F2F;
+    border: none;
+    color: white;
+    padding-top: 11px;
+    padding-bottom: 9px;
+    padding-left: 570px;
+    padding-right: 570px;
+}

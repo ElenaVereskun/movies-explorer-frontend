@@ -1,0 +1,7 @@
+.filter-checkbox {    
+    height: 20px;
+    width: 36px;
+    background-image: url(../../images/smalltumb_active.svg);
+    border: none;
+    background-color: #202020;
+}
