@@ -1,0 +1,21 @@
+.error {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.error__title {
+    font-size: 140px;
+}
+
+.error__text {
+    font-size: 16px;
+}
+
+.error__back {
+    color: #4285F4;
+    font-size: 14px;
+}

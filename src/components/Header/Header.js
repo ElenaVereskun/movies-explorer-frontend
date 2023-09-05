@@ -1,16 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ movies, saveMovies,register,buttonText,account }) {
+function Header() {
     return (
         <header className="header">
-            <img className='header__logo' src={logo} alt='логотип' />
-            <Navigation register={register} 
-            movies={movies} 
-            saveMovies={saveMovies} 
-            buttonText={buttonText} 
-            account={account}/>
+            <Link to="/" className='header__logo'>
+                <img src={logo} alt='логотип' />
+            </Link>
+            <Navigation />
         </header>
     )
 }

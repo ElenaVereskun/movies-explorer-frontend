@@ -18,3 +18,6 @@
 @import url(components/MoviesCard/MoviesCard.css);
 @import url(components/SavedMovies/SavedMovies.css);
 @import url(components/Profile/Profile.css);
+@import url(components/Login/Login.css);
+@import url(components/Register/Register.css);
+@import url(components/Error/Error.css);

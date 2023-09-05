@@ -1,22 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import account from '../../images/account.svg';
+import menu from '../../images/burger-menu.svg';
 
-function Navigation({ register, buttonText, movies, saveMovies, account }) {
-/*     const cardLikeButtonClassName = (
-        `navigation__button ${isRegister && 'navigation__button-account'}`
-      ) */
+function Navigation() {
+    function openMenu() {
+
+    }
     return (
         <div className='navigation'>
             <div className='navigation__container'>
                 <div className='navigation__items'>
-                    
-                    <p className='navigation__movies'>{movies}</p>
-                    <p className='navigation__save-movies'>{saveMovies}</p>
-                    <p className='navigation__register'>{register}</p>
+                    <Link to="/movies" className='navigation__movies'>Фильмы</Link>
+                    <Link to="/saved-movies" className='navigation__save-movies'>Сохраненные фильмы</Link>
+                    <Link to="/profile" className='navigation__account'>Аккаунт
+                        <img className='navigation__account-img' src={account} alt='аккаунт' />
+                    </Link>
                 </div>
-                <button className="navigation__button">
-                    <div className="navigation__enter">{buttonText}</div>
-                    <img className='navigation__account' src={account} alt='аккаунт' />
+                <button className='navigation__menu'>
+                    <img src={menu} alt='меню' onClick={openMenu} />
                 </button>
+                <button className="navigation__button">Вход</button>
             </div>
         </div>
     )
