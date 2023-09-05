@@ -8,18 +8,38 @@
     column-gap: 30px;
     padding-top: 21px;
 }
-.navigation__items{
+
+.navigation__items {
+    display: flex;    
+    color: white;
+    font-family: Inter;
+    font-style: normal;
     display: flex;
     align-items: center;
 }
+
 .navigation__register {
     color: #FFF;
-    font-family: Inter;
     font-size: 12px;
-    font-style: normal;
     font-weight: 500;
     line-height: 16px;
     margin: 0;
+}
+
+.navigation__movies {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 0;
+    padding-right: 20px;
+}
+
+.navigation__save-movies {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 0;
+    padding-right: 50px;
 }
 
 .navigation__button {
@@ -34,17 +54,24 @@
     padding: 8px 20px 8px 20px;
     border: none;
 }
+.navigation__enter{
+    
+}
+
 @media screen and (max-width: 767px) {
     .navigation__container {
         column-gap: 14px;
         padding-top: 21px;
     }
+
     .navigation__button {
         padding: 5px 12px 5px 12px;
     }
+
     .navigation__register {
         font-size: 10px;
     }
+
     .navigation__button {
         font-size: 10px;
     }

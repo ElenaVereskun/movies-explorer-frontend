@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer';
 function Main() {
     return (
         <div className='main'>
-            <Header />
+            <Header register={'Регистрация'} buttonText={'Войти'} />
             <Promo />
             <AboutProject />
             <Techs />

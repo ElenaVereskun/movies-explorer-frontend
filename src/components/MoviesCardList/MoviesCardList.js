@@ -7,13 +7,6 @@ function MoviesCardList() {
             <div className='movies-list__container'>
                 <MoviesCard />
                 <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-            </div>
-            <div className='movies__more'>
-                <button className='movies__button-more'>Ещё</button>
             </div>
         </section>
     )
