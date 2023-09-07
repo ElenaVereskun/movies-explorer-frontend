@@ -24,11 +24,14 @@
     font-size: 11px;
     background-color: #202020;
 }
+.register__logo{
+    padding-top: 70px;
+    padding-bottom: 40px;
+}
 
 .register__title {
     font-size: 24px;
     font-weight: 500;
-    padding-top: 74px;
     padding-bottom: 38px;
     margin: 0;
 }
@@ -109,6 +112,12 @@
     margin-top: 134px;
     margin-bottom: 16px;
 }
+.register__button-register:active{
+    opacity: 0.8;
+}
+.register__button-register:hover{
+    cursor: pointer;
+}
 
 .register__enter {
     display: flex;
@@ -131,10 +140,19 @@
     font-size: 14px;
     font-weight: 400;
 }
-
+.register__button-enter:active{
+    opacity: 0.7;
+}
+.register__button-enter:hover{
+    cursor: pointer;
+}
 @media screen and (max-width: 1279px) {
+    .register__logo{
+        padding-top: 232px;
+        padding-bottom: 0;
+    }
     .register__title {
-        padding-top: 235px;
+        padding-top: 37px;
         padding-bottom: 39px;
         font-size: 24px;
         font-weight: 500;
@@ -145,7 +163,10 @@
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {    
+    .register__logo{
+        padding-top: 56px;
+    }
     .register__form {
         padding-bottom: 29px;
     }
@@ -156,15 +177,15 @@
     }
 
     .register__title {
-        padding-top: 70px;
+        padding-top: 47px;
         padding-bottom: 81px;
     }
 
-    .login__name {
+    .register__name {
         font-size: 14px;
     }
 
-    .login__title-name {
+    .register__title-name {
         padding-bottom: 5px;
     }
 

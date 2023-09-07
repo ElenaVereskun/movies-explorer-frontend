@@ -1,6 +1,5 @@
 import React from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import smalltumb_active from '../../images/smalltumb_active.svg';
 
 function SearchForm() {
     return (
@@ -11,7 +10,7 @@ function SearchForm() {
                     <button className='search-form__button'>Поиск</button>
                 </div>
                 <div className='search-form__short'>
-                    <FilterCheckbox tumb={smalltumb_active} />
+                    <FilterCheckbox />
                     <p className='search-form__short-text'>Короткометражки</p>
                 </div>
 

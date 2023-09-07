@@ -1,9 +1,9 @@
 import { React } from 'react';
-import Header from '../Header/Header';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import logo from '../../images/logo.svg';
 
 function Login(props) {
-    
+
     const navigate = useNavigate();
 
     function handleRegister() {
@@ -11,9 +11,11 @@ function Login(props) {
     }
     return (
         <div className='login'>
-            <Header />
             <form className="login__form">
                 <div className="login__container">
+                    <Link to="/" className='login__logo'>
+                        <img src={logo} alt='логотип' />
+                    </Link>
                     <h2 className="login__title">Рады видеть!</h2>
                     <div className="login__input-container">
                         <p className="login__title-email">E-mail</p>

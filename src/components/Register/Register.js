@@ -1,6 +1,6 @@
 import { React } from 'react';
-import Header from '../Header/Header';
-import { useNavigate } from "react-router-dom";
+import logo from '../../images/logo.svg';
+import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
 
@@ -11,9 +11,11 @@ function Register() {
     }
     return (
         <div className='register'>
-            <Header />
             <form className="register__form">
                 <div className="register__container">
+                    <Link to="/" className='register__logo'>
+                        <img src={logo} alt='логотип' />
+                    </Link>
                     <h2 className="register__title">Добро пожаловать!</h2>
                     <div className="register__input-container">
                         <p className="register__title-name">Имя</p>

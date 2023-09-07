@@ -1,0 +1,148 @@
+.popup-menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 248px;
+    flex-direction: column;
+    width: 520px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    z-index: 1;
+    background-color: #313131;
+}
+
+.popup-menu_none {
+    display: none;
+}
+
+.popup-menu__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.popup-menu__title {
+    color: white;
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    padding-top: 160px;
+    text-decoration: none;
+}
+
+.popup-menu__title:hover {
+    text-decoration: underline;
+}
+
+.popup-menu__movies {
+    color: white;
+    line-height: normal;
+    margin: 0;
+    padding-right: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    padding-right: 0px;
+    padding-top: 28px;
+
+}
+
+.popup-menu__movies:hover {
+    text-decoration: underline;
+}
+
+.popup-menu__save-movies {
+    line-height: normal;
+    margin: 0;
+    padding-right: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding-right: 0px;
+    padding-top: 30px;
+}
+
+.popup-menu__save-movies:hover {
+    text-decoration: underline;
+}
+
+.popup-menu__account {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    column-gap: 13px;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    padding-top: 627px;
+    z-index: 2;
+}
+
+.popup-menu__account-img {
+    display: flex;
+    height: 15px;
+    width: 15px;
+    border-radius: 6px;
+    background-color: #313131;
+    padding: 5px 5px 5px 5px;
+}
+
+.popup-menu__close-button {
+    position: absolute;
+    right: 27px;
+    top: 24px;
+    background-color: inherit;
+    background-image: url(../../images/close-button.svg);
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    background-size: 25px 25px;
+    border: none;
+    z-index: 2;
+}
+
+@media screen and (max-width: 767px) {
+    .popup-menu {
+        left: 0px;
+        width: 100%;
+    }
+
+    .popup-menu__container {        
+        max-height: 780px;
+    }
+
+    .popup-menu__close-button {
+        right: 20px;
+        top: 17px;
+    }
+
+    .popup-menu__title {
+        padding-top: 145px;
+    }
+
+    .popup-menu__save-movies {
+        padding-top: 25px;
+    }
+
+    .popup-menu__movies {
+        padding-top: 25px;
+    }
+
+    .popup-menu__account {
+        padding-bottom: 49px;
+        padding-top: 443px;
+        font-size: 14px;
+        line-height: 16px;
+        top: 114px;
+        right: 110px;
+    }
+}

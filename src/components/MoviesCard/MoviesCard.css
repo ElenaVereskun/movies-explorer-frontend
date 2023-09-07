@@ -2,8 +2,7 @@
     font-family: Inter, Arial, sans-serif;
     font-style: normal;
     border-radius: 6px;
-    /* background-color: #222; */
-    background-color: plum;
+    background-color: #222;
     box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
     text-align: center;
     width: 360px;
@@ -45,7 +44,7 @@
     background-color: #313131;
     border: none;
     margin-top: 14px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     font-size: 12px;
     font-weight: 400;
     line-height: 11px;
@@ -65,6 +64,7 @@
 @media screen and (max-width: 767px) {
     .movies-card {
         width: 300px;
+        height: 271px;
     }
 
     .movies-card__item {

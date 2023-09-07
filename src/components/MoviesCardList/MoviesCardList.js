@@ -7,6 +7,10 @@ function MoviesCardList() {
             <div className='movies-list__container'>
                 <MoviesCard />
                 <MoviesCard />
+                <MoviesCard />
+                <MoviesCard />
+                <MoviesCard />
+                <MoviesCard />
             </div>
         </section>
     )

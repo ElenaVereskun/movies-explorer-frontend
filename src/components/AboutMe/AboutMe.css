@@ -46,12 +46,14 @@
 }
 
 .about-me__link {
+    color: white;
     font-size: 14px;
     font-weight: 500;
     line-height: normal;
     padding-top: 55px;
     padding-bottom: 101px;
     margin: 0;
+    text-decoration: none;
 }
 
 .about-me__photo {
@@ -59,6 +61,7 @@
     width: 270px;
     padding-top: 66px;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .about-me__elements {
@@ -76,6 +79,7 @@
     justify-content: space-between;
     border-bottom: 1px solid #424242;
     padding-top: 20px;
+    text-decoration: none;
 }
 
 .about-me__item {

@@ -1,7 +1,7 @@
 import React from 'react';
 import AboutProjectTitle from '../AboutProjectTitle/AboutProjectTitle';
 import arrow from '../../images/about-me-arrow.svg';
-import photo from '../../images/photo.svg'
+import photo from '../../images/photoDiploma.jpeg';
 
 function AboutMe() {
     return (
@@ -17,23 +17,23 @@ function AboutMe() {
                     С подругами ходим на квесты, различные игры, музыкальные и не только. 
                     Пробовала себя в разных профессиях, занималась дизайном интерьеров.
                     После прохождения курса Практикума хотела бы найти работу в web-разработке. </p>
-                    <p className='about-me__link'>Github</p>
+                    <a href='https://github.com/ElenaVereskun' target="_blank" rel="noopener noreferrer" className='about-me__link'>Github</a>
                 </div>
                 <img className='about-me__photo' src={photo} alt='фото' />
             </div>
             <h2 className='about-me__elements'>Портфолио</h2>
-            <div className='about-me__element'>
+            <a href='https://github.com/ElenaVereskun/how-to-learn' target="_blank" rel="noopener noreferrer" className='about-me__element'>
                 <p className='about-me__item'>Статичный сайт</p>
                 <img className='about-me__arrow' src={arrow} alt='стрелка' />
-            </div>
-            <div className='about-me__element'>
+            </a>
+            <a href='https://elenavereskun.github.io/russian-travel/' target="_blank" rel="noopener noreferrer" className='about-me__element'>
                 <p className='about-me__item'>Адаптивный сайт</p>
                 <img className='about-me__arrow' src={arrow} alt='стрелка' />
-            </div>
-            <div className='about-me__element'>
-                <p className='about-me__item'>Одностраничное приложение</p>
+            </a>
+            <a href='https://mesto.vereskun.nomoreparties.co' target="_blank" rel="noopener noreferrer" className='about-me__element'>
+                <p  className='about-me__item'>Одностраничное приложение</p>
                 <img className='about-me__arrow' src={arrow} alt='стрелка' />
-            </div>
+            </a>
         </section>
     )
 }

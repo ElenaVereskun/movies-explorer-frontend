@@ -19,7 +19,8 @@
     .movies-list__container {
         display: flex;
         flex-direction: column;
-        row-gap: 16px;
+        align-items: center;
+        row-gap: 14px;
         padding: 39px 10px 30px 10px;
     }
 }

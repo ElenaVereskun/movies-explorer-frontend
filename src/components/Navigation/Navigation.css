@@ -10,18 +10,60 @@
 }
 
 .navigation__items {
+    display: none;
+}
+
+.navigation__items_active {
     display: flex;
     color: white;
+    align-items: center;
+}
+
+.navigation__enter {
+    display: none;
+}
+
+.navigation__enter_active {
     display: flex;
+    column-gap: 30px;
     align-items: center;
 }
 
 .navigation__register {
-
+    color: white;
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
     margin: 0;
+    text-decoration: none;
+}
+
+.navigation__register:hover {
+    cursor: pointer;
+}
+
+.navigation__register:active {
+    opacity: 0.7;
+}
+
+.navigation__button {
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    background-color: #3DDC84;
+    border-radius: 3px;
+    padding: 8px 20px 8px 20px;
+    border: none;
+    text-decoration: none;
+}
+
+.navigation__button:hover {
+    cursor: pointer;
+}
+
+.navigation__button:active {
+    opacity: 0.8;
 }
 
 .navigation__movies {
@@ -34,6 +76,14 @@
     text-decoration: none;
 }
 
+.navigation__movies:hover {
+    cursor: pointer;
+}
+
+.navigation__movies:active {
+    opacity: 0.7;
+}
+
 .navigation__save-movies {
     font-size: 14px;
     font-weight: 400;
@@ -44,16 +94,12 @@
     text-decoration: none;
 }
 
-.navigation__button {
-    display: none;
-    color: #000;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
-    background-color: #3DDC84;
-    border-radius: 3px;
-    padding: 8px 20px 8px 20px;
-    border: none;
+.navigation__save-movies:hover {
+    cursor: pointer;
+}
+
+.navigation__save-movies:active {
+    opacity: 0.7;
 }
 
 .navigation__account {
@@ -64,6 +110,14 @@
     column-gap: 13px;
 }
 
+.navigation__account:hover {
+    cursor: pointer;
+}
+
+.navigation__account:active {
+    opacity: 0.7;
+}
+
 .navigation__account-img {
     display: flex;
     height: 20px;
@@ -72,16 +126,29 @@
     background-color: #313131;
     padding: 5px 5px 5px 5px;
 }
-.navigation__burger-menu{
+
+.navigation__menu {
     display: none;
 }
 
 @media screen and (max-width: 1279px) {
+    .navigation__container {
+        padding-top: 15px;
+    }
+
     .navigation__items {
         display: none;
     }
-    .navigation__burger-menu{
+
+    .navigation__menu_active {
         display: flex;
+        padding: 0;
+        border: none;
+        background-color: inherit;
+    }
+
+    .navigation__menu_open {
+        border: #3DDC84;
     }
 }
 
@@ -98,5 +165,10 @@
 
     .navigation__register {
         font-size: 10px;
+    }
+
+    .navigation__menu-img {
+        width: 40px;
+        height: 35px;
     }
 }

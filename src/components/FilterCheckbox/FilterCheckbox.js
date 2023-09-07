@@ -1,9 +1,12 @@
 import React from 'react';
 
-function FilterCheckbox({ tumb }) {
+function FilterCheckbox() {
     return (
         <>
-            <button className='filter-checkbox' style={{ backgroundImage: { tumb } }} />
+            <label class="filter-checkbox">
+                <input class="filter-checkbox__input" type="checkbox"/>
+                    <span class="filter-checkbox__slider"></span>
+            </label>
         </>
     )
 }

@@ -21,3 +21,5 @@
 @import url(components/Login/Login.css);
 @import url(components/Register/Register.css);
 @import url(components/Error/Error.css);
+@import url(components/PopupMenu/PopupMenu.css);
+@import url(components/Preloader/Preloader.css);

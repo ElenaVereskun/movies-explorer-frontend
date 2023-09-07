@@ -25,11 +25,16 @@
     background-color: #202020;
 }
 
+.login__logo {
+    padding-top: 70px;
+    padding-bottom: 40px;
+}
+
 .login__title {
     font-size: 24px;
     font-weight: 500;
-    padding-top: 74px;
-    padding-bottom: 38px;
+    padding-top: 0px;
+    padding-bottom: 37px;
     margin: 0;
 }
 
@@ -83,7 +88,12 @@
     margin-top: 217px;
     margin-bottom: 16px;
 }
-
+.login__button-login:active{
+    opacity: 0.8;
+}
+.login__button-login:hover{
+    cursor: pointer;
+}
 .login__enter {
     display: flex;
     justify-content: center;
@@ -105,10 +115,21 @@
     font-size: 14px;
     font-weight: 400;
 }
+.login__button-enter:hover {
+    cursor: pointer;
+}
+.login__button-enter:active {
+    opacity: 0.7;
+}
 
 @media screen and (max-width: 1279px) {
+    .login__logo {
+        padding-top: 232px;
+        padding-bottom: 0;
+    }
+
     .login__title {
-        padding-top: 235px;
+        padding-top: 39px;
         padding-bottom: 39px;
         font-size: 24px;
         font-weight: 500;
@@ -129,8 +150,12 @@
         align-items: center;
     }
 
+    .login__logo {
+        padding-top: 56px;
+    }
+
     .login__title {
-        padding-top: 70px;
+        padding-top: 48px;
         padding-bottom: 81px;
     }
 

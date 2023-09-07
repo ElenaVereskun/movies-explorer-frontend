@@ -6,11 +6,11 @@
 }
 @media screen and (max-width: 1279px) {
     .saved-movies__black-square{
-        height: 141px;
+        height: 149px;
     }    
 }
 @media screen and (max-width: 767px) {
     .saved-movies__black-square{
-        height: 144px;
+        height: 161px;
     }    
 }
