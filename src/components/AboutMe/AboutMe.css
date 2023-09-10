@@ -86,6 +86,14 @@
     margin: 0 70px 0 70px;
 }
 
+.about-me__element:active {
+    opacity: 0.7;
+}
+
+.about-me__element:hover {
+    cursor: pointer;
+}
+
 .about-me__item {
     color: #FFF;
     font-size: 30px;

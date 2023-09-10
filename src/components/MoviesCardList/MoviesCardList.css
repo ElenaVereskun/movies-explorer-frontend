@@ -1,21 +1,23 @@
 .movies-list{
     background-color: #202020;
+    margin: 0 auto;
+    max-width: 1280px;
 }
 .movies-list__container {    
     display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 32px;
-    padding: 70px 70px 10px 70px;
-    margin: 0 auto;
-    max-width: 1280px;
+    grid-template-columns: 360px 360px 360px;
+    row-gap: 32px;
+    column-gap: 28px;
+    padding: 79px 70px 10px 70px;
+    justify-content: center;
 }
 
 @media screen and (max-width: 1279px) {
     .movies-list__container {
-        grid-template-columns: auto auto;
+        grid-template-columns: 342px 342px;
         row-gap: 35px;
         column-gap: 24px;
-        padding: 54px 30px 30px 30px;
+        padding: 81px 30px 30px 30px;
     }
 }
 
@@ -25,6 +27,6 @@
         flex-direction: column;
         align-items: center;
         row-gap: 14px;
-        padding: 39px 10px 30px 10px;
+        padding: 50px 10px 30px 10px;
     }
 }
