@@ -1,4 +1,9 @@
 .movies__more {
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+.movies__more__container {
     display: flex;
     justify-content: center;
     margin: 50px 70px 80px 70px;
@@ -18,6 +23,15 @@
     border: none;
     color: white;
 }
+
+.movies__button-more:active {
+    opacity: 0.8;
+}
+
+.movies__button-more:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1279px) {
     .movies__more {
         margin: 50px 30px 80px 30px;

@@ -20,7 +20,7 @@ function Register() {
                     <div className="register__input-container">
                         <p className="register__title-name">Имя</p>
                         <input className="register__name"
-                            type="text" placeholder="Имя" required />
+                            type="text" placeholder="Имя" minLength={2} maxLength={30} required />
                     </div>
                     <div className="register__input-container">
                         <p className="register__title-email">E-mail</p>
@@ -30,7 +30,7 @@ function Register() {
                     <div className="register__input-container" style={{ marginBottom: '10px' }}>
                         <p className="register__title-password">Пароль</p>
                         <input className="register__password"
-                            type="password" rel="to-replace" name="password" placeholder="password" required />
+                            type="password" rel="to-replace" name="password" placeholder="password" minLength={2} maxLength={30} required />
 
                     </div>
                     <p className='register__mistake'>Ошибка</p>

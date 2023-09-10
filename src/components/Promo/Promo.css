@@ -1,8 +1,10 @@
 .promo {
     background-color: #073042;
     height: 574px;
-    padding-left: 70px;
-    padding-right: 70px;
+}
+
+.promo__logo {
+    margin-right: 70px;
 }
 
 .promo__container {
@@ -10,6 +12,12 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     padding-top: 75px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.promo__text {
+    margin-left: 70px;
 }
 
 .promo__title {
@@ -41,6 +49,7 @@
         padding-left: 44px;
         padding-right: 44px;
     }
+
     .promo__container {
         display: flex;
         flex-direction: column;
@@ -48,11 +57,18 @@
         align-items: center;
         text-align: center;
     }
+
+    .promo__text {
+        margin-left: 0px;
+    }
+
     .promo__logo {
         width: 310px;
         height: 310px;
         padding-bottom: 44px;
+        margin-right: 0;
     }
+
     .promo__title {
         font-size: 40px;
         line-height: 50px;
@@ -60,25 +76,34 @@
         max-width: 680px;
         padding-bottom: 22px;
     }
-    .promo__subtitle{
+
+    .promo__subtitle {
         margin: auto;
         max-width: 260px;
-    }    
+    }
 }
-@media screen and (max-width: 767px){
+
+@media screen and (max-width: 767px) {
     .promo {
         height: 636px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 0;
+        padding-right: 0;
     }
+
     .promo__container {
         padding-top: 70px;
     }
+
+    .promo__text {
+        margin-left: 0px;
+    }
+
     .promo__logo {
         width: 210px;
         height: 206px;
         padding-bottom: 44px;
     }
+
     .promo__title {
         font-size: 30px;
         line-height: 38px;

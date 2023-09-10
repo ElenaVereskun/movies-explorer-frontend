@@ -25,7 +25,7 @@ function Login(props) {
                     <div className="login__input-container" style={{ marginBottom: '10px' }}>
                         <p className="login__title-password">Пароль</p>
                         <input value={props.email} className="login__password"
-                            type="password" rel="to-replace" name="password" placeholder="password" required />
+                            type="password" rel="to-replace" name="password" placeholder="password" minLength={2} maxLength={30} required />
                     </div>
                     <button className="login__button-login">Войти</button>
                 </div>

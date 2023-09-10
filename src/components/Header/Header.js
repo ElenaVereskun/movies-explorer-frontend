@@ -7,10 +7,12 @@ function Header() {
     const { isLoggin } = false;
     return (
         <header className="header">
-            <Link to="/" className='header__logo'>
-                <img src={logo} alt='логотип' />
-            </Link>
-            <Navigation isLoggin={isLoggin} />
+            <div className='header__container'>
+                <Link to="/" className='header__logo'>
+                    <img src={logo} alt='логотип' />
+                </Link>
+                <Navigation isLoggin={isLoggin} />
+            </div>
         </header>
     )
 }

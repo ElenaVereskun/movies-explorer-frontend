@@ -7,6 +7,7 @@
     align-items: center;
     column-gap: 30px;
     padding-top: 21px;
+    margin-right: 70px;
 }
 
 .navigation__items {
@@ -20,7 +21,7 @@
 }
 
 .navigation__enter {
-    display: none;
+    display: none;    
 }
 
 .navigation__enter_active {
@@ -133,7 +134,8 @@
 
 @media screen and (max-width: 1279px) {
     .navigation__container {
-        padding-top: 15px;
+        padding-top: 21px;
+        margin-right: 30px;
     }
 
     .navigation__items {
@@ -154,8 +156,8 @@
 
 @media screen and (max-width: 767px) {
     .navigation__container {
-        column-gap: 14px;
-        padding-top: 21px;
+        padding-top: 24px;
+        margin-right: 14px;
     }
 
     .navigation__button {
@@ -170,5 +172,9 @@
     .navigation__menu-img {
         width: 40px;
         height: 35px;
+    }
+
+    .navigation__enter_active {
+        column-gap: 15px;
     }
 }

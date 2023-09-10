@@ -1,9 +1,9 @@
-.header {
+.header__container {
     display: flex;
     flex-direction: row;
-    padding-left: 70px;
-    padding-right: 70px;
     justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 .header__logo {
@@ -11,18 +11,24 @@
     height: 38px;
     padding-top: 18px;
     padding-bottom: 18px;
+    margin-left: 70px;
 }
 
 @media screen and (max-width: 1279px) {
-    .header {
-        padding-left: 30px;
-        padding-right: 30px;
+    .header__logo {
+        margin-left: 30px;
     }
 }
 
 @media screen and (max-width: 767px) {
     .header {
-        padding-left: 14px;
-        padding-right: 14px;
+        /* margin-left: 14px;
+        margin-right: 14px; */
+    }
+    .header__container{
+        
+    }
+     .header__logo {
+        margin-left: 14px;
     }
 }

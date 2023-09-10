@@ -1,4 +1,10 @@
-
+.navtab {
+    background-color: #073042;
+}
+.navtab__container{
+    max-width: 1280px;
+    margin: 0 auto;
+}
 .navtab__text {
     border-radius: 3px;
     border: 1px solid #FFF;
@@ -7,6 +13,7 @@
     width: 129px;
     margin-bottom: 75px;
     margin-top: 84px;
+    margin-left: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +32,7 @@
     }
     .navtab__text {
         margin-top: 89px;
+        margin-left: 0px;
     }
 }
 @media screen and (max-width: 767px) {

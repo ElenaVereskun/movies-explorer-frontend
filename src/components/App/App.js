@@ -6,6 +6,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import Error404 from '../Error/Error';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/signin' element={<Login />} />
                 <Route path='/signup' element={<Register />} />
+                <Route path='/error404' element={<Error404/>} />
             </Routes>
         </>
 

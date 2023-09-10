@@ -13,7 +13,6 @@ function SearchForm() {
                     <FilterCheckbox />
                     <p className='search-form__short-text'>Короткометражки</p>
                 </div>
-
             </form>
         </>
 

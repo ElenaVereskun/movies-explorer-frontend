@@ -3,6 +3,8 @@
     font-family: Inter;
     font-style: normal;
     font-weight: 400;
+    margin: 0 auto;
+    max-width: 1280px;
 }
 
 .search-form__quest {
