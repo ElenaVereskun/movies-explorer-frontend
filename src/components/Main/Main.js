@@ -11,14 +11,15 @@ function Main() {
         <div className='main'>
             <div className='main__container'>
                 <Header />
-                <Promo />
-                <AboutProject />
-                <Techs />
-                <AboutMe />
+                <main>
+                    <Promo />
+                    <AboutProject />
+                    <Techs />
+                    <AboutMe />
+                </main>
                 <Footer />
             </div>
         </div>
-
     )
 }
 export default Main;

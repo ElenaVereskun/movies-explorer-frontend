@@ -8,9 +8,11 @@ function SavedMovies() {
     return (
         <div className='saved-movies'>
             <Header register={'Register'} />
-            <SearchForm />
-            <MoviesCardList />
-            <div className='saved-movies__black-square'></div>
+            <main>
+                <SearchForm />
+                <MoviesCardList />
+                <div className='saved-movies__black-square'></div>
+            </main>
             <Footer />
         </div>
     )

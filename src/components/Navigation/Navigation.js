@@ -20,17 +20,17 @@ function Navigation({ isLoggin }) {
             <PopupMenu isMenuOpen={isMenuOpen} onClickCloseButton={handleCloseButton} />
             <div className='navigation'>
                 <div className='navigation__container'>
-                    <div className={isLoggin ? 'navigation__items_active' : 'navigation__items'}>
+                    <div className={true ? 'navigation__items_active' : 'navigation__items'}>
                         <Link to="/movies" className='navigation__movies'>Фильмы</Link>
-                        <Link to="/saved-movies" className='navigation__save-movies'>Сохраненные фильмы</Link>
+                        <Link to="/saved-movies" className='navigation__save-movies'>Сохранённые фильмы</Link>
                         <Link to="/profile" className='navigation__account'>Аккаунт
                             <img className='navigation__account-img' src={account} alt='аккаунт' />
                         </Link>
                     </div>
-                    <button className={isLoggin ? 'navigation__menu_active' : 'navigation__menu'}>
+                    <button className={true ? 'navigation__menu_active' : 'navigation__menu'}>
                         <img className='navigation__menu-img' src={menu} alt='меню' onClick={handleMenuOpen} />
                     </button>
-                    <div className={isLoggin ? 'navigation__enter' : 'navigation__enter_active'}>
+                    <div className={true ? 'navigation__enter' : 'navigation__enter_active'}>
                         <Link to="/signup" className='navigation__register'>Регистрация</Link>
                         <Link to="/signin" className="navigation__button">Войти</Link>
                     </div>

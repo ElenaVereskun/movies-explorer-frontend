@@ -2,11 +2,11 @@ import React from 'react';
 
 function MoviesCardListMore() {
     return (
-        <div className='movies__more'>
-            <div className='movies__more__container'>
-                <button className='movies__button-more'>Ещё</button>
+        <section className='movies-more'>
+            <div className='movies-more__container'>
+                <button className='movies-more__button'>Ещё</button>
             </div>
-        </div>
+        </section>
     )
 }
 export default MoviesCardListMore;

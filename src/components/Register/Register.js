@@ -10,13 +10,15 @@ function Register() {
         navigate("/signin");
     }
     return (
-        <div className='register'>
+        <section className='register'>
             <form className="register__form">
                 <div className="register__container">
-                    <Link to="/" className='register__logo'>
-                        <img src={logo} alt='логотип' />
-                    </Link>
-                    <h2 className="register__title">Добро пожаловать!</h2>
+                    <div className='register__header'>
+                        <Link to="/" className='register__logo'>
+                            <img src={logo} alt='логотип' />
+                        </Link>
+                        <h2 className="register__title">Добро пожаловать!</h2>
+                    </div>
                     <div className="register__input-container">
                         <p className="register__title-name">Имя</p>
                         <input className="register__name"
@@ -42,7 +44,7 @@ function Register() {
                     <button className="register__button-enter" onClick={handleEnter}>Войти</button>
                 </div>
             </form>
-        </div>
+        </section>
     )
 }
 export default Register;

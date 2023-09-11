@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 function Header() {
-    const { isLoggin } = false;
+    const { isLoggin } = true;
     return (
         <header className="header">
             <div className='header__container'>

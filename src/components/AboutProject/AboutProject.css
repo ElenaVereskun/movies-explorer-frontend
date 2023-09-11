@@ -3,7 +3,7 @@
 }
 
 .about-project__container {
-    font-family: Inter;
+    font-family: Inter,Arial,sans-serif;
     font-style: normal;
     color: white;
     padding-top: 10px;

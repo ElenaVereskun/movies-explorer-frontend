@@ -1,9 +1,9 @@
-.movies__more {
+.movies-more {
     margin: 0 auto;
     max-width: 1280px;
 }
 
-.movies__more__container {
+.movies-more__container {
     display: flex;
     justify-content: center;
     margin: 50px 70px 80px 70px;
@@ -14,7 +14,7 @@
     padding-bottom: 7px;
 }
 
-.movies__button-more {
+.movies-more__button {
     font-family: Inter, Arial, sans-serif;
     font-size: 12px;
     font-weight: 500;
@@ -24,25 +24,25 @@
     color: white;
 }
 
-.movies__button-more:active {
+.movies-more__container:active {
     opacity: 0.8;
 }
 
-.movies__button-more:hover {
+.movies-more__container:hover {
     cursor: pointer;
 }
 
 @media screen and (max-width: 1279px) {
-    .movies__more {
+    .movies-more {
         margin: 50px 30px 80px 30px;
     }
-    .movies__more__container{
+    .movies-more__container{
         margin: 0;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .movies__more {
+    .movies-more {
         margin: 50px 10px 103px 10px;
     }
 }

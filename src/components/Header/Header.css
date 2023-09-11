@@ -21,13 +21,6 @@
 }
 
 @media screen and (max-width: 767px) {
-    .header {
-        /* margin-left: 14px;
-        margin-right: 14px; */
-    }
-    .header__container{
-        
-    }
      .header__logo {
         margin-left: 14px;
     }

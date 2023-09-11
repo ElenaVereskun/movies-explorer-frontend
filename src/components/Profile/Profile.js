@@ -3,7 +3,6 @@ import Header from '../Header/Header';
 
 function Profile(props) {
     return (
-        <>
             <div className='profile'>
                 <Header />
                 <form className="profile__form">
@@ -24,8 +23,6 @@ function Profile(props) {
                     </div>
                 </form>
             </div>
-        </>
-
     )
 }
 export default Profile;

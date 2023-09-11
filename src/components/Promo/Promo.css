@@ -21,7 +21,7 @@
 }
 
 .promo__title {
-    font-family: Inter;
+    font-family: Inter,Arial,sans-serif;
     font-size: 50px;
     font-weight: 400;
     line-height: 58px;
@@ -33,7 +33,7 @@
 }
 
 .promo__subtitle {
-    font-family: Inter;
+    font-family: Inter,Arial,sans-serif;
     font-size: 13px;
     font-weight: 400;
     line-height: normal;

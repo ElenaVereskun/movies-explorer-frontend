@@ -9,9 +9,11 @@ function Movies() {
     return (
         <div className='movies'>
             <Header />
-            <SearchForm />
-            <MoviesCardList />
-            <MoviesCardListMore />
+            <main>
+                <SearchForm />
+                <MoviesCardList />
+                <MoviesCardListMore />
+            </main>
             <Footer />
         </div>
     )

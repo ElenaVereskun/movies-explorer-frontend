@@ -1,7 +1,7 @@
 .login {
     background-color: #202020;
     height: 100vh;
-    font-family: Inter;
+    font-family: Inter,Arial,sans-serif;
     font-style: normal;
     line-height: normal;
 }

@@ -10,7 +10,7 @@ function Login(props) {
         navigate("/signup");
     }
     return (
-        <div className='login'>
+        <section className='login'>
             <form className="login__form">
                 <div className="login__container">
                     <Link to="/" className='login__logo'>
@@ -34,7 +34,7 @@ function Login(props) {
                     <button className="login__button-enter" onClick={handleRegister}>Регистрация</button>
                 </div>
             </form>
-        </div>
+        </section>
     )
 }
 export default Login;
