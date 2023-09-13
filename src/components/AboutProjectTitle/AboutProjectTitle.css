@@ -1,0 +1,30 @@
+.title{
+    color: #FFFFFF;
+    font-family: Inter,Arial,sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    padding-top: 100px;
+    padding-bottom: 23px;
+    margin: 0 70px 0 70px;
+    border-bottom: 1px solid #DADADA;
+}
+
+@media screen and (max-width: 1279px) {
+    .title {
+        padding-top: 90px;
+        margin: 0 50px 0 50px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .title {
+        padding-top: 60px;
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        padding-bottom: 28px;
+        margin: 0 14px 0 14px;
+    }
+}

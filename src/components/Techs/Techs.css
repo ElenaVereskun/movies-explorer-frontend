@@ -1,0 +1,131 @@
+.techs {
+    background-color: #272727;
+}
+
+.techs__container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.techs__content {
+    display: flex;
+    color: #FFF;
+    text-align: center;
+    align-items: center;
+    font-family: Inter,Arial,sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    flex-direction: column;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.techs__title {
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+    margin: 0;
+    padding-top: 90px;
+    padding-bottom: 26px;
+}
+
+.techs__subtitle {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.56px;
+    margin: 0;
+    max-width: 460px;
+}
+
+.techs__items {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    margin: 100px 0 100px 0;
+}
+
+.techs__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: -0.56px;
+    background-color: #303030;
+    border-radius: 10px;
+    border: none;
+    margin: 0;
+    width: 90px;
+    height: 60px;
+}
+
+@media screen and (max-width: 1279px) {
+    .techs__title {
+        padding-top: 80px;
+        padding-bottom: 22px;
+    }
+
+    .techs__content {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .techs__subtitle {
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: -0.48px;
+    }
+
+    .techs__items {
+        margin: 83px 0 90px 0;
+    }
+
+    .techs__item {
+        width: 84px;
+        height: 57px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .techs {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .techs__content {
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+
+    .techs__title {
+        padding-top: 49px;
+        padding-bottom: 13px;
+        font-size: 30px;
+        letter-spacing: -1.2px;
+    }
+
+    .techs__subtitle {
+        max-width: 292px;
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: -0.44px;
+    }
+
+    .techs__items {
+        display: grid;
+        margin: 50px 0 70px 0;
+        flex-direction: column;
+        max-height: 258px;
+        max-width: 178px;
+        flex-wrap: wrap;
+        row-gap: 10px;
+        grid-template-columns: auto auto;
+    }
+
+    .techs__item {
+        font-size: 12px;
+        letter-spacing: -0.48px;
+    }
+}

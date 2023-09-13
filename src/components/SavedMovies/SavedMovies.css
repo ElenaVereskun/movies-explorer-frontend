@@ -1,0 +1,16 @@
+.saved-movies{
+    background-color: #202020;
+}
+.saved-movies__black-square{
+    height: 219px;
+}
+@media screen and (max-width: 1279px) {
+    .saved-movies__black-square{
+        height: 149px;
+    }    
+}
+@media screen and (max-width: 767px) {
+    .saved-movies__black-square{
+        height: 161px;
+    }    
+}

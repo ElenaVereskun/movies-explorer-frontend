@@ -1,0 +1,116 @@
+.promo {
+    background-color: #073042;
+    height: 574px;
+}
+
+.promo__logo {
+    margin-right: 70px;
+}
+
+.promo__container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-top: 75px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.promo__text {
+    margin-left: 70px;
+}
+
+.promo__title {
+    font-family: Inter,Arial,sans-serif;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    max-height: 174px;
+    max-width: 640px;
+    padding-bottom: 36px;
+    color: white;
+    margin: 0;
+}
+
+.promo__subtitle {
+    font-family: Inter,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    color: white;
+    margin: 0;
+    max-width: 310px;
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 1279px) {
+    .promo {
+        height: 850px;
+        padding-left: 44px;
+        padding-right: 44px;
+    }
+
+    .promo__container {
+        display: flex;
+        flex-direction: column;
+        padding-top: 140px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .promo__text {
+        margin-left: 0px;
+    }
+
+    .promo__logo {
+        width: 310px;
+        height: 310px;
+        padding-bottom: 44px;
+        margin-right: 0;
+    }
+
+    .promo__title {
+        font-size: 40px;
+        line-height: 50px;
+        max-height: 100px;
+        max-width: 680px;
+        padding-bottom: 22px;
+    }
+
+    .promo__subtitle {
+        margin: auto;
+        max-width: 260px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .promo {
+        height: 636px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .promo__container {
+        padding-top: 70px;
+    }
+
+    .promo__text {
+        margin-left: 0px;
+    }
+
+    .promo__logo {
+        width: 210px;
+        height: 206px;
+        padding-bottom: 44px;
+    }
+
+    .promo__title {
+        font-size: 30px;
+        line-height: 38px;
+        max-width: 300px;
+        max-height: 114px;
+        padding-bottom: 24px;
+        letter-spacing: -1.2px;
+    }
+
+}

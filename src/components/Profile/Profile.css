@@ -1,0 +1,118 @@
+.profile {
+    background-color: #202020;
+    height: 100vh;
+}
+
+.profile__form {
+    padding-bottom: 70px;
+    background-color: #202020;
+}
+
+.profile__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-family: Inter,Arial,sans-serif;
+    font-style: normal;
+    font-size: 11px;
+    background-color: #202020;
+}
+
+.profile__title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
+    padding-top: 74px;
+    padding-bottom: 123px;
+    margin: 0;
+}
+
+.profile__input-container {
+    display: flex;
+    flex-direction: row;
+    width: 410px;
+    margin-bottom: 17px;
+    padding-bottom: 16px;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(170, 170, 170, 0.2);
+}
+
+.profile__email {
+    background-color: #202020;
+    border: none;
+    text-align: right;
+    color: white;
+}
+
+.profile__name {
+    background-color: #202020;
+    border: none;
+    text-align: right;
+
+}
+
+.profile__title-name {
+    margin: 0;
+    color: white;
+}
+
+.profile__title-email {
+    margin: 0;
+    color: white;
+}
+
+.profile__button-edit {
+    background-color: #202020;
+    color: white;
+    border: none;
+    padding-bottom: 17px;
+    padding-top: 187px;
+    font-size: 13px;
+}
+
+.profile__button-exit {
+    background-color: #202020;
+    color: #EE3465;
+    border: none;
+    font-size: 13px;
+}
+
+@media screen and (max-width: 1279px) {
+    .profile__title {
+        padding-top: 235px;
+        padding-bottom: 97px;
+    }
+
+    .profile__button-edit {
+        padding-top: 177px;
+    }
+
+    .profile__form {
+        padding-bottom: 269px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile__form {
+        padding-bottom: 40px;
+    }
+    .profile__title {
+        padding-top: 70px;
+        padding-bottom: 81px;
+    }
+
+    .profile__input-container {
+        width: 260px;
+        padding-bottom: 15px;
+    }
+
+    .profile__button-edit {
+        padding-top: 347px;
+        font-size: 12px;
+    }
+    .profile__button-exit {
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
