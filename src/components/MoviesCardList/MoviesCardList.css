@@ -10,6 +10,7 @@
     column-gap: 28px;
     padding: 79px 70px 10px 70px;
     justify-content: center;
+    list-style-type: none;
 }
 
 @media screen and (max-width: 1279px) {

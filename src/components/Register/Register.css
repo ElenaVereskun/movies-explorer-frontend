@@ -73,6 +73,7 @@
 .register__password {
     background-color: #202020;
     border: none;
+    color: white;
 }
 
 .register__title-name {

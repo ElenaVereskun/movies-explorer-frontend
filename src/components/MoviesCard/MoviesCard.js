@@ -1,16 +1,32 @@
 import React from 'react';
-import moviesItem from '../../images/pic__COLOR_pic.png';
 
-function MoviesCard() {
+function MoviesCard({ movie }) {
+    const {
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailerLink,
+        thumbnail,
+        nameRU,
+        nameEN,
+    } = movie;
+
+
+/*     function handleClick() {
+        onMovieClick(movie);
+      } */
     return (
-        <div className='movies-card'>
+        <li className='movies-card'>
             <div className='movies-card__heading'>
-                <h2 className='movies-card__title'>В погоне за Бенкси</h2>
-                <p className='movies-card__time'>0ч 42мин</p>
+                <h2 className='movies-card__title'>{nameRU}</h2>
+                <p className='movies-card__time'>{duration}мин</p>
             </div>
-            <img src={moviesItem} className='movies-card__item' alt='фильм' />
+            <img src={image} className='movies-card__item' alt={nameRU}/>
             <button className='movies-card__button-save'>Сохранить</button>
-        </div>
+        </li>
     )
 }
 export default MoviesCard;

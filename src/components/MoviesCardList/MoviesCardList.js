@@ -1,19 +1,19 @@
-import React from 'react';
+import { React } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList() {
+function MoviesCardList({movies}) {
+
+
+    
     return (
         <section className='movies-list'>
-            <div className='movies-list__container'>
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-            </div>
+            <ul className='movies-list__container'>
+                {movies.map((movie) => (
+                    <MoviesCard movie={movie}
+                    key={movie._id}>
+                    </MoviesCard>
+                ))}
+            </ul>
         </section>
     )
 }

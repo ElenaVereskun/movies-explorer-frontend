@@ -54,10 +54,13 @@
     margin: 0;
     padding: 0;
 }
-
+.login__email-error{
+    color: white;
+}
 .login__password {
     background-color: #202020;
     border: none;
+    color: white;
 }
 
 .login__title-email {
