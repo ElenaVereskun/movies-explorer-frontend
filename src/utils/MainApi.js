@@ -1,5 +1,5 @@
-/* export const BASE_URL = "https://api.mesto.elenavereskun.nomoreparties.co"; */
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL = "https://api.vereskun.nomoredomainsicu.ru";
+/* export const BASE_URL = "http://localhost:3001"; */
 export const MOVIE_URL = "https://api.nomoreparties.co/beatfilm-movies";
 function errorCheck(res) {
     if (res.ok) {
@@ -82,9 +82,9 @@ export const savedMovie = ({ data }) => {
             duration: data.duration,
             year: data.year,
             description: data.description,
-            image: `https://api.nomoreparties.co + ${data.image.url}`,
+            image: `${MOVIE_URL}` + data.image.url,
             trailerLink: data.trailerLink,
-            thumbnail: `https://api.nomoreparties.co + ${data.image.formats.thumbmail.url}`,
+            thumbnail: `${MOVIE_URL}` + data.image.formats.thumbmail.url,
             nameRU: data.nameRU,
             nameEN: data.nameEN,
             id: data.id,
