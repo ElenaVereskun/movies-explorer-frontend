@@ -1,38 +1,28 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm() {
-/*     const [search, setSearch] = useState();
 
-    function handleChangeSearch(e) {
-        setSearch(e.target.value);
+function SearchForm({ onSearch }) {
+    const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
+    
+    const handleChange = (e) => {
+        const value = e.target.value
+        localStorage.setItem("searchValue", value);
+        setSearchValue(e.target.value);
     }
-
-    useEffect(() => {
-        setSearch();
-    }, []); */
-
-/*     function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
-        // Передаём значения управляемых компонентов во внешний обработчик
-
+        onSearch();
     }
-    function handleAddPlaceSubmit({ name, link }) {
-        api.createCard({ name, link })
-          .then((newCard) => {
-            setCards([newCard, ...cards]);
-            closeAllPopups();
-          })
-          .catch((err) => console.log(`Ошибка добавления новой карточки: ${err}`));
-      } */
     return (
         <section>
-            <form className='search-form'>
+            <form className='search-form' onSubmit={handleSubmit}>
                 <div className='search-form__quest'>
-                    <input className='search-form__input' 
-                     value='dddddd' 
-                    /*onChange={handleChangeSearch} */
-                    placeholder="Фильм" />
+                    <input className='search-form__input'
+                        value={searchValue}
+                        name="search"
+                        onChange={handleChange}
+                        placeholder="Фильм" />
                     <span ></span>
                     <button className='search-form__button'>Поиск</button>
                 </div>

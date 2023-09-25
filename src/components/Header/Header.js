@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ setIsLoggedIn }) {
+function Header({ isLoggedIn }) {
     return (
         <header className="header">
             <div className='header__container'>
                 <Link to="/" className='header__logo'>
                     <img src={logo} alt='логотип' />
                 </Link>
-                <Navigation setIsLoggedIn={setIsLoggedIn} />
+                <Navigation isLoggedIn={isLoggedIn} />
             </div>
         </header>
     )

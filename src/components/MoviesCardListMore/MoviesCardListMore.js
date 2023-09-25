@@ -1,10 +1,10 @@
 import React from 'react';
 
-function MoviesCardListMore() {
+function MoviesCardListMore({handleMoreClick, isMoreMovies}) {
     return (
         <section className='movies-more'>
-            <div className='movies-more__container'>
-                <button className='movies-more__button'>Ещё</button>
+            <div className={isMoreMovies ? 'movies-more__container' : 'movies-more__container_none'}>
+                <button className='movies-more__button' onClick={handleMoreClick}>Ещё</button>
             </div>
         </section>
     )

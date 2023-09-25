@@ -13,7 +13,9 @@
     padding-top: 11px;
     padding-bottom: 7px;
 }
-
+.movies-more__container_none{
+    display: none;
+}
 .movies-more__button {
     font-family: Inter, Arial, sans-serif;
     font-size: 12px;
@@ -35,9 +37,6 @@
 @media screen and (max-width: 1279px) {
     .movies-more {
         margin: 50px 30px 80px 30px;
-    }
-    .movies-more__container{
-        margin: 0;
     }
 }
 

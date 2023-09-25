@@ -19,9 +19,11 @@
 .movies-card__title {
     font-size: 15px;
     font-weight: 500;
-    line-height: 18px;
+    line-height: 14px;
     color: #FFFFFF;
     margin: 0;
+    text-align: start;
+    max-height: 18px;
 }
 
 .movies-card__time {
@@ -46,9 +48,18 @@
     border: none;
     margin-top: 14px;
     margin-bottom: 14px;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 11px;
+    background-image: url(../../images/saveSVG.svg);
+}
+.movies-card__button-save_active {
+    width: 100px;
+    height: 29px;
+    color: #FFFFFF;
+    border-radius: 30px;
+    background-color: #313131;
+    border: none;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    background-image: url(../../images/savedPink.svg);
 }
 
 @media screen and (max-width: 1279px) {

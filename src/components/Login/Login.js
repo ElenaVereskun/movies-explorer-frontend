@@ -2,42 +2,26 @@ import { React, useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import logo from '../../images/logo.svg';
 import * as mainApi from '../../utils/MainApi';
+import { useFormWithValidation } from '../useForm/useForm';
 
 function Login({ onLogin }) {
-
+    const { values, handleChange, errors, isValid } = useFormWithValidation();
     const navigate = useNavigate();
-    const [errorMessage, setErrorMesage] = useState('');
-
-    const [formValue, setFormValue] = useState({
-        email: '',
-        password: ''
-    });
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValue({
-            ...formValue,
-            [name]: value
-        });
-    }
+    const [isFormError, setIsFormError] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (!formValue.email || !formValue.password) {
-            setErrorMesage("Не введены email или пароль");
-            return;
-        }
-        mainApi.authorize({ email: formValue.email, password: formValue.password })
+        const { email, password } = values;
+
+        mainApi.authorize({ email, password })
             .then((data) => {
-                if (data.token) {
-                    localStorage.setItem('jwt', data.token);
-                    setFormValue({ email: '', password: '' });
-                    /* onLogin(data.token); */
-                    navigate('/movies', { replace: true });
-                } else {
-                    setErrorMesage("Не корректные email или пароль")
-                }
+                localStorage.setItem('jwt', data.token);
+                /* setFormValue({ email: '', password: '' }); */
+                onLogin(data.token);
+                /* setEmail(data.email); */
+                navigate('/movies', { replace: true });
             })
-            .catch((err) => console.log(`Ошибка логин: ${err}`));
+            .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
     }
 
     function handleRegister() {
@@ -53,21 +37,43 @@ function Login({ onLogin }) {
                     <h2 className="login__title">Рады видеть!</h2>
                     <div className="login__input-container">
                         <p className="login__title-email">E-mail</p>
-                        <input value={formValue.email} className="login__email" onChange={handleChange}
-                            type="text" name="email" placeholder="Email" required />
-                        <span className='login__email-error'></span>
+                        <input className="login__email"
+                            value={values.email}
+                            onChange={handleChange}
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            pattern="^[a-zA-Z0-9\.\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z0-9]+$"
+                            minLength={2}
+                            maxLength={30}
+                            required />
                     </div>
+                    <span className='login__email-error'>{errors.email}</span>
                     <div className="login__input-container" style={{ marginBottom: '10px' }}>
                         <p className="login__title-password">Пароль</p>
-                        <input value={formValue.password} className="login__password" onChange={handleChange}
-                            type="password" rel="to-replace" name="password" placeholder="password" minLength={2} maxLength={30} required />
-                        <span className='login__password-error'>{errorMessage}</span>
+                        <input className="login__password"
+                            value={values.password}
+                            onChange={handleChange}
+                            type="password"
+                            rel="to-replace"
+                            name="password"
+                            placeholder="password"
+                            minLength={6}
+                            maxLength={20}
+                            required />
                     </div>
-                    <button className="login__button-login" onClick={onLogin} >Войти</button>
+                    <span className='login__password-error'>{errors.password}</span>
+                    <div className='login__button-container'>
+                        <span className="register__form-error">{isFormError}</span>
+                        <button className="login__button-login"
+                            onClick={onLogin}
+                            disabled={!isValid}>Войти</button>
+                    </div>
                 </div>
                 <div className='login__enter'>
                     <p className='login__enter-text'>Ещё не зарегистрированы?</p>
-                    <button className="login__button-enter" onClick={handleRegister}>Регистрация</button>
+                    <button className="login__button-enter"
+                        onClick={handleRegister}>Регистрация</button>
                 </div>
             </form>
         </section>

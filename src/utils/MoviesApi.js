@@ -4,15 +4,6 @@ class MoviesApi {
         this.headers = headers
     }
 
-    /*     getMovies(token) {
-            return fetch(this.baseUrl, {
-                headers: {
-                    ...this.headers,
-                    authorization: `Bearer ${token}`
-                }
-            })
-                .then(res => this._errorCheck(res))
-        } */
     getMovies() {
         return fetch(this.baseUrl, {
             headers: {

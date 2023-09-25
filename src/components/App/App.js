@@ -9,13 +9,23 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Error404 from '../Error/Error';
 import * as mainApi from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoutes/ProtectedRoutes';
 
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('jwt')
+        isLoggedIn &&
+            mainApi.getUserProfileInfo({ token })
+                .then((user) => {
+                    setCurrentUser({ name: user.name, email: user.email });
+                })
+                .catch((err) => console.log(`Ошибка загрузки данных профиля: ${err}`))
+    }, [isLoggedIn]);
 
     useEffect(() => {
         tokenCheck();
@@ -35,19 +45,41 @@ function App() {
         }
     }
 
+    function handleUpdateUser({ name, email }) {
+        mainApi.editUserInfo({ name, email })
+            .then((data) => {
+                setCurrentUser({ name: data.name, email: data.email });
+                navigate('/profile', { replace: true });
+            })
+            .catch((err) => console.log(`Ошибка изменения данных пользователя: ${err}`));
+    };
+
+
+
     return (
         <>
             <CurrentUserContext.Provider value={currentUser} className="content" >
                 <Routes>
-                    <Route path="/" element={<Main />} isLoggedIn={isLoggedIn} />
-                    <Route path="/movies" element={<Movies
-                        setIsLoggedIn={setIsLoggedIn} />} />
-                    <Route path='/saved-movies' element={<SavedMovies />} />
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path="/" element={<Main
+                        isLoggedIn={isLoggedIn} />} />
+                    <Route path="/movies" element={<ProtectedRoute element={<Movies
+                        isLoggedIn={isLoggedIn}
+                    />} isLoggedIn={isLoggedIn} />} />
+
+                    <Route path='/saved-movies' element={<ProtectedRoute element={<SavedMovies
+                    />} isLoggedIn={isLoggedIn} />} />
+
+                    <Route path='/profile' element={<ProtectedRoute element={<Profile
+                        isLoggedIn={isLoggedIn}
+                        setIsLoggedIn={setIsLoggedIn}
+                        onEditProfile={handleUpdateUser}
+                    />} isLoggedIn={isLoggedIn} />} />
+
                     <Route path='/signin' element={<Login
                         onLogin={setIsLoggedIn} />} />
                     <Route path='/signup' element={<Register
-                        onRegister={setIsLoggedIn} />} />
+                        onRegister={setIsLoggedIn}
+                    />} />
                     <Route path='/error404' element={<Error404 />} />
                 </Routes>
             </CurrentUserContext.Provider>
