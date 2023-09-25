@@ -15,7 +15,7 @@ function MoviesCardList({ movies }) {
     const DESKTOP_COUNT = 12;
 
     useEffect(() => {
-        window.addEventListener('resize', (evt) => {            
+        window.addEventListener('resize', (evt) => {
             if (MOBILE_VIEW < window.innerWidth < PAD_VIEW) {
                 setMoviesView(MOBILE_COUNT);
             }
@@ -37,7 +37,7 @@ function MoviesCardList({ movies }) {
 
     function handleMoreClick() {
         if (window.innerWidth === MOBILE_VIEW) {
-           return  moviesView + 2;
+            return moviesView + 2;
         }
         if (window.innerWidth === PAD_VIEW) {
             return moviesView + 2;
@@ -56,6 +56,7 @@ function MoviesCardList({ movies }) {
         }
     }
     /* console.log(moviesView); */
+
     return (
         <>
             <section className='movies-list'>
