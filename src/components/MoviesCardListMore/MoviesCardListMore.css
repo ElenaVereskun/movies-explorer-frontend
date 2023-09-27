@@ -13,9 +13,6 @@
     padding-top: 11px;
     padding-bottom: 7px;
 }
-.movies-more__container_none{
-    display: none;
-}
 .movies-more__button {
     font-family: Inter, Arial, sans-serif;
     font-size: 12px;

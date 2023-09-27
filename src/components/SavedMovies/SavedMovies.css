@@ -1,5 +1,6 @@
 .saved-movies{
     background-color: #202020;
+    height: 100vh;
 }
 .saved-movies__black-square{
     height: 219px;

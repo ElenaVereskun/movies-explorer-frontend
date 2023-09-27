@@ -55,7 +55,6 @@ function App() {
     };
 
 
-
     return (
         <>
             <CurrentUserContext.Provider value={currentUser} className="content" >
@@ -67,7 +66,7 @@ function App() {
                     />} isLoggedIn={isLoggedIn} />} />
 
                     <Route path='/saved-movies' element={<ProtectedRoute element={<SavedMovies
-                    />} isLoggedIn={isLoggedIn} />} />
+                        isLoggedIn={isLoggedIn} />} isLoggedIn={isLoggedIn} />} />
 
                     <Route path='/profile' element={<ProtectedRoute element={<Profile
                         isLoggedIn={isLoggedIn}
@@ -80,7 +79,7 @@ function App() {
                     <Route path='/signup' element={<Register
                         onRegister={setIsLoggedIn}
                     />} />
-                    <Route path='/error404' element={<Error404 />} />
+                    <Route path='*' element={<Error404 />} />
                 </Routes>
             </CurrentUserContext.Provider>
         </>

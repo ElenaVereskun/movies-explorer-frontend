@@ -1,6 +1,6 @@
 export const BASE_URL = "https://api.vereskun.nomoredomainsicu.ru";
 /* export const BASE_URL = "http://localhost:4001"; */
-export const MOVIE_URL = "https://api.nomoreparties.co/beatfilm-movies";
+export const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
 function errorCheck(res) {
     if (res.ok) {
         return res.json();
@@ -69,7 +69,7 @@ export const getToken = () => {
         .then(res => errorCheck(res))
 };
 
-export const savedMovie = ({ data }) => {
+export const savedMovie = data => {
     return fetch(`${BASE_URL}/movies`, {
         method: 'POST',
         headers: {
@@ -82,23 +82,34 @@ export const savedMovie = ({ data }) => {
             duration: data.duration,
             year: data.year,
             description: data.description,
-            image: `${MOVIE_URL}` + data.image.url,
+            image: `${MOVIES_URL}${data.image.url}`,
             trailerLink: data.trailerLink,
-            thumbnail: `${MOVIE_URL}` + data.image.formats.thumbmail.url,
+            thumbnail: `${MOVIES_URL}${data.image.formats.thumbnail.url}`,
             nameRU: data.nameRU,
             nameEN: data.nameEN,
-            id: data.id,
+            movieId: data.id,
         })
-    }).then(res => errorCheck(res))
+}).then(res => errorCheck(res))
 };
 
-export const removeMovie = ({ id }) => {
-    return fetch(`${BASE_URL}/movies`, {
+export const removeMovie =  ({movieId})  => {
+    return fetch(`${BASE_URL}/movies/${movieId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({movieId}),
     }).then(res => errorCheck(res))
 };
+
+export const getMovies = () =>  {
+    return fetch(`${BASE_URL}/movies`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    })
+        .then(res => errorCheck(res))
+}

@@ -2,60 +2,53 @@ import { React, useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardListMore from '../MoviesCardListMore/MoviesCardListMore';
 
-function MoviesCardList({ movies }) {
+
+function MoviesCardList({ movies,savedMovies, setSavedMovies }) {
     const [moviesView, setMoviesView] = useState();
-    const [count, setCount] = useState();
-    const [isMoreMovies, setIsMoreMovies] = useState(true);
 
     const MOBILE_VIEW = 320;
-    const PAD_VIEW = 768;
-    const DESKTOP_VIEW = 1280;
+    const MOBILE_MEDIUM_VIEW = 480;
+    const PAD_VIEW = 760;
+    const DESKTOP_VIEW = 1270;
     const MOBILE_COUNT = 5;
     const PAD_COUNT = 8;
     const DESKTOP_COUNT = 12;
 
     useEffect(() => {
         window.addEventListener('resize', (evt) => {
-            if (MOBILE_VIEW < window.innerWidth < PAD_VIEW) {
-                setMoviesView(MOBILE_COUNT);
-            }
-            if (PAD_VIEW < window.innerWidth < DESKTOP_VIEW) {
-                setMoviesView(PAD_COUNT);
-            }
-            if (DESKTOP_VIEW < window.innerWidth) {
-                setMoviesView(DESKTOP_COUNT);
-            }
+            moviesToOpen();
         })
-        /*          return () => {
-                    window.removeEventListener('resize');
-                } */
-    }, [])
+    }, []);
 
-    useEffect(() => {
-        moviesLengthMore();
-    }, [isMoreMovies])
+    function moviesToOpen() {
+        if (window.innerWidth < MOBILE_VIEW) {
+            setMoviesView(MOBILE_COUNT);
+        }
+        if (MOBILE_VIEW < window.innerWidth < MOBILE_MEDIUM_VIEW) {
+            setMoviesView(MOBILE_COUNT);
+        }
+        if (MOBILE_MEDIUM_VIEW < window.innerWidth < PAD_VIEW) {
+            setMoviesView(PAD_COUNT);
+        }
+        if (PAD_VIEW < window.innerWidth < DESKTOP_VIEW) {
+            setMoviesView(PAD_COUNT);
+        }
+        if (DESKTOP_VIEW < window.innerWidth) {
+            setMoviesView(DESKTOP_COUNT);
+        }
+    }
 
     function handleMoreClick() {
-        if (window.innerWidth === MOBILE_VIEW) {
-            return moviesView + 2;
+        if (MOBILE_VIEW < window.innerWidth < PAD_VIEW) {
+            setMoviesView(moviesView + 2);
         }
-        if (window.innerWidth === PAD_VIEW) {
-            return moviesView + 2;
+        if (PAD_VIEW < window.innerWidth < DESKTOP_VIEW) {
+            setMoviesView(moviesView + 2);
         }
-        if (window.innerWidth === DESKTOP_VIEW) {
-            return moviesView + 3;
-        }
-    }
-
-    function moviesLengthMore() {
-        console.log(movies.slice(moviesView, 100).length);
-        if (movies.slice(moviesView, 100).length === 0) {
-            setIsMoreMovies(false);
-        } else {
-            setIsMoreMovies(true);
+        if (DESKTOP_VIEW < window.innerWidth) {
+            setMoviesView(moviesView + 3);
         }
     }
-    /* console.log(moviesView); */
 
     return (
         <>
@@ -63,13 +56,22 @@ function MoviesCardList({ movies }) {
                 <ul className='movies-list__container'>
                     {movies.slice(0, moviesView).map((movie) => (
                         <MoviesCard movie={movie}
+                            key={movie.id}
+                            savedMovies={savedMovies}
+                            setSavedMovies={setSavedMovies}>
+                        </MoviesCard>
+                    ))}{/*  || {myMovies.map((movie) => (
+                        <MoviesCard movie={movie}
                             key={movie.id}>
                         </MoviesCard>
-                    ))}
+                    ))
+                    } */}
                 </ul>
             </section>
-            <MoviesCardListMore handleMoreClick={handleMoreClick}
-                isMoreMovies={isMoreMovies} />
+            {movies.slice(moviesView).length !== 0
+                ? <MoviesCardListMore handleMoreClick={handleMoreClick} />
+                : <div className='saved-movies__black-square'></div>}
+
         </>
     )
 }

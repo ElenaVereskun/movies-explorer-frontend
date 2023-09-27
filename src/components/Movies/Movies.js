@@ -42,7 +42,8 @@ function Movies({ isLoggedIn }) {
         }
         if (searchValue) {
             const filterMoviesByName = movies.filter((movie) => {
-                return movie.nameRU.toLowerCase().includes(searchValue.toLowerCase());
+                return movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
+                    movie.nameEN.toLowerCase().includes(searchValue.toLowerCase());
             });
             setFilterMovies(filterMoviesByName);
             setSearchError('');
@@ -53,7 +54,8 @@ function Movies({ isLoggedIn }) {
         if (checkbox && searchValue) {
             const filterMoviesByAll = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40) &&
-                    (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()));
+                    (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
+                        movie.nameEN.toLowerCase().includes(searchValue.toLowerCase()));
             });
             setFilterMovies(filterMoviesByAll);
             setSearchError('');
@@ -69,7 +71,9 @@ function Movies({ isLoggedIn }) {
                 <SearchForm onSearch={searchMovies} />
                 <p className='movies__error'>{searchError}</p>
                 {isLoading ? <Preloader /> : (
-                    <MoviesCardList movies={filterMovies} />
+                    <MoviesCardList
+                        movies={filterMovies}
+                    />
                 )}
             </main>
             <Footer />

@@ -1,14 +1,9 @@
-import { React, useContext, useState } from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { React, useState, useEffect } from 'react';
 import * as mainApi from '../../utils/MainApi';
 
-function MoviesCard({ movie }) {
-    const [savedMovies, setSavedMovies] = useState([]);
-    /* const [isSaved, setIsSaved] = useState(false); */
+function MoviesCard({ movie/* ,savedMovies, setSavedMovies */ }) {
+   const [savedMovies, setSavedMovies] = useState([]);
     const [isLike, setIsLike] = useState(false);
-
-    /*  console.log(savedMovies); */
-
     const {
         country,
         director,
@@ -22,59 +17,58 @@ function MoviesCard({ movie }) {
         nameEN,
         id,
     } = movie;
-
-    const currentUser = useContext(CurrentUserContext);
-    const minutes = duration % 60;
-    const hours = Math.floor(duration / 60);
-
-    /* function handleSaveClick() {
-           if (!isSaved) {
-               setISaved(true);
-           } else {
-               setISaved(false);
-           }
-       } */
-
     const savedButtonClassName = (
         `movies-card__button-save ${isLike && 'movies-card__button-save_active'}`
     )
+    const minutes = duration % 60;
+    const hours = Math.floor(duration / 60);
 
-    /*     console.log(movie);//карточка по которой кликаю
-        console.log(movie.movieId);//underfind
-        console.log(movie.id);//порядковый номер
-    
-     */
     function handleSavedClick() {
-        console.log(movie);
-        console.log({ movie });
-        const isClicked = savedMovies.some((item) => item.id === movie.movieId);
+        const isClicked = savedMovies.some((item) => item.id === movie.id);
         if (!isClicked) {
-            mainApi.savedMovie({
-                country: movie.country,
-                director: movie.director,
-                duration: movie.duration,
-                year: movie.year,
-                description: movie.description,
-                image: `https://api.nomoreparties.co + ${movie.image.url}`,
-                trailerLink: movie.trailerLink,
-                thumbnail: `https://api.nomoreparties.co + ${movie.image.formats.thumbmail.url}`,
-                nameRU: movie.nameRU,
-                nameEN: movie.nameEN,
-                movieId: movie.id,
-            })
-                .then((newSavedMovie) => {
-                    setSavedMovies([...savedMovies, newSavedMovie]);
-                    setIsLike(true);
-                })
+            saveMovie(movie);
         } else {
-            mainApi.removeMovie(movie)
-                .then((newMovie) => {
-                    savedMovies.filter((c) => c.id !== newMovie.id);
-                    setSavedMovies(newMovie);
-                });
+            deleteMovie();
         }
     }
+    function saveMovie(movie) {
+        mainApi.savedMovie(movie = {
+            country: movie.country,
+            director: movie.director,
+            duration: movie.duration,
+            year: movie.year,
+            description: movie.description,
+            image: movie.image,
+            trailerLink: movie.trailerLink,
+            thumbnail: movie.image.formats.thumbnail,
+            nameRU: movie.nameRU,
+            nameEN: movie.nameEN,
+            movieId: movie.id,
+        })
+            .then((newSavedMovie) => {
+                setSavedMovies([savedMovies.push(newSavedMovie)]);
+                setIsLike(true);
+                console.log(savedMovies);
+            })
+    }
 
+    function deleteMovie() {
+        mainApi.removeMovie( movie )
+            .then((deleteMovie) => {
+                savedMovies.filter((c) => c.id !== deleteMovie.id);
+                setSavedMovies(deleteMovie);
+                setIsLike(false);
+            });
+    }
+/* 
+    useEffect(() => {
+        mainApi.getMovies()
+            .then((savedMovies) => {
+                setSavedMovies(savedMovies);
+            })
+            .catch((err) => console.log(`${err}`))
+    }, []);
+ */
     return (
         <li className='movies-card'>
             <div className='movies-card__heading'>
