@@ -16,9 +16,7 @@ function Login({ onLogin }) {
         mainApi.authorize({ email, password })
             .then((data) => {
                 localStorage.setItem('jwt', data.token);
-                /* setFormValue({ email: '', password: '' }); */
                 onLogin(data.token);
-                /* setEmail(data.email); */
                 navigate('/movies', { replace: true });
             })
             .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));

@@ -1,14 +1,27 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 
-function SearchForm({ onSearch }) {
-    const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
-    
+function SearchForm({ onSearch, isSaved }) {
+    const [searchValue, setSearchValue] = useState();
+
+    useEffect(() => {
+        if (isSaved) {
+            setSearchValue('')
+        } else {
+            setSearchValue(localStorage.getItem('searchValue'));
+        }
+    }, [localStorage.getItem('searchValue')]);
+
     const handleChange = (e) => {
-        const value = e.target.value
-        localStorage.setItem("searchValue", value);
-        setSearchValue(e.target.value);
+        const value = e.target.value;
+        if (isSaved) {
+            localStorage.setItem("searchSavedValue", value);
+            setSearchValue(value);
+        } else {
+            localStorage.setItem("searchValue", value);
+            setSearchValue(value);
+        }
     }
     function handleSubmit(e) {
         e.preventDefault();
@@ -27,7 +40,7 @@ function SearchForm({ onSearch }) {
                     <button className='search-form__button'>Поиск</button>
                 </div>
                 <div className='search-form__short'>
-                    <FilterCheckbox />
+                    <FilterCheckbox onClickCheckbox={onSearch} />
                     <p className='search-form__short-text'>Короткометражки</p>
                 </div>
             </form>

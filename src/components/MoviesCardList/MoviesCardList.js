@@ -3,8 +3,14 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardListMore from '../MoviesCardListMore/MoviesCardListMore';
 
 
-function MoviesCardList({ movies,savedMovies, setSavedMovies }) {
+function MoviesCardList({
+    movies,
+    savedMovies,
+    isSaved,
+    handleSavedClick,
+    deleteMovie }) {
     const [moviesView, setMoviesView] = useState();
+    /* const [isMoreMovies, setIsMoreMovies] = useState(false); */
 
     const MOBILE_VIEW = 320;
     const MOBILE_MEDIUM_VIEW = 480;
@@ -17,6 +23,7 @@ function MoviesCardList({ movies,savedMovies, setSavedMovies }) {
     useEffect(() => {
         window.addEventListener('resize', (evt) => {
             moviesToOpen();
+            /*  moreMovies(); */
         })
     }, []);
 
@@ -50,28 +57,43 @@ function MoviesCardList({ movies,savedMovies, setSavedMovies }) {
         }
     }
 
+    /*      function moreMovies(movies){
+                if(movies.slice(moviesView).length !== 0){
+                    setIsMoreMovies(true);
+                }else{
+                    setIsMoreMovies(false);
+                }
+            } */
     return (
         <>
             <section className='movies-list'>
                 <ul className='movies-list__container'>
-                    {movies.slice(0, moviesView).map((movie) => (
-                        <MoviesCard movie={movie}
-                            key={movie.id}
-                            savedMovies={savedMovies}
-                            setSavedMovies={setSavedMovies}>
-                        </MoviesCard>
-                    ))}{/*  || {myMovies.map((movie) => (
-                        <MoviesCard movie={movie}
-                            key={movie.id}>
-                        </MoviesCard>
-                    ))
-                    } */}
+                    {isSaved
+                        ?
+                        savedMovies.map((saveOwnerMovie) => (
+                            <MoviesCard movie={saveOwnerMovie}
+                                isSaved={isSaved}
+                                key={saveOwnerMovie.id}
+                                onMovieDelete={deleteMovie}>
+                            </MoviesCard>
+                        ))
+                        :
+                        movies.slice(0, moviesView).map((movie) => (
+                            <MoviesCard movie={movie}
+                                key={movie.id}
+                                onMovieLike={handleSavedClick}>
+                            </MoviesCard>
+                        ))
+                    }
                 </ul>
             </section>
-            {movies.slice(moviesView).length !== 0
-                ? <MoviesCardListMore handleMoreClick={handleMoreClick} />
-                : <div className='saved-movies__black-square'></div>}
-
+            {isSaved
+                ? ''
+                :
+                movies.slice(moviesView).length !== 0
+                    ? <MoviesCardListMore handleMoreClick={handleMoreClick} />
+                    : <div className='saved-movies__black-square'></div>
+            }
         </>
     )
 }

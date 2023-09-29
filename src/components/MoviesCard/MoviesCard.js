@@ -1,22 +1,21 @@
 import { React, useState, useEffect } from 'react';
-import * as mainApi from '../../utils/MainApi';
 
-function MoviesCard({ movie/* ,savedMovies, setSavedMovies */ }) {
-   const [savedMovies, setSavedMovies] = useState([]);
-    const [isLike, setIsLike] = useState(false);
+function MoviesCard({ onMovieLike, onMovieDelete, movie, isSaved }) {
     const {
         country,
+        description,
         director,
         duration,
-        year,
-        description,
         image,
-        trailerLink,
-        thumbnail,
-        nameRU,
-        nameEN,
         id,
+        nameEN,
+        nameRU,
+        thumbnail,
+        trailerLink,
+        year,
     } = movie;
+    const [isLike, setIsLike] = useState();
+
     const savedButtonClassName = (
         `movies-card__button-save ${isLike && 'movies-card__button-save_active'}`
     )
@@ -24,50 +23,20 @@ function MoviesCard({ movie/* ,savedMovies, setSavedMovies */ }) {
     const hours = Math.floor(duration / 60);
 
     function handleSavedClick() {
-        const isClicked = savedMovies.some((item) => item.id === movie.id);
-        if (!isClicked) {
-            saveMovie(movie);
+        onMovieLike(movie);
+        if (!isLike) {
+            setIsLike(true)
         } else {
-            deleteMovie();
+            setIsLike(false)
         }
     }
-    function saveMovie(movie) {
-        mainApi.savedMovie(movie = {
-            country: movie.country,
-            director: movie.director,
-            duration: movie.duration,
-            year: movie.year,
-            description: movie.description,
-            image: movie.image,
-            trailerLink: movie.trailerLink,
-            thumbnail: movie.image.formats.thumbnail,
-            nameRU: movie.nameRU,
-            nameEN: movie.nameEN,
-            movieId: movie.id,
-        })
-            .then((newSavedMovie) => {
-                setSavedMovies([savedMovies.push(newSavedMovie)]);
-                setIsLike(true);
-                console.log(savedMovies);
-            })
+    function handleDeleteMovie() {
+        onMovieDelete(movie);
     }
 
-    function deleteMovie() {
-        mainApi.removeMovie( movie )
-            .then((deleteMovie) => {
-                savedMovies.filter((c) => c.id !== deleteMovie.id);
-                setSavedMovies(deleteMovie);
-                setIsLike(false);
-            });
-    }
-/* 
-    useEffect(() => {
-        mainApi.getMovies()
-            .then((savedMovies) => {
-                setSavedMovies(savedMovies);
-            })
-            .catch((err) => console.log(`${err}`))
-    }, []);
+/*     useEffect(() => {
+        handleSavedClick()
+    }, [])
  */
     return (
         <li className='movies-card'>
@@ -75,14 +44,25 @@ function MoviesCard({ movie/* ,savedMovies, setSavedMovies */ }) {
                 <h2 className='movies-card__title'>{nameRU}</h2>
                 <p className='movies-card__time'>{hours}ч{minutes}мин</p>
             </div>
-            <a href={trailerLink} className='movies-card__link'
-                target="_blank" rel="noopener noreferrer">
-                <img src={`https://api.nomoreparties.co${image.url}`}
-                    className='movies-card__item'
-                    alt={nameRU} />
-            </a>
-            <button className={savedButtonClassName}
-                onClick={handleSavedClick}></button>
+            {isSaved
+                ? <a href={trailerLink} className='movies-card__link'
+                    target="_blank" rel="noopener noreferrer">
+                    <img src={image} className='movies-card__item'
+                        alt={nameRU} />
+                </a>
+                : <a href={trailerLink} className='movies-card__link'
+                    target="_blank" rel="noopener noreferrer">
+                    <img src={`https://api.nomoreparties.co${image.url}`}
+                        className='movies-card__item'
+                        alt={nameRU} />
+                </a>
+            }
+            {isSaved
+                ? <button className='movies-card__button-remove'
+                    onClick={handleDeleteMovie}></button>
+                : <button className={savedButtonClassName}
+                    onClick={handleSavedClick}></button>}
+
         </li>
     )
 }

@@ -1,8 +1,8 @@
 import { React, useState } from 'react';
 
-function FilterCheckbox() {
-    const [isShort, setIsShort] = useState(JSON.parse(localStorage.getItem('isShort')) || false);
-    
+function FilterCheckbox({ onClickCheckbox }) {
+    const [isShort, setIsShort] = useState(localStorage.getItem('isShort') || 'false') ;
+
     function chek(evt) {
         const value = evt.target.checked;
         setIsShort(value);
@@ -11,7 +11,11 @@ function FilterCheckbox() {
     return (
         <>
             <label class="filter-checkbox">
-                <input class="filter-checkbox__input" onChange={chek} value={isShort} type="checkbox" />
+                <input class="filter-checkbox__input"
+                    onClick={onClickCheckbox}
+                    onChange={chek}
+                    value={isShort}
+                    type="checkbox" />
                 <span class="filter-checkbox__slider"></span>
             </label>
         </>

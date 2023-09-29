@@ -1,6 +1,7 @@
-export const BASE_URL = "https://api.vereskun.nomoredomainsicu.ru";
-/* export const BASE_URL = "http://localhost:4001"; */
-export const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
+/* export const BASE_URL = "https://api.vereskun.nomoredomainsicu.ru";*/
+export const BASE_URL = "http://localhost:4001";
+export const MOVIES_URL = "https://api.nomoreparties.co";
+
 function errorCheck(res) {
     if (res.ok) {
         return res.json();
@@ -9,7 +10,7 @@ function errorCheck(res) {
     }
 }
 
-export const getUserProfileInfo = ({ token }) => {
+export const getUserProfileInfo = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
@@ -78,37 +79,38 @@ export const savedMovie = data => {
         },
         body: JSON.stringify({
             country: data.country,
+            description: data.description,
             director: data.director,
             duration: data.duration,
-            year: data.year,
-            description: data.description,
             image: `${MOVIES_URL}${data.image.url}`,
-            trailerLink: data.trailerLink,
-            thumbnail: `${MOVIES_URL}${data.image.formats.thumbnail.url}`,
-            nameRU: data.nameRU,
-            nameEN: data.nameEN,
             movieId: data.id,
+            nameEN: data.nameEN,
+            nameRU: data.nameRU,
+            thumbnail: `${MOVIES_URL}${data.image.formats.thumbnail.url}`,
+            trailerLink: data.trailerLink,
+            year: data.year,
         })
-}).then(res => errorCheck(res))
+    }).then(res => errorCheck(res))
 };
 
-export const removeMovie =  ({movieId})  => {
-    return fetch(`${BASE_URL}/movies/${movieId}`, {
+export const deleteMovie = (_id )=> {
+    return fetch(`${BASE_URL}/movies/${_id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
-        body: JSON.stringify({movieId}),
+        body: JSON.stringify({ _id }),
     }).then(res => errorCheck(res))
 };
 
-export const getMovies = () =>  {
+
+export const getMovies = (token) => {
     return fetch(`${BASE_URL}/movies`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${token}`
         }
     })
         .then(res => errorCheck(res))

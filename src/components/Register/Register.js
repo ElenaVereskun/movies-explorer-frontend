@@ -6,7 +6,6 @@ import { useFormWithValidation } from '../useForm/useForm';
 
 function Register({ onRegister }) {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
-
     const [isFormError, setIsFormError] = useState('');
 
     function handleSubmit(e) {

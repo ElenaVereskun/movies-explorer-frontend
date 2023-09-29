@@ -3,56 +3,60 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import * as mainApi from '../../utils/MainApi';
 
-function SavedMovies({ isLoggedIn }) {
+function SavedMovies({ isLoggedIn, savedMovies, isSaved, deleteMovie }) {
 
-    const [savedMovies, setSavedMovies] = useState([]);
+    const [filterSavedMovies, setFilterSavedMovies] = useState([]);
+
+    const checkbox = localStorage.getItem('isShort');
+    const searchSavedValue = localStorage.getItem('searchSavedValue');
+
+    console.log(searchSavedValue)
 
     useEffect(() => {
-        mainApi.getMovies()
-            .then((savedMovies) => {
-                setSavedMovies(savedMovies);
-            })
-            .catch((err) => console.log(`${err}`))
-    }, []);
-    console.log(savedMovies);
-    /* function searchMovies() {
-        const checkbox = JSON.parse(localStorage.getItem("isShort"));
-        const searchValue = localStorage.getItem('searchValue');
+        setFilterSavedMovies(savedMovies);
+    }, [savedMovies]);
 
-        if (checkbox) {
+    useEffect(() => {
+        searchMovies();
+    }, [checkbox, searchSavedValue])
+
+    function searchMovies() {
+        console.log(savedMovies);
+        if (checkbox === 'true') {
             const filterMoviesByDuration = savedMovies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
             })
-            setSavedMovies(filterMoviesByDuration);
+            setFilterSavedMovies(filterMoviesByDuration);
         }
-        if (searchValue) {
+        if (searchSavedValue) {
             const filterMoviesByName = savedMovies.filter((movie) => {
-                return movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
-                    movie.nameEN.toLowerCase().includes(searchValue.toLowerCase())
+                return movie.nameRU.toLowerCase().includes(searchSavedValue.toLowerCase()) ||
+                    movie.nameEN.toLowerCase().includes(searchSavedValue.toLowerCase())
             });
-            setSavedMovies(filterMoviesByName);
+            setFilterSavedMovies(filterMoviesByName);
         }
-        if (checkbox && searchValue) {
+        if (checkbox === 'true' && searchSavedValue) {
             const filterMoviesByAll = savedMovies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40) &&
-                    (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
-                        movie.nameEN.toLowerCase().includes(searchValue.toLowerCase()));
+                    (movie.nameRU.toLowerCase().includes(searchSavedValue.toLowerCase()) ||
+                        movie.nameEN.toLowerCase().includes(searchSavedValue.toLowerCase()));
             });
-            setSavedMovies(filterMoviesByAll);
+            setFilterSavedMovies(filterMoviesByAll);
         }
-    } */
-
+    }
     return (
         <div className='saved-movies'>
             <Header isLoggedIn={isLoggedIn} />
             <main>
-                <SearchForm /* onSearch={searchMovies} */ />
-                <MoviesCardList savedMovies={savedMovies}
-                    setSavedMovies={setSavedMovies}
+                <SearchForm
+                    onSearch={searchMovies}
+                    isSaved={isSaved} />
+                <MoviesCardList
+                    savedMovies={filterSavedMovies}
+                    isSaved={isSaved}
+                    deleteMovie={deleteMovie}
                 />
-                <div className='saved-movies__black-square'></div>
             </main>
             <Footer />
         </div>

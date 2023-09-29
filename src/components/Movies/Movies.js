@@ -6,31 +6,35 @@ import moviesApi from '../../utils/MoviesApi';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 
-function Movies({ isLoggedIn }) {
+function Movies({ isLoggedIn, handleSavedClick }) {
     const [filterMovies, setFilterMovies] = useState([]);
     const [searchError, setSearchError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        getMovies();
-        /* setIsLoading(true); */
-    }, [])
-
+    const checkbox = localStorage.getItem("isShort");
+    const searchValue = localStorage.getItem('searchValue');
+    
     function getMovies() {
+        setIsLoading(true);
         moviesApi.getMovies()
             .then((movies) => {
                 localStorage.setItem("movies", JSON.stringify(movies))
                 return movies;
             })
             .catch((err) => setSearchError('Во время запроса произошла ошибка.Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
+            .finally(setIsLoading(false));
     }
+
+    useEffect(() => {
+        getMovies();
+    }, []);
+
+    useEffect(() => {
+        searchMovies();
+    }, [checkbox, searchValue])
 
     function searchMovies() {
         const movies = JSON.parse(localStorage.getItem("movies"));
-        const checkbox = JSON.parse(localStorage.getItem("isShort"));
-        const searchValue = localStorage.getItem('searchValue');
-
-        if (checkbox) {
+        if (checkbox === 'true') {
             const filterMoviesByDuration = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
             })
@@ -51,7 +55,7 @@ function Movies({ isLoggedIn }) {
                 setSearchError('Ничего не найдено');
             }
         }
-        if (checkbox && searchValue) {
+        if (checkbox === 'true' && searchValue) {
             const filterMoviesByAll = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40) &&
                     (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -64,6 +68,7 @@ function Movies({ isLoggedIn }) {
             }
         }
     }
+
     return (
         <div className='movies'>
             <Header isLoggedIn={isLoggedIn} />
@@ -73,6 +78,7 @@ function Movies({ isLoggedIn }) {
                 {isLoading ? <Preloader /> : (
                     <MoviesCardList
                         movies={filterMovies}
+                        handleSavedClick={handleSavedClick}
                     />
                 )}
             </main>

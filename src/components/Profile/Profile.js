@@ -35,15 +35,25 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
     };
 
     useEffect(() => {
-        setValues(currentUser ?? '');
+        setValues(currentUser);
     }, [currentUser]);
+
+    useEffect(() => {
+        const close = (e) => {
+          if(e.keyCode === 27){
+            navigate('/movies', { replace: false });
+          }
+        }
+        window.addEventListener('keydown', close)
+      return () => window.removeEventListener('keydown', close)
+    },[])
 
     return (
         <div className='profile'>
             <Header isLoggedIn={isLoggedIn} />
             <form className="profile__form" onSubmit={handleSubmit}>
                 <div className="profile__container">
-                    <h2 className="profile__title">Привет, {currentUser.name}!</h2>
+                    <h2 className="profile__title">Привет, {values.name}!</h2>
                     <div className="profile__input-container">
                         <p className="profile__title-name">Имя</p>
                         <input
