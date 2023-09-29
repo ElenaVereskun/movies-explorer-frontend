@@ -1,5 +1,5 @@
-/* export const BASE_URL = "https://api.vereskun.nomoredomainsicu.ru";*/
-export const BASE_URL = "http://localhost:4001";
+export const BASE_URL = "https://api.vereskun.nomoredomainsicu.ru";
+/* export const BASE_URL = "http://localhost:4001"; */
 export const MOVIES_URL = "https://api.nomoreparties.co";
 
 function errorCheck(res) {
