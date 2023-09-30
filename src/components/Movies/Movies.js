@@ -6,7 +6,7 @@ import moviesApi from '../../utils/MoviesApi';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 
-function Movies({ isLoggedIn, handleSavedClick }) {
+function Movies({ isLoggedIn, handleSavedClick, isLike }) {
     const [filterMovies, setFilterMovies] = useState([]);
     const [searchError, setSearchError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +23,7 @@ function Movies({ isLoggedIn, handleSavedClick }) {
             .catch((err) => setSearchError('Во время запроса произошла ошибка.Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
             .finally(setIsLoading(false));
     }
-
+ 
     useEffect(() => {
         getMovies();
     }, []);
@@ -79,6 +79,7 @@ function Movies({ isLoggedIn, handleSavedClick }) {
                     <MoviesCardList
                         movies={filterMovies}
                         handleSavedClick={handleSavedClick}
+                       /*  isLike={isLike} */
                     />
                 )}
             </main>

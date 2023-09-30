@@ -18,6 +18,7 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
         localStorage.removeItem('jwt');
         localStorage.removeItem('isShort');
         localStorage.removeItem('searchValue');
+        localStorage.removeItem('allSavedMovies');
         navigate('/signin', { replace: false });
         setIsLoggedIn(false);
     };

@@ -17,27 +17,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isSaved, setIsSaved] = useState(true);
+  const [isLike, setIsLike] = useState();
   const navigate = useNavigate();
-  /* 
-      useEffect(() => {
-      const token = localStorage.getItem('jwt')
-          isLoggedIn &&
-              Promise.all([mainApi.getUserProfileInfo(token), mainApi.getMovies(token)])
-                  .then(([user, allSavedMovies]) => {
-                      setCurrentUser(user);
-                      localStorage.setItem("allSavedMovies", JSON.stringify(allSavedMovies));
-                      setSavedMovies(allSavedMovies);
-                      console.log(allSavedMovies);
-                      setIsSaved(true);
-                  })
-                  .catch((err) => console.log(`Ошибка загрузки данных профиля: ${err}`))
-      }, [isLoggedIn]);
-  
-      useEffect(() => {
-          tokenCheck();
-      }, []); */
-
-
 
   useEffect(() => {
     const token = localStorage.getItem('jwt')
@@ -51,8 +32,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  }, []);
-
+  }, [isLoggedIn]);
 
   useEffect(() => {
     isLoggedIn &&
@@ -69,28 +49,16 @@ function App() {
       })
       .catch((err) => console.log(`${err}`))
   };
-  const tokenCheck = () => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      mainApi.getToken(jwt)
-        .then((res) => {
-          if (res) {
-            setIsLoggedIn(true);
-            navigate("/movies", { replace: true });
-          }
-        })
-        .catch((err) => console.log(`Ошибка получения токена: ${err}`));
-    }
-  }
-  const allSavedMovies = JSON.parse(localStorage.getItem("allSavedMovies"));
 
   function handleSavedClick(movie) {
-    console.log(movie);
-    const isClicked = allSavedMovies.some((item) => item.movieId === movie.id);
+    const isClicked = savedMovies.some((item) => item.movieId === movie.id);
     if (!isClicked) {
-      saveMovie(movie);      
+      saveMovie(movie);
+      /* setIsLike(true); */
     } else {
-      deleteMovie(movie);      
+      const movieOnDelete = savedMovies.filter((item) => item.movieId === movie.id)[0];
+      deleteMovie(movieOnDelete);
+      /* setIsLike(false); */
     }
   };
 
@@ -102,21 +70,10 @@ function App() {
       .catch((err) => console.log(`${err}`))
   };
 
-  /*   function deleteMovie(movie) {
-      mainApi.deleteMovie(movie._id)
-        .then(() => {
-          const savedNewMovies = savedMovies.filter((c) => c._id !== movie._id);
-          setSavedMovies(savedNewMovies);
-        })
-        .catch((err) => console.log(`${err}`))
-    }; */
-
   function deleteMovie(movie) {
     mainApi.deleteMovie(movie._id)
       .then(() => {
-        setSavedMovies((state) => {
-          state.filter((c) => c._id !== movie._id);
-        })
+        setSavedMovies(savedMovies.filter((c) => c._id !== movie._id))
       })
       .catch((err) => console.log(`${err}`))
   };
@@ -130,6 +87,21 @@ function App() {
       .catch((err) => console.log(`Ошибка изменения данных пользователя: ${err}`));
   };
 
+  /*     isLiked = {!!savedMovies.find((m) => m.movieId === movie.movieId)
+    } */
+  const tokenCheck = () => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      mainApi.getToken(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            navigate("/movies", { replace: true });
+          }
+        })
+        .catch((err) => console.log(`Ошибка получения токена: ${err}`));
+    }
+  }
   return (
     <>
       <CurrentUserContext.Provider value={currentUser} className="content" >
@@ -139,6 +111,7 @@ function App() {
           <Route path="/movies" element={<ProtectedRoute element={<Movies
             isLoggedIn={isLoggedIn}
             handleSavedClick={handleSavedClick}
+            isLike={isLike}
           />} isLoggedIn={isLoggedIn} />} />
 
           <Route path='/saved-movies' element={<ProtectedRoute element={<SavedMovies

@@ -93,14 +93,14 @@ export const savedMovie = data => {
     }).then(res => errorCheck(res))
 };
 
-export const deleteMovie = (_id )=> {
-    return fetch(`${BASE_URL}/movies/${_id}`, {
+export const deleteMovie = (movieId) => {
+    return fetch(`${BASE_URL}/movies/${movieId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
-        body: JSON.stringify({ _id }),
+        body: JSON.stringify({movieId}),
     }).then(res => errorCheck(res))
 };
 

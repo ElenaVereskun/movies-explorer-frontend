@@ -8,8 +8,10 @@ function MoviesCardList({
     savedMovies,
     isSaved,
     handleSavedClick,
-    deleteMovie }) {
-    const [moviesView, setMoviesView] = useState();
+    deleteMovie,
+    isLike }) {
+
+    const [moviesView, setMoviesView] = useState('');
     /* const [isMoreMovies, setIsMoreMovies] = useState(false); */
 
     const MOBILE_VIEW = 320;
@@ -20,14 +22,8 @@ function MoviesCardList({
     const PAD_COUNT = 8;
     const DESKTOP_COUNT = 12;
 
-    useEffect(() => {
-        window.addEventListener('resize', (evt) => {
-            moviesToOpen();
-            /*  moreMovies(); */
-        })
-    }, []);
-
-    function moviesToOpen() {
+    function  moviesToOpen(){
+        window.addEventListener('resize', moviesToOpen);
         if (window.innerWidth < MOBILE_VIEW) {
             setMoviesView(MOBILE_COUNT);
         }
@@ -57,13 +53,12 @@ function MoviesCardList({
         }
     }
 
-    /*      function moreMovies(movies){
-                if(movies.slice(moviesView).length !== 0){
-                    setIsMoreMovies(true);
-                }else{
-                    setIsMoreMovies(false);
-                }
-            } */
+    useEffect(() => {
+        moviesToOpen()
+    }, []);
+
+    console.log(savedMovies)
+
     return (
         <>
             <section className='movies-list'>
@@ -81,7 +76,8 @@ function MoviesCardList({
                         movies.slice(0, moviesView).map((movie) => (
                             <MoviesCard movie={movie}
                                 key={movie.id}
-                                onMovieLike={handleSavedClick}>
+                                onMovieSave={handleSavedClick}
+                                isLike={isLike}>
                             </MoviesCard>
                         ))
                     }

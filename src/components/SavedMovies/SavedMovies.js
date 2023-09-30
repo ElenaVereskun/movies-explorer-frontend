@@ -11,18 +11,15 @@ function SavedMovies({ isLoggedIn, savedMovies, isSaved, deleteMovie }) {
     const checkbox = localStorage.getItem('isShort');
     const searchSavedValue = localStorage.getItem('searchSavedValue');
 
-    console.log(searchSavedValue)
-
     useEffect(() => {
         setFilterSavedMovies(savedMovies);
-    }, [savedMovies]);
+    }, []);
 
     useEffect(() => {
         searchMovies();
     }, [checkbox, searchSavedValue])
 
     function searchMovies() {
-        console.log(savedMovies);
         if (checkbox === 'true') {
             const filterMoviesByDuration = savedMovies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
