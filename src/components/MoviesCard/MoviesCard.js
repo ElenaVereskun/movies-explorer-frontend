@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 
-function MoviesCard({ onMovieSave, onMovieDelete, movie, isSaved /* isLike */ }) {
+function MoviesCard({ onMovieSave, onMovieDelete, movie, isSaved, isLike }) {
     const {
         country,
         description,
@@ -14,32 +14,21 @@ function MoviesCard({ onMovieSave, onMovieDelete, movie, isSaved /* isLike */ })
         trailerLink,
         year,
     } = movie;
-    const [isLike, setIsLike] = useState();
 
-    const savedButtonClassName = (
-        `movies-card__button-save ${isLike && 'movies-card__button-save_active'}`
-    )
     const minutes = duration % 60;
     const hours = Math.floor(duration / 60);
 
     function handleSavedClick() {
         onMovieSave(movie);
-        if (!isLike) {
-            setIsLike(true)
-        } else {
-            setIsLike(false)
-        }
     }
-
 
     function handleDeleteMovie() {
         onMovieDelete(movie);
     }
 
-    useEffect(() => {
-        setIsLike()
-    }, []);
-
+    const savedButtonClassName = (
+        `movies-card__button-save ${isLike && 'movies-card__button-save_active'}`
+    )
     return (
         <li className='movies-card'>
             <div className='movies-card__heading'>

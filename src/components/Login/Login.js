@@ -16,12 +16,23 @@ function Login({ onLogin }) {
         mainApi.authorize({ email, password })
             .then((data) => {
                 localStorage.setItem('jwt', data.token);
-                onLogin(data.token);
+                onLogin(true);
                 navigate('/movies', { replace: true });
             })
             .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
     }
-
+    /*     function handleSubmit(e) {
+            e.preventDefault();
+            const { email, password } = values;
+    
+            mainApi.authorize({ email, password })
+                .then((data) => {
+                    localStorage.setItem('jwt', data.token);
+                    onLogin(data.token);
+                    navigate('/movies', { replace: true });
+                })
+                .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
+        } */
     function handleRegister() {
         navigate("/signup");
     }

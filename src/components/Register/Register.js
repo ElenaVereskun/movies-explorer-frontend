@@ -13,6 +13,18 @@ function Register({ onRegister }) {
         const { name, email, password } = values;
         mainApi.register({ name, email, password })
             .then((data) => {
+                console.log(data.token);
+                localStorage.setItem('jwt', data.token);
+                onRegister(true);
+            })
+            .then(() => navigate("/movies"))
+            .catch((err) => setIsFormError('Пользователь уже зарегистрирован'))
+    }
+/*     function handleSubmit(e) {
+        e.preventDefault();
+        const { name, email, password } = values;
+        mainApi.register({ name, email, password })
+            .then((data) => {
                 localStorage.setItem(data.name, data.email, data.password);
                 onRegister(true);
             })
@@ -24,7 +36,7 @@ function Register({ onRegister }) {
             })
             .then(() => navigate("/movies"))
             .catch((err) => setIsFormError('Пользователь уже зарегистрирован'))
-    }
+    } */
     const navigate = useNavigate();
     function handleEnter() {
         navigate("/signin");
@@ -47,7 +59,7 @@ function Register({ onRegister }) {
                             type="text"
                             name="name"
                             placeholder="Имя"
-                            pattern="^[a-zA-Z0-9\.\-]+[а-яёА-ЯЁ0-9\"
+                            pattern="\[a-zA-Z0-9\.\-]+[а-яёА-ЯЁ0-9]\"
                             minLength={2}
                             maxLength={30}
                             required />

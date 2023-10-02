@@ -5,6 +5,7 @@ import MoviesCardListMore from '../MoviesCardListMore/MoviesCardListMore';
 
 function MoviesCardList({
     movies,
+    filterSavedMovies,
     savedMovies,
     isSaved,
     handleSavedClick,
@@ -12,7 +13,6 @@ function MoviesCardList({
     isLike }) {
 
     const [moviesView, setMoviesView] = useState('');
-    /* const [isMoreMovies, setIsMoreMovies] = useState(false); */
 
     const MOBILE_VIEW = 320;
     const MOBILE_MEDIUM_VIEW = 480;
@@ -22,7 +22,7 @@ function MoviesCardList({
     const PAD_COUNT = 8;
     const DESKTOP_COUNT = 12;
 
-    function  moviesToOpen(){
+    function moviesToOpen() {
         window.addEventListener('resize', moviesToOpen);
         if (window.innerWidth < MOBILE_VIEW) {
             setMoviesView(MOBILE_COUNT);
@@ -56,20 +56,20 @@ function MoviesCardList({
     useEffect(() => {
         moviesToOpen()
     }, []);
-
-    console.log(savedMovies)
-
+    
     return (
         <>
             <section className='movies-list'>
                 <ul className='movies-list__container'>
                     {isSaved
                         ?
-                        savedMovies.map((saveOwnerMovie) => (
+                        filterSavedMovies.map((saveOwnerMovie) => (
                             <MoviesCard movie={saveOwnerMovie}
                                 isSaved={isSaved}
                                 key={saveOwnerMovie.id}
-                                onMovieDelete={deleteMovie}>
+                                onMovieDelete={deleteMovie}
+                                savedMovies={savedMovies}
+                                >
                             </MoviesCard>
                         ))
                         :
@@ -77,7 +77,8 @@ function MoviesCardList({
                             <MoviesCard movie={movie}
                                 key={movie.id}
                                 onMovieSave={handleSavedClick}
-                                isLike={isLike}>
+                                isLike={isLike}
+                            >
                             </MoviesCard>
                         ))
                     }

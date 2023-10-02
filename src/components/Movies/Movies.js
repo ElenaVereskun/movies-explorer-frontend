@@ -2,38 +2,24 @@ import { React, useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import moviesApi from '../../utils/MoviesApi';
+
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 
-function Movies({ isLoggedIn, handleSavedClick, isLike }) {
+function Movies(props) {
     const [filterMovies, setFilterMovies] = useState([]);
     const [searchError, setSearchError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+
     const checkbox = localStorage.getItem("isShort");
     const searchValue = localStorage.getItem('searchValue');
-    
-    function getMovies() {
-        setIsLoading(true);
-        moviesApi.getMovies()
-            .then((movies) => {
-                localStorage.setItem("movies", JSON.stringify(movies))
-                return movies;
-            })
-            .catch((err) => setSearchError('Во время запроса произошла ошибка.Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
-            .finally(setIsLoading(false));
-    }
- 
-    useEffect(() => {
-        getMovies();
-    }, []);
 
+    const movies = JSON.parse(localStorage.getItem("movies"));
+    
     useEffect(() => {
         searchMovies();
     }, [checkbox, searchValue])
 
     function searchMovies() {
-        const movies = JSON.parse(localStorage.getItem("movies"));
         if (checkbox === 'true') {
             const filterMoviesByDuration = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
@@ -68,18 +54,17 @@ function Movies({ isLoggedIn, handleSavedClick, isLike }) {
             }
         }
     }
-
     return (
         <div className='movies'>
-            <Header isLoggedIn={isLoggedIn} />
+            <Header isLoggedIn={props.isLoggedIn} />
             <main>
                 <SearchForm onSearch={searchMovies} />
-                <p className='movies__error'>{searchError}</p>
-                {isLoading ? <Preloader /> : (
+                <p className='movies__error'>{props.serverError}{searchError}</p>
+                {props.isLoading ? <Preloader /> : (
                     <MoviesCardList
                         movies={filterMovies}
-                        handleSavedClick={handleSavedClick}
-                       /*  isLike={isLike} */
+                        handleSavedClick={props.handleSavedClick}
+                        isLike={props.isLike}
                     />
                 )}
             </main>

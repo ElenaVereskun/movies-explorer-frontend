@@ -13,11 +13,11 @@ function SavedMovies({ isLoggedIn, savedMovies, isSaved, deleteMovie }) {
 
     useEffect(() => {
         setFilterSavedMovies(savedMovies);
-    }, []);
+    }, [savedMovies]);//без зависимости удаляет карточки только после перезагрузки
 
     useEffect(() => {
         searchMovies();
-    }, [checkbox, searchSavedValue])
+    }, [])
 
     function searchMovies() {
         if (checkbox === 'true') {
@@ -42,6 +42,9 @@ function SavedMovies({ isLoggedIn, savedMovies, isSaved, deleteMovie }) {
             setFilterSavedMovies(filterMoviesByAll);
         }
     }
+
+
+    console.log(savedMovies);
     return (
         <div className='saved-movies'>
             <Header isLoggedIn={isLoggedIn} />
@@ -50,9 +53,11 @@ function SavedMovies({ isLoggedIn, savedMovies, isSaved, deleteMovie }) {
                     onSearch={searchMovies}
                     isSaved={isSaved} />
                 <MoviesCardList
-                    savedMovies={filterSavedMovies}
+                    filterSavedMovies={filterSavedMovies}
+                    savedMovies={savedMovies}
                     isSaved={isSaved}
                     deleteMovie={deleteMovie}
+                    /* isLike={isLike} */
                 />
             </main>
             <Footer />
