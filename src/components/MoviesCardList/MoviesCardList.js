@@ -5,12 +5,11 @@ import MoviesCardListMore from '../MoviesCardListMore/MoviesCardListMore';
 
 function MoviesCardList({
     movies,
-    filterSavedMovies,
     savedMovies,
     isSaved,
     handleSavedClick,
     deleteMovie,
-    isLike }) {
+    filmsIsLike }) {
 
     const [moviesView, setMoviesView] = useState('');
 
@@ -56,20 +55,20 @@ function MoviesCardList({
     useEffect(() => {
         moviesToOpen()
     }, []);
-    
+
+    console.log(filmsIsLike);
     return (
         <>
             <section className='movies-list'>
                 <ul className='movies-list__container'>
                     {isSaved
                         ?
-                        filterSavedMovies.map((saveOwnerMovie) => (
+                        savedMovies.map((saveOwnerMovie) => (
                             <MoviesCard movie={saveOwnerMovie}
                                 isSaved={isSaved}
                                 key={saveOwnerMovie.id}
                                 onMovieDelete={deleteMovie}
-                                savedMovies={savedMovies}
-                                >
+                            >
                             </MoviesCard>
                         ))
                         :
@@ -77,7 +76,7 @@ function MoviesCardList({
                             <MoviesCard movie={movie}
                                 key={movie.id}
                                 onMovieSave={handleSavedClick}
-                                isLike={isLike}
+                                isLike={!!filmsIsLike && !!filmsIsLike.find((m) => m.id === movie.id)}
                             >
                             </MoviesCard>
                         ))

@@ -18,7 +18,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isSaved, setIsSaved] = useState(true);
-  const [isLike, setIsLike] = useState();
+  const [filmsIsLike, setFilmsIsLike] = useState([]);
   const [serverError, setServerError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -44,7 +44,6 @@ function App() {
       .catch((err) => console.log(`${err}`))
   };
 
-
   useEffect(() => {
     isLoggedIn &&
       getSavedMovies();
@@ -58,22 +57,20 @@ function App() {
       })
       .catch((err) => setServerError('Во время запроса произошла ошибка.Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
       .finally(setIsLoading(false));
-  }
+  };
 
   useEffect(() => {
     isLoggedIn &&
       getMovies();
-  }, []);
+  }, [isLoggedIn]);
 
   function handleSavedClick(movie) {
     const isClicked = savedMovies.some((item) => item.movieId === movie.id);
     if (!isClicked) {
       saveMovie(movie);
-      handleLike(movie);
     } else {
       const movieOnDelete = savedMovies.filter((item) => item.movieId === movie.id)[0];
       deleteMovie(movieOnDelete);
-      handleLike(movie);
     }
   };
 
@@ -81,17 +78,12 @@ function App() {
     mainApi.savedMovie(movie)
       .then((newSavedMovie) => {
         setSavedMovies([...savedMovies, newSavedMovie]);
-
-        /*         const isLiked = !!savedMovies && !!savedMovies.find((m) => m.movieId !== newSavedMovie.movieId);
-                console.log(!!savedMovies.find((m) => m.movieId === newSavedMovie.movieId));
-                console.log(!!savedMovies.find((m) => m.movieId === movie.movieId));
-                console.log(isLiked);
-                
-                setIsLike(isLiked);   */
-
-        /*  setIsLike(true); */
       })
-      .catch((err) => console.log(`${err}`))
+      .then(() => {
+        setFilmsIsLike([...filmsIsLike, movie]);//не сохраняет цвет после перезагрузки
+      }
+      )
+      .catch((err) => console.log(`${err}`));
   };
 
   function deleteMovie(movie) {
@@ -99,22 +91,21 @@ function App() {
       .then(() => {
         const newDeleteMovie = savedMovies.filter((c) => c._id !== movie._id);
         setSavedMovies(newDeleteMovie);
-        /* 
-                const isDisLike = !!savedMovies && !!savedMovies.find((m) => m.movieId === newDeleteMovie.movieId);
-                console.log(isDisLike);
-        
-                setIsLike(isDisLike); */
-
-        /*        setIsLike(false);//тоже самое ,что и выше */
+      })
+      .then(() => {
+        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.id));//не сохраняет цвет после перезагрузки
       })
       .catch((err) => console.log(`${err}`))
   };
-
-  function handleLike(movie) {
-    const isLiked = !!savedMovies && !!savedMovies.find((m) => m.movieId === movie.id);//муви из сохр проверяем на id переданной
-    setIsLike(isLiked);
-  };
-
+  
+/*   function handleLikeChange(movie) {
+    const isLiked = savedMovies.filter((m) => m.movieId === movie.id).length === 0;
+    if (isLiked) {
+      setFilmsIsLike([...filmsIsLike, movie]);
+    } else {
+      setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.id));
+    }
+  }; */
 
   function handleUpdateUser({ name, email }) {
     mainApi.editUserInfo({ name, email })
@@ -139,7 +130,6 @@ function App() {
   useEffect(() => {
     tokenCheck();
   }, [isLoggedIn]);
-  /* isLiked={!!props.savedMovies && !!props.savedMovies.find((m) => m.movieId === movie.movieId)} */
 
   return (
     <>
@@ -150,10 +140,11 @@ function App() {
           <Route path="/movies" element={<ProtectedRoute element={<Movies
             isLoggedIn={isLoggedIn}
             handleSavedClick={handleSavedClick}
-            isLike={isLike}
             isLoading={isLoading}
             serverError={serverError}
-          />} isLoggedIn={isLoggedIn} />} />
+            filmsIsLike={filmsIsLike}
+          />}
+          isLoggedIn={isLoggedIn} />} />
 
           <Route path='/saved-movies' element={<ProtectedRoute element={<SavedMovies
             savedMovies={savedMovies}
@@ -165,7 +156,9 @@ function App() {
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
             onEditProfile={handleUpdateUser}
-          />} isLoggedIn={isLoggedIn} />} />
+          />}
+            
+            isLoggedIn={isLoggedIn} />} />
 
           <Route path='/signin' element={<Login
             onLogin={setIsLoggedIn} />} />

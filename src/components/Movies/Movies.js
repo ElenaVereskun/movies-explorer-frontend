@@ -64,7 +64,7 @@ function Movies(props) {
                     <MoviesCardList
                         movies={filterMovies}
                         handleSavedClick={props.handleSavedClick}
-                        isLike={props.isLike}
+                        filmsIsLike={props.filmsIsLike}
                     />
                 )}
             </main>

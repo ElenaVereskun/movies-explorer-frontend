@@ -1,6 +1,5 @@
-import { React, useState, useEffect } from 'react';
-
-function MoviesCard({ onMovieSave, onMovieDelete, movie, isSaved, isLike }) {
+import { React } from 'react';
+function MoviesCard({ onMovieSave, onMovieDelete, movie, isLike, isSaved }) {
     const {
         country,
         description,
@@ -21,11 +20,9 @@ function MoviesCard({ onMovieSave, onMovieDelete, movie, isSaved, isLike }) {
     function handleSavedClick() {
         onMovieSave(movie);
     }
-
     function handleDeleteMovie() {
         onMovieDelete(movie);
     }
-
     const savedButtonClassName = (
         `movies-card__button-save ${isLike && 'movies-card__button-save_active'}`
     )
@@ -53,7 +50,6 @@ function MoviesCard({ onMovieSave, onMovieDelete, movie, isSaved, isLike }) {
                     onClick={handleDeleteMovie}></button>
                 : <button className={savedButtonClassName}
                     onClick={handleSavedClick}></button>}
-
         </li>
     )
 }
