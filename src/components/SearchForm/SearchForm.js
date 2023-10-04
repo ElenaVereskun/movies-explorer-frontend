@@ -39,7 +39,8 @@ function SearchForm({ onSearch, isSaved }) {
                     <button className='search-form__button'>Поиск</button>
                 </div>
                 <div className='search-form__short'>
-                    <FilterCheckbox onClickCheckbox={onSearch} />
+                    <FilterCheckbox onClickCheckbox={onSearch}
+                    isSaved={isSaved} />
                     <p className='search-form__short-text'>Короткометражки</p>
                 </div>
             </form>

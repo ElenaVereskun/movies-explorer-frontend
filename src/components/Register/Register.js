@@ -13,8 +13,8 @@ function Register({ onRegister }) {
         const { name, email, password } = values;
         mainApi.register({ name, email, password })
             .then((data) => {
-                console.log(data.token);
                 localStorage.setItem('jwt', data.token);
+                console.log(data.token);
                 onRegister(true);
             })
             .then(() => navigate("/movies"))
@@ -59,7 +59,7 @@ function Register({ onRegister }) {
                             type="text"
                             name="name"
                             placeholder="Имя"
-                            pattern="\[a-zA-Z0-9\.\-]+[а-яёА-ЯЁ0-9]\"
+                            pattern="^[а-яА-ЯёЁa-zA-Z\''\-]+$"
                             minLength={2}
                             maxLength={30}
                             required />

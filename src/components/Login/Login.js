@@ -15,24 +15,14 @@ function Login({ onLogin }) {
 
         mainApi.authorize({ email, password })
             .then((data) => {
-                localStorage.setItem('jwt', data.token);
-                onLogin(true);
+                localStorage.setItem('jwt', data.token);//выводит токен
+                onLogin(true);//через пропс передается setIsLoggin
+                console.log(data.token);
                 navigate('/movies', { replace: true });
             })
             .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
     }
-    /*     function handleSubmit(e) {
-            e.preventDefault();
-            const { email, password } = values;
     
-            mainApi.authorize({ email, password })
-                .then((data) => {
-                    localStorage.setItem('jwt', data.token);
-                    onLogin(data.token);
-                    navigate('/movies', { replace: true });
-                })
-                .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
-        } */
     function handleRegister() {
         navigate("/signup");
     }

@@ -5,7 +5,7 @@ import MoviesCardListMore from '../MoviesCardListMore/MoviesCardListMore';
 
 function MoviesCardList({
     movies,
-    savedMovies,
+    filterSavedMovies,
     isSaved,
     handleSavedClick,
     deleteMovie,
@@ -56,14 +56,13 @@ function MoviesCardList({
         moviesToOpen()
     }, []);
 
-    console.log(filmsIsLike);
     return (
         <>
             <section className='movies-list'>
                 <ul className='movies-list__container'>
                     {isSaved
                         ?
-                        savedMovies.map((saveOwnerMovie) => (
+                        filterSavedMovies.map((saveOwnerMovie) => (
                             <MoviesCard movie={saveOwnerMovie}
                                 isSaved={isSaved}
                                 key={saveOwnerMovie.id}

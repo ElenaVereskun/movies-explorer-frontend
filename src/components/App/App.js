@@ -12,7 +12,6 @@ import Error404 from '../Error/Error';
 import * as mainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoutes/ProtectedRoutes';
 
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -21,7 +20,31 @@ function App() {
   const [filmsIsLike, setFilmsIsLike] = useState([]);
   const [serverError, setServerError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
+
+  const tokenCheck = () => {
+    const jwt = localStorage.getItem('jwt');
+    console.log(jwt);//выводит токен
+    mainApi.getToken(jwt)
+      .then((res) => {
+        if (res) {
+          console.log(jwt);//выводит токен
+          console.log(currentUser);//авториз юзер есть
+          setCurrentUser({
+            ...currentUser,
+            name: res.name,
+            email: res.email
+          });
+          setIsLoggedIn(true);
+          navigate("/movies", { replace: true });//??????
+        }
+      })
+      .catch((err) => console.log(`Ошибка получения токена: ${err}`));
+  };
+  useEffect(() => {
+    tokenCheck();
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt')
@@ -31,25 +54,20 @@ function App() {
           setCurrentUser(user);
         })
         .catch((err) => console.log(`Ошибка загрузки данных профиля: ${err}`))
-  }, [isLoggedIn]);
+  }, []);
 
-  function getSavedMovies() {
+  useEffect(() => {
     const token = localStorage.getItem('jwt');
-    mainApi.getMovies(token)
+    mainApi.getSavedMovies(token)
       .then((allSavedMovies) => {
         localStorage.setItem("allSavedMovies", JSON.stringify(allSavedMovies));
         setSavedMovies(allSavedMovies);
         setIsSaved(true);
       })
       .catch((err) => console.log(`${err}`))
-  };
+  }, [isLoggedIn]);
 
   useEffect(() => {
-    isLoggedIn &&
-      getSavedMovies();
-  }, []);
-
-  function getMovies() {
     setIsLoading(true);
     moviesApi.getMovies()
       .then((movies) => {
@@ -57,11 +75,6 @@ function App() {
       })
       .catch((err) => setServerError('Во время запроса произошла ошибка.Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
       .finally(setIsLoading(false));
-  };
-
-  useEffect(() => {
-    isLoggedIn &&
-      getMovies();
   }, [isLoggedIn]);
 
   function handleSavedClick(movie) {
@@ -93,19 +106,20 @@ function App() {
         setSavedMovies(newDeleteMovie);
       })
       .then(() => {
-        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.id));//не сохраняет цвет после перезагрузки
+        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));//не сохраняет цвет после перезагрузки
       })
       .catch((err) => console.log(`${err}`))
   };
-  
-/*   function handleLikeChange(movie) {
-    const isLiked = savedMovies.filter((m) => m.movieId === movie.id).length === 0;
-    if (isLiked) {
-      setFilmsIsLike([...filmsIsLike, movie]);
-    } else {
-      setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.id));
-    }
-  }; */
+
+
+  /*   function handleLikeChange(movie) {
+      const isLiked = savedMovies.filter((m) => m.movieId === movie.id).length === 0;
+      if (isLiked) {
+        setFilmsIsLike([...filmsIsLike, movie]);
+      } else {
+        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.id));
+      }
+    }; */
 
   function handleUpdateUser({ name, email }) {
     mainApi.editUserInfo({ name, email })
@@ -116,21 +130,16 @@ function App() {
       .catch((err) => console.log(`Ошибка изменения данных пользователя: ${err}`));
   };
 
-  const tokenCheck = () => {
-    const jwt = localStorage.getItem('jwt');
-    mainApi.getToken(jwt)
-      .then((res) => {
-        if (res) {
-          setIsLoggedIn(true);
-          navigate("/movies", { replace: true });
-        }
-      })
-      .catch((err) => console.log(`Ошибка получения токена: ${err}`));
-  }
-  useEffect(() => {
-    tokenCheck();
-  }, [isLoggedIn]);
 
+  /*   const tokenCheck = () => {
+      mainApi.getToken()
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+          }
+        })
+        .catch((err) => console.log(`Ошибка получения токена: ${err}`));
+    }; */
   return (
     <>
       <CurrentUserContext.Provider value={currentUser} className="content" >
@@ -144,22 +153,21 @@ function App() {
             serverError={serverError}
             filmsIsLike={filmsIsLike}
           />}
-          isLoggedIn={isLoggedIn} />} />
+            isLoggedIn={isLoggedIn} />} />
 
           <Route path='/saved-movies' element={<ProtectedRoute element={<SavedMovies
             savedMovies={savedMovies}
             deleteMovie={deleteMovie}
             isLoggedIn={isLoggedIn}
-            isSaved={isSaved} />} isLoggedIn={isLoggedIn} />} />
+            isSaved={isSaved} />} 
+            isLoggedIn={isLoggedIn} />} />
 
           <Route path='/profile' element={<ProtectedRoute element={<Profile
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
             onEditProfile={handleUpdateUser}
           />}
-            
             isLoggedIn={isLoggedIn} />} />
-
           <Route path='/signin' element={<Login
             onLogin={setIsLoggedIn} />} />
           <Route path='/signup' element={<Register

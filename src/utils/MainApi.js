@@ -1,5 +1,5 @@
-export const BASE_URL = "https://api.vereskun.nomoredomainsicu.ru";
-/* export const BASE_URL = "http://localhost:4001"; */
+/* export const BASE_URL = "https://api.vereskun.nomoredomainsicu.ru"; */
+export const BASE_URL = "http://localhost:4001";
 export const MOVIES_URL = "https://api.nomoreparties.co";
 
 function errorCheck(res) {
@@ -59,12 +59,12 @@ export const authorize = ({ email, password }) => {
     })
         .then(res => errorCheck(res))
 };
-export const getToken = (token) => {
+export const getToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
     })
         .then(res => errorCheck(res))
@@ -105,7 +105,7 @@ export const deleteMovie = (movieId) => {
 };
 
 
-export const getMovies = (token) => {
+export const getSavedMovies = (token) => {
     return fetch(`${BASE_URL}/movies`, {
         method: 'GET',
         headers: {
