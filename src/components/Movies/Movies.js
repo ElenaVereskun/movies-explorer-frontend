@@ -13,13 +13,12 @@ function Movies(props) {
     const checkbox = localStorage.getItem("isShort");
     const searchValue = localStorage.getItem('searchValue');
 
-    const movies = JSON.parse(localStorage.getItem("movies"));
-    
     useEffect(() => {
         searchMovies();
     }, [checkbox, searchValue])
 
     function searchMovies() {
+        const movies = JSON.parse(localStorage.getItem("movies"));
         if (checkbox === 'true') {
             const filterMoviesByDuration = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
@@ -58,7 +57,7 @@ function Movies(props) {
         <div className='movies'>
             <Header isLoggedIn={props.isLoggedIn} />
             <main>
-                <SearchForm onSearch={searchMovies} />
+                <SearchForm onSearch={searchMovies}/>
                 <p className='movies__error'>{props.serverError}{searchError}</p>
                 {props.isLoading ? <Preloader /> : (
                     <MoviesCardList

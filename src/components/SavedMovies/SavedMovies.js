@@ -4,14 +4,13 @@ import Footer from '../Footer/Footer';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function SavedMovies({ isLoggedIn, savedMovies,isSaved, deleteMovie }) {
+function SavedMovies({ isLoggedIn, savedMovies, isSaved, deleteMovie }) {
 
     const [filterSavedMovies, setFilterSavedMovies] = useState([]);
 
     const checkbox = localStorage.getItem('isShort');
     const searchSavedValue = localStorage.getItem('searchSavedValue');
 
-    console.log(savedMovies);
     useEffect(() => {
         setFilterSavedMovies(savedMovies);
     }, [savedMovies]);//без зависимости удаляет карточки только после перезагрузки
@@ -52,8 +51,7 @@ function SavedMovies({ isLoggedIn, savedMovies,isSaved, deleteMovie }) {
             <Header isLoggedIn={isLoggedIn} />
             <main>
                 <SearchForm
-                    onSearch={searchMovies} 
-                    isSaved={isSaved}/>
+                    onSearch={searchMovies} />
                 <MoviesCardList
                     filterSavedMovies={filterSavedMovies}
                     isSaved={isSaved}

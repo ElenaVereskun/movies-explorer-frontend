@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 import * as mainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../useForm/useForm';
 
-function Login({ onLogin }) {
+function Login({ setIsLoggedIn }) {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const navigate = useNavigate();
     const [isFormError, setIsFormError] = useState('');
@@ -15,9 +15,9 @@ function Login({ onLogin }) {
 
         mainApi.authorize({ email, password })
             .then((data) => {
-                localStorage.setItem('jwt', data.token);//выводит токен
-                onLogin(true);//через пропс передается setIsLoggin
+                localStorage.setItem('jwt', data.token);                
                 console.log(data.token);
+                setIsLoggedIn(true);
                 navigate('/movies', { replace: true });
             })
             .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
@@ -65,7 +65,7 @@ function Login({ onLogin }) {
                     <div className='login__button-container'>
                         <span className="register__form-error">{isFormError}</span>
                         <button className="login__button-login"
-                            onClick={onLogin}
+                            onClick={setIsLoggedIn}
                             disabled={!isValid}>Войти</button>
                     </div>
                 </div>

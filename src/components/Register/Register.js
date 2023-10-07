@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import * as mainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../useForm/useForm';
 
-function Register({ onRegister }) {
+function Register({ setIsLoggedIn }) {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const [isFormError, setIsFormError] = useState('');
 
@@ -15,7 +15,7 @@ function Register({ onRegister }) {
             .then((data) => {
                 localStorage.setItem('jwt', data.token);
                 console.log(data.token);
-                onRegister(true);
+                setIsLoggedIn(true);
             })
             .then(() => navigate("/movies"))
             .catch((err) => setIsFormError('Пользователь уже зарегистрирован'))
@@ -96,7 +96,7 @@ function Register({ onRegister }) {
                     <div className="register__button-container">
                         <span className="register__form-error">{isFormError}</span>
                         <button className="register__button-register"
-                            onClick={onRegister} disabled={!isValid}>Зарегистрироваться</button>
+                            onClick={setIsLoggedIn} disabled={!isValid}>Зарегистрироваться</button>
                     </div>
                 </div>
                 <div className='register__enter'>

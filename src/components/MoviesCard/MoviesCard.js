@@ -49,7 +49,8 @@ function MoviesCard({ onMovieSave, onMovieDelete, movie, isLike, isSaved }) {
                 ? <button className='movies-card__button-remove'
                     onClick={handleDeleteMovie}></button>
                 : <button className={savedButtonClassName}
-                    onClick={handleSavedClick}></button>}
+                    onClick={handleSavedClick}></button>
+            }
         </li>
     )
 }

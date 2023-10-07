@@ -6,6 +6,7 @@ import MoviesCardListMore from '../MoviesCardListMore/MoviesCardListMore';
 function MoviesCardList({
     movies,
     filterSavedMovies,
+    /* isSavedMovies, */
     isSaved,
     handleSavedClick,
     deleteMovie,
@@ -64,9 +65,9 @@ function MoviesCardList({
                         ?
                         filterSavedMovies.map((saveOwnerMovie) => (
                             <MoviesCard movie={saveOwnerMovie}
-                                isSaved={isSaved}
                                 key={saveOwnerMovie.id}
                                 onMovieDelete={deleteMovie}
+                                isSaved={isSaved}
                             >
                             </MoviesCard>
                         ))

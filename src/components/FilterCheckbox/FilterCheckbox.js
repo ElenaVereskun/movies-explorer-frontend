@@ -1,29 +1,25 @@
 import { React, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function FilterCheckbox({ onClickCheckbox, isSaved }) {
-/*     const [isShort, setIsShort] = useState(localStorage.getItem('isShort') || 'false') ;
-
-    function chek(evt) {
-        const value = evt.target.checked;
-        setIsShort(value);
-        localStorage.setItem("isShort", value);
-    } */
-
-    const [isShort, setIsShort] = useState(localStorage.getItem('isShort') || 'false') ;
-
-    useEffect(() => {
-        if (isSaved) {
-            setIsShort('')
-        } else {
-            setIsShort(localStorage.getItem('isShort'));
-        }
-    }, [localStorage.getItem('isShort')]);
+function FilterCheckbox({ onClickCheckbox}) {
+    const [isShort, setIsShort] = useState(localStorage.getItem('isShort') || 'false');
+    const location = useLocation();
 
     function chek(evt) {
         const value = evt.target.checked;
         setIsShort(value);
         localStorage.setItem("isShort", value);
     };
+
+    useEffect(() => {
+        if (location.pathname === '/saved-movies') {
+            setIsShort('')
+        }
+        if (location.pathname === '/movies') {
+            setIsShort(localStorage.getItem('isShort') || 'false');
+        }
+    }, [localStorage.getItem('isShort')]);
+
     return (
         <>
             <label class="filter-checkbox">

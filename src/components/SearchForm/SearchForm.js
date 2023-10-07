@@ -1,24 +1,28 @@
 import { React, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, isSaved }) {
+function SearchForm({ onSearch }) {
     const [searchValue, setSearchValue] = useState();
+    const location = useLocation();
 
     useEffect(() => {
-        if (isSaved) {
-            setSearchValue('')
-        } else {
+        if (location.pathname === '/movies') {
             setSearchValue(localStorage.getItem('searchValue'));
+        }
+        if (location.pathname === '/saved-movies') {
+            setSearchValue('')
         }
     }, [localStorage.getItem('searchValue')]);
 
     const handleChange = (e) => {
         const value = e.target.value;
-        if (isSaved) {
-            localStorage.setItem("searchSavedValue", value);
-            setSearchValue(value);
-        } else {
+        if (location.pathname === '/movies') {
             localStorage.setItem("searchValue", value);
+            setSearchValue(value);
+        }
+        if (location.pathname === '/saved-movies') {
+            localStorage.setItem("searchSavedValue", value);
             setSearchValue(value);
         }
     }
@@ -39,8 +43,7 @@ function SearchForm({ onSearch, isSaved }) {
                     <button className='search-form__button'>Поиск</button>
                 </div>
                 <div className='search-form__short'>
-                    <FilterCheckbox onClickCheckbox={onSearch}
-                    isSaved={isSaved} />
+                    <FilterCheckbox onClickCheckbox={onSearch} />
                     <p className='search-form__short-text'>Короткометражки</p>
                 </div>
             </form>
