@@ -15,8 +15,7 @@ function Login({ setIsLoggedIn }) {
 
         mainApi.authorize({ email, password })
             .then((data) => {
-                localStorage.setItem('jwt', data.token);                
-                console.log(data.token);
+                localStorage.setItem('jwt', data.token);
                 setIsLoggedIn(true);
                 navigate('/movies', { replace: true });
             })

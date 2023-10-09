@@ -4,43 +4,51 @@ import Footer from '../Footer/Footer';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function SavedMovies({ isLoggedIn, savedMovies, isSaved, deleteMovie }) {
+function SavedMovies({ isLoggedIn,
+    savedMovies,
+    isSaved,
+    deleteMovie }) {
 
     const [filterSavedMovies, setFilterSavedMovies] = useState([]);
-
-    const checkbox = localStorage.getItem('isShort');
-    const searchSavedValue = localStorage.getItem('searchSavedValue');
+    const [isShort, setIsShort] = useState();
+    const [searchValue, setSearchValue] = useState();
 
     useEffect(() => {
         setFilterSavedMovies(savedMovies);
     }, [savedMovies]);//без зависимости удаляет карточки только после перезагрузки
 
-    useEffect(() => {
-        searchMovies();
-    }, []);
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setSearchValue(value);
+    }
+
+    const handleChek = (e) => {
+        const isShort = e.target.checked;
+        setIsShort(isShort);
+    };
 
     function searchMovies() {
-        if (checkbox === 'false' && searchSavedValue === '') {
+        if (!isShort && searchValue === '') {
             setFilterSavedMovies(savedMovies);
         }
-        if (checkbox === 'true') {
+        if (!isShort) {
             const filterMoviesByDuration = savedMovies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
             })
             setFilterSavedMovies(filterMoviesByDuration);
         }
-        if (searchSavedValue) {
+        if (searchValue) {
             const filterMoviesByName = savedMovies.filter((movie) => {
-                return movie.nameRU.toLowerCase().includes(searchSavedValue.toLowerCase()) ||
-                    movie.nameEN.toLowerCase().includes(searchSavedValue.toLowerCase())
+                return movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
+                    movie.nameEN.toLowerCase().includes(searchValue.toLowerCase())
             });
             setFilterSavedMovies(filterMoviesByName);
         }
-        if (checkbox === 'true' && searchSavedValue) {
+        if (!isShort && searchValue) {
             const filterMoviesByAll = savedMovies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40) &&
-                    (movie.nameRU.toLowerCase().includes(searchSavedValue.toLowerCase()) ||
-                        movie.nameEN.toLowerCase().includes(searchSavedValue.toLowerCase()));
+                    (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
+                        movie.nameEN.toLowerCase().includes(searchValue.toLowerCase()));
             });
             setFilterSavedMovies(filterMoviesByAll);
         }
@@ -51,7 +59,11 @@ function SavedMovies({ isLoggedIn, savedMovies, isSaved, deleteMovie }) {
             <Header isLoggedIn={isLoggedIn} />
             <main>
                 <SearchForm
-                    onSearch={searchMovies} />
+                    onSearch={searchMovies}
+                    searchValue={searchValue}
+                    handleChange={handleChange}                    
+                    isShort={isShort}
+                    handleChek={handleChek}/>
                 <MoviesCardList
                     filterSavedMovies={filterSavedMovies}
                     isSaved={isSaved}

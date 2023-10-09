@@ -72,7 +72,7 @@ function App() {
         setSavedMovies([...savedMovies, newSavedMovie]);
       })
       .then(() => {
-        setFilmsIsLike([...filmsIsLike, movie]);//не сохраняет цвет после перезагрузки
+        setFilmsIsLike([...filmsIsLike, movie]);
       }
       )
       .catch((err) => console.log(`${err}`));
@@ -85,7 +85,7 @@ function App() {
         setSavedMovies(newDeleteMovie);
       })
       .then(() => {
-        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));//не сохраняет цвет после перезагрузки
+        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));
       })
       .catch((err) => console.log(`${err}`))
   };

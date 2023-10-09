@@ -16,9 +16,12 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
     }
     function onSignOut() {
         localStorage.removeItem('jwt');
-        localStorage.removeItem('isShort');
-        localStorage.removeItem('searchValue');
         localStorage.removeItem('movies');
+        localStorage.removeItem('localIsShort');
+        localStorage.removeItem('localSearchValue');
+        localStorage.removeItem('filterMoviesByDuration');
+        localStorage.removeItem('filterMoviesByName');
+        localStorage.removeItem('filterMoviesByAll');
         navigate('/signin', { replace: false });
         setIsLoggedIn(false);
     };
