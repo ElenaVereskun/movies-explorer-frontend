@@ -90,7 +90,8 @@ function Movies(props) {
                     searchValue={searchValue}
                     handleChange={handleChange}
                     isShort={isShort}
-                    handleChek={handleChek} />
+                    handleChek={handleChek}
+                    onClickCheckbox={searchMovies} />
                 <p className='movies__error'>{props.serverError}{searchError}</p>
                 {props.isLoading ? <Preloader /> : (
                     <MoviesCardList

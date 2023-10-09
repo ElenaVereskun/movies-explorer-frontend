@@ -5,7 +5,8 @@ function SearchForm({ onSearch,
     searchValue,
     handleChange,
     isShort,
-    handleChek  }) {
+    handleChek,
+    onClickCheckbox  }) {
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -25,7 +26,7 @@ function SearchForm({ onSearch,
                 </div>
                 <div className='search-form__short'>
                     <FilterCheckbox
-                        onClickCheckbox={onSearch}
+                        onClickCheckbox={onClickCheckbox}
                         isShort={isShort}
                         handleChek={handleChek} />
                     <p className='search-form__short-text'>Короткометражки</p>

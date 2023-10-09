@@ -14,29 +14,12 @@ function Register({ setIsLoggedIn }) {
         mainApi.register({ name, email, password })
             .then((data) => {
                 localStorage.setItem('jwt', data.token);
-                console.log(data.token);
                 setIsLoggedIn(true);
             })
             .then(() => navigate("/movies"))
             .catch((err) => setIsFormError('Пользователь уже зарегистрирован'))
     }
-/*     function handleSubmit(e) {
-        e.preventDefault();
-        const { name, email, password } = values;
-        mainApi.register({ name, email, password })
-            .then((data) => {
-                localStorage.setItem(data.name, data.email, data.password);
-                onRegister(true);
-            })
-            .then(() => {
-                mainApi.authorize({ email, password })
-                    .then((data) => {
-                        localStorage.setItem('jwt', data.token);
-                    })
-            })
-            .then(() => navigate("/movies"))
-            .catch((err) => setIsFormError('Пользователь уже зарегистрирован'))
-    } */
+
     const navigate = useNavigate();
     function handleEnter() {
         navigate("/signin");
@@ -59,7 +42,7 @@ function Register({ setIsLoggedIn }) {
                             type="text"
                             name="name"
                             placeholder="Имя"
-                            pattern="^[а-яА-ЯёЁa-zA-Z\''\-]+$"
+                            pattern="^[а-яА-ЯёЁa-zA-Z\''\-\]+$"
                             minLength={2}
                             maxLength={30}
                             required />
