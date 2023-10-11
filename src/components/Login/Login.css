@@ -53,6 +53,7 @@
     color: white;
     margin: 0;
     padding: 0;
+    width: 396px;
 }
 
 .login__email-error {
@@ -73,6 +74,7 @@
     background-color: #202020;
     border: none;
     color: white;
+    width: 396px;
 }
 
 .login__title-email {
@@ -228,5 +230,11 @@
     .login__button-enter {
         font-size: 12px;
         font-weight: 400;
+    }
+    .login__email {
+        width: 260px;
+    }
+    .login__password{
+        width: 260px;
     }
 }

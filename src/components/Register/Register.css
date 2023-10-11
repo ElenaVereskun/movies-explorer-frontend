@@ -26,7 +26,7 @@
 }
 
 .register__header {
-    display: flex;    
+    display: flex;
     align-items: flex-start;
     flex-direction: column;
 }
@@ -59,6 +59,7 @@
     color: white;
     margin: 0;
     padding: 0;
+    width: 396px;
 }
 
 .register__name {
@@ -68,26 +69,33 @@
     color: white;
     margin: 0;
     padding: 0;
+    width: 396px;
 }
-.register__name-error{
+
+.register__name-error {
     color: #EE3465;
     margin-top: -20px;
 }
-.register__email-error{
+
+.register__email-error {
     color: #EE3465;
     margin-top: -20px;
 }
-.register__password-error{
+
+.register__password-error {
     color: #EE3465;
     margin-top: -7px;
 }
-.register__form-error{
+
+.register__form-error {
     color: #EE3465;
 }
+
 .register__password {
     background-color: #202020;
     border: none;
     color: white;
+    width: 396px;
 }
 
 .register__title-name {
@@ -115,10 +123,12 @@
     font-weight: 400;
     margin: 0;
 }
-.register__button-container{
+
+.register__button-container {
     margin-top: 134px;
     margin-bottom: 16px;
 }
+
 .register__button-register {
     font-size: 14px;
     font-weight: 500;
@@ -131,6 +141,7 @@
     margin-top: 10px;
     margin-bottom: 0px;
 }
+
 .register__button-register:disabled {
     font-size: 14px;
     font-weight: 500;
@@ -143,6 +154,7 @@
     margin-top: 10px;
     margin-bottom: 0px;
 }
+
 .register__button-register:active {
     opacity: 0.8;
 }
@@ -220,6 +232,15 @@
 
     .register__name {
         font-size: 14px;
+        width: 260px;
+    }
+
+    .register__email {
+        width: 260px;
+    }
+
+    .register__password {
+        width: 260px;
     }
 
     .register__title-name {
@@ -230,9 +251,11 @@
         width: 260px;
         padding-bottom: 10px;
     }
-    .register__button-container{
+
+    .register__button-container {
         margin-top: 223px;
     }
+
     .register__button-register {
         font-size: 12px;
         font-weight: 500;
@@ -254,6 +277,7 @@
         font-size: 12px;
         font-weight: 400;
     }
+
     .register__header {
         align-items: center;
         margin: 0 auto;

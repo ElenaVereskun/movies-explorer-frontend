@@ -5,14 +5,13 @@ import * as mainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../useForm/useForm';
 
 function Login({ setIsLoggedIn }) {
-    const { values, handleChange, errors, isValid } = useFormWithValidation();
+    const { values, handleChange, errors, isValid, setIsValid } = useFormWithValidation();
     const navigate = useNavigate();
     const [isFormError, setIsFormError] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault();
         const { email, password } = values;
-
         mainApi.authorize({ email, password })
             .then((data) => {
                 localStorage.setItem('jwt', data.token);
@@ -21,7 +20,7 @@ function Login({ setIsLoggedIn }) {
             })
             .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
     }
-    
+
     function handleRegister() {
         navigate("/signup");
     }

@@ -3,7 +3,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm({ onSearch,
     searchValue,
-    handleChange,
+    handleChangeSearch,
     isShort,
     handleChek,
     onClickCheckbox  }) {
@@ -19,7 +19,7 @@ function SearchForm({ onSearch,
                     <input className='search-form__input'
                         value={searchValue}
                         name="search"
-                        onChange={handleChange}
+                        onChange={handleChangeSearch}
                         placeholder="Фильм" />
                     <span ></span>
                     <button className='search-form__button'>Поиск</button>

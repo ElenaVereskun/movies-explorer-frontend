@@ -1,26 +1,25 @@
 import { React, useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardListMore from '../MoviesCardListMore/MoviesCardListMore';
-
+import {
+    MOBILE_VIEW,
+    MOBILE_MEDIUM_VIEW,
+    PAD_VIEW,
+    DESKTOP_VIEW,
+    MOBILE_COUNT,
+    PAD_COUNT,
+    DESKTOP_COUNT
+} from '../../utils/const';
 
 function MoviesCardList({
     movies,
     filterSavedMovies,
-    /* isSavedMovies, */
     isSaved,
     handleSavedClick,
     deleteMovie,
     filmsIsLike }) {
 
     const [moviesView, setMoviesView] = useState('');
-
-    const MOBILE_VIEW = 320;
-    const MOBILE_MEDIUM_VIEW = 480;
-    const PAD_VIEW = 760;
-    const DESKTOP_VIEW = 1270;
-    const MOBILE_COUNT = 5;
-    const PAD_COUNT = 8;
-    const DESKTOP_COUNT = 12;
 
     function moviesToOpen() {
         window.addEventListener('resize', moviesToOpen);
@@ -54,7 +53,8 @@ function MoviesCardList({
     }
 
     useEffect(() => {
-        moviesToOpen()
+        moviesToOpen();
+        window.removeEventListener('resize', moviesToOpen);
     }, []);
 
     return (

@@ -3,13 +3,19 @@ import Header from '../Header/Header';
 import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../useForm/useForm';
+import success from '../../images/success.svg';
+import fail from '../../images/fail.svg';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
+
 
 function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
     const currentUser = useContext(CurrentUserContext);
     const navigate = useNavigate();
-    const [isFormError, setIsFormError] = useState('');
-    const [startEdit, setStartEdit] = useState('');
+    const [startEdit, setStartEdit] = useState(false);
     const { values, handleChange, errors, isValid, setValues, setIsValid } = useFormWithValidation();
+    const [errorText, setErrorText] = useState(' ');
+    const [infoTooltipOpen, setInfoTooltipOpen] = useState(false);
+    const [infoTooltipImg, setInfoTooltipImg] = useState();
 
     function onStartEdit() {
         setStartEdit(true);
@@ -22,7 +28,7 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
         localStorage.removeItem('filterMoviesByDuration');
         localStorage.removeItem('filterMoviesByName');
         localStorage.removeItem('filterMoviesByAll');
-        navigate('/signin', { replace: false });
+        navigate('/', { replace: false });
         setIsLoggedIn(false);
     };
 
@@ -30,13 +36,37 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
         e.preventDefault();
         const { name, email } = values;
         if (currentUser.name === values.name && currentUser.email === values.email) {
-            setIsValid(false);
+            setIsValid(!isValid);
+            infoTooltipFail();
         } else {
             onEditProfile({ name, email });
-            setIsFormError('Данные профиля обновлены успешно');
-            setIsValid(false);
+            setIsValid(!isValid);
+            infoTooltipSuccess();
         }
     };
+
+    useEffect(() => {
+        if (currentUser.name === values.name && currentUser.email === values.email) {
+            setIsValid(false);
+        } else {
+            setIsValid(true);
+        }
+    }, [currentUser, values.name, values.email]);
+
+    function infoTooltipSuccess() {
+        setErrorText('Данные профиля обновлены успешно');
+        setInfoTooltipOpen(true);
+        setInfoTooltipImg(success);
+    }
+
+    function infoTooltipFail() {
+        setErrorText('Что-то пошло не так! Попробуйте ещё раз.');
+        setInfoTooltipOpen(true);
+        setInfoTooltipImg(fail);
+    }
+    function handleCloseButton() {
+        setInfoTooltipOpen(false);
+    }
 
     useEffect(() => {
         setValues(currentUser);
@@ -44,19 +74,23 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
 
     useEffect(() => {
         const close = (e) => {
-          if(e.keyCode === 27){
-            navigate('/movies', { replace: false });
-          }
+            if (e.keyCode === 27) {
+                navigate('/movies', { replace: false });
+            }
         }
         window.addEventListener('keydown', close)
-      return () => window.removeEventListener('keydown', close)
-    },[])
+        return () => window.removeEventListener('keydown', close)
+    }, []);
 
     return (
         <div className='profile'>
+            <InfoTooltip infoTooltipOpen={infoTooltipOpen}
+                text={errorText}
+                onClickCloseButton={handleCloseButton}
+                infotooltipimg={infoTooltipImg} />
             <Header isLoggedIn={isLoggedIn} />
-            <form className="profile__form" onSubmit={handleSubmit}>
-                <div className="profile__container">
+            <div className="profile__container">
+                <form className="profile__form" onSubmit={handleSubmit}>
                     <h2 className="profile__title">Привет, {values.name}!</h2>
                     <div className="profile__input-container">
                         <p className="profile__title-name">Имя</p>
@@ -90,16 +124,16 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
                     </div>
                     <span className="profile__email-error">{errors.email}</span>
                     <div className='profile__button-block'>
-                        <span className='profile__error' style={isValid ? { color: '#EE3465' } : { color: 'white' }}>{isFormError}</span>
+                        <span className='profile__error'></span>
                         <button className={startEdit ? "profile__button-save" : "profile__button-save_none"}
                             disabled={!isValid} onClick={onEditProfile}>Сохранить</button>
-                        <button className={startEdit ? "profile__button-edit_none" : "profile__button-edit"}
-                            onClick={onStartEdit}>Редактировать</button>
-                        <button className={startEdit ? "profile__button-exit_none" : "profile__button-exit"}
-                            onClick={onSignOut}>Выйти из аккаунта</button>
                     </div>
-                </div>
-            </form>
+                </form>
+                <button className={startEdit ? "profile__button-edit_none" : "profile__button-edit"}
+                    onClick={onStartEdit}>Редактировать</button>
+                <button className={startEdit ? "profile__button-exit_none" : "profile__button-exit"}
+                    onClick={onSignOut}>Выйти из аккаунта</button>
+            </div>
         </div>
     )
 }

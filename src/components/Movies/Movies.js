@@ -8,11 +8,18 @@ import Preloader from '../Preloader/Preloader';
 function Movies(props) {
     const [filterMovies, setFilterMovies] = useState([]);
     const [searchError, setSearchError] = useState('');
-    const [isShort, setIsShort] = useState(false);
+    const [isShort, setIsShort] = useState(!!localStorage.getItem("localIsShort"));
     const [searchValue, setSearchValue] = useState();
     const localIsShort = localStorage.getItem('localIsShort');
     const localSearchValue = localStorage.getItem('localSearchValue');
 
+    console.log('внутри всей Movies()' + !!localStorage.getItem("localIsShort"))//выводит неправильно true
+
+    useEffect(() => {
+        setSearchValue(localSearchValue);        
+        setIsShort(!!localStorage.getItem("localIsShort"));
+        console.log('внутри useEffect' + '//' +  !!localStorage.getItem("localIsShort"))//выводит true
+    }, []);
     useEffect(() => {
         if (localIsShort === 'false' && localSearchValue) {
             setFilterMovies(JSON.parse(localStorage.getItem('filterMoviesByName')));
@@ -24,27 +31,21 @@ function Movies(props) {
             setFilterMovies(JSON.parse(localStorage.getItem('filterMoviesByAll')));
         }
     }, []);
-
-    useEffect(() => {
-        setSearchValue(localSearchValue);
-        setIsShort((localIsShort === 'true') || (localIsShort === 'false'));
-    }, []);
-
-    const handleChange = (e) => {
+    const handleChangeSearch = (e) => {
         const value = e.target.value;
         setSearchValue(value);
         localStorage.setItem("localSearchValue", value);
     };
-
     const handleChek = (e) => {
-        const isShort = e.target.checked;
-        setIsShort(isShort);
-        localStorage.setItem("localIsShort", isShort);
+        const checked = e.target.checked;
+        setIsShort(checked);
+        console.log('внутри handleChek' + '//' + checked)//выводит правильно
+        localStorage.setItem("localIsShort", checked);
     };
-
     function searchMovies() {
         const movies = JSON.parse(localStorage.getItem("movies"));
-        if (!isShort) {
+        console.log('внутри searchMovies()' + '//' +  isShort)//выводит неправильно true
+        if (isShort) {
             const filterMoviesByDuration = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
             })
@@ -67,7 +68,7 @@ function Movies(props) {
                 setSearchError('Ничего не найдено');
             }
         }
-        if (!isShort && searchValue) {
+        if (isShort && searchValue) {
             const filterMoviesByAll = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40) &&
                     (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -88,7 +89,7 @@ function Movies(props) {
             <main>
                 <SearchForm onSearch={searchMovies}
                     searchValue={searchValue}
-                    handleChange={handleChange}
+                    handleChangeSearch={handleChangeSearch}
                     isShort={isShort}
                     handleChek={handleChek}
                     onClickCheckbox={searchMovies} />

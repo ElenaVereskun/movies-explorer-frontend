@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 function MoviesCard({ onMovieSave, onMovieDelete, movie, isLike, isSaved }) {
     const {
         country,
@@ -26,6 +26,8 @@ function MoviesCard({ onMovieSave, onMovieDelete, movie, isLike, isSaved }) {
     const savedButtonClassName = (
         `movies-card__button-save ${isLike && 'movies-card__button-save_active'}`
     )
+
+
     return (
         <li className='movies-card'>
             <div className='movies-card__heading'>

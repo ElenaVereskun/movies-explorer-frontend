@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Main from '../Main/Main';
 import moviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -13,7 +13,7 @@ import * as mainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoutes/ProtectedRoutes';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('jwt'));
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isSaved, setIsSaved] = useState(true);
@@ -116,7 +116,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  }, [isLoggedIn]);
+  }, []);
 
   return (
     <>
@@ -148,12 +148,29 @@ function App() {
           />}
             isLoggedIn={isLoggedIn} />} />
 
+        {/*   <Route path="/signup" element={!isLoggedIn
+            ? <Register setIsLoggedIn={() => { setIsLoggedIn(true) }} />
+            : <Navigate to={'/'} replace />} />
+          <Route path="/signin" element={!isLoggedIn
+            ? <Login setIsLoggedIn={() => { setIsLoggedIn(true) }} />
+            : <Navigate to={'/'} replace />} /> */}
+
           <Route path='/signin' element={<Login
             setIsLoggedIn={setIsLoggedIn}
           />} />
           <Route path='/signup' element={<Register
             setIsLoggedIn={setIsLoggedIn}
           />} />
+
+          {/*           <Route path="/signup" element={!loggedIn
+            ? <Register handleLogin={() => { setLoggedIn(true) }} />
+            : <Navigate to={'/'} replace />} />
+          <Route path="/signin" element={!loggedIn
+            ? <Signin handleLogin={() => { setLoggedIn(true) }} />
+            : <Navigate to={'/'} replace />} />
+ */}
+
+
 
           <Route path='*' element={<Error404 />} />
         </Routes>

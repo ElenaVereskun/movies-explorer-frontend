@@ -1,24 +1,34 @@
 .navtab {
     background-color: #073042;
-}
-.navtab__container{
     max-width: 1280px;
     margin: 0 auto;
 }
-.navtab__text {
-    border-radius: 3px;
-    border: 1px solid #FFF;
-    opacity: 0.6;  
+
+.navtab__container {
+    max-width: 1280px;
+    margin: 0 auto;
     height: 36px;
     width: 129px;
     margin-bottom: 75px;
     margin-top: 84px;
     margin-left: 70px;
+    background-color: #073042;
+    border: 1px solid #FFF;
+    border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0.6;
+}
+
+.navtab__container:hover {
+    cursor: pointer;
+    opacity: 0.3;
+}
+
+.navtab__text {
     color: white;
-    font-family: Inter,Arial,sans-serif;
+    font-family: Inter, Arial, sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -30,13 +40,15 @@
         display: flex;
         justify-content: center;
     }
-    .navtab__text {
+
+    .navtab__container {
         margin-top: 89px;
         margin-left: 0px;
     }
 }
+
 @media screen and (max-width: 767px) {
-    .navtab__text {
+    .navtab__container {
         margin-bottom: 30px;
         margin-top: 80px;
     }
