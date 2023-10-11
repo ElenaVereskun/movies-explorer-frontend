@@ -6,9 +6,13 @@
     z-index: 0;
 }
 
+/* .filter-checkbox__container{
+    display: none;
+} */
 .filter-checkbox__input {
     display: none;
 }
+
 
 .filter-checkbox__slider {
     position: absolute;

@@ -6,7 +6,7 @@ function SearchForm({ onSearch,
     handleChangeSearch,
     isShort,
     handleChek,
-    onClickCheckbox  }) {
+    onClickCheckbox }) {
 
     function handleSubmit(e) {
         e.preventDefault();

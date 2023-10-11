@@ -148,31 +148,21 @@ function App() {
           />}
             isLoggedIn={isLoggedIn} />} />
 
-        {/*   <Route path="/signup" element={!isLoggedIn
-            ? <Register setIsLoggedIn={() => { setIsLoggedIn(true) }} />
-            : <Navigate to={'/'} replace />} />
-          <Route path="/signin" element={!isLoggedIn
-            ? <Login setIsLoggedIn={() => { setIsLoggedIn(true) }} />
-            : <Navigate to={'/'} replace />} /> */}
-
           <Route path='/signin' element={<Login
             setIsLoggedIn={setIsLoggedIn}
           />} />
           <Route path='/signup' element={<Register
             setIsLoggedIn={setIsLoggedIn}
           />} />
-
-          {/*           <Route path="/signup" element={!loggedIn
-            ? <Register handleLogin={() => { setLoggedIn(true) }} />
-            : <Navigate to={'/'} replace />} />
-          <Route path="/signin" element={!loggedIn
-            ? <Signin handleLogin={() => { setLoggedIn(true) }} />
-            : <Navigate to={'/'} replace />} />
- */}
-
-
-
           <Route path='*' element={<Error404 />} />
+          
+        {/*   <Route path="/signup" element={!isLoggedIn
+            ? <Register setIsLoggedIn={() => { setIsLoggedIn(true) }} />
+            : <Navigate to={'/'} replace />} />
+          <Route path="/signin" element={!isLoggedIn
+            ? <Login setIsLoggedIn={() => { setIsLoggedIn(true) }} />
+            : <Navigate to={'/'} replace />} /> */}
+            
         </Routes>
       </CurrentUserContext.Provider>
     </>

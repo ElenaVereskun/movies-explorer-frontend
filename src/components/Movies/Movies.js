@@ -8,29 +8,26 @@ import Preloader from '../Preloader/Preloader';
 function Movies(props) {
     const [filterMovies, setFilterMovies] = useState([]);
     const [searchError, setSearchError] = useState('');
-    const [isShort, setIsShort] = useState(!!localStorage.getItem("localIsShort"));
-    const [searchValue, setSearchValue] = useState();
-    const localIsShort = localStorage.getItem('localIsShort');
+    const [isShort, setIsShort] = useState(localStorage.getItem('localIsShort') === 'true');
+    const [searchValue, setSearchValue] = useState(localStorage.getItem('localSearchValue'));
+
     const localSearchValue = localStorage.getItem('localSearchValue');
 
-    console.log('внутри всей Movies()' + !!localStorage.getItem("localIsShort"))//выводит неправильно true
+    console.log(localStorage.getItem('localIsShort'));
 
     useEffect(() => {
-        setSearchValue(localSearchValue);        
-        setIsShort(!!localStorage.getItem("localIsShort"));
-        console.log('внутри useEffect' + '//' +  !!localStorage.getItem("localIsShort"))//выводит true
-    }, []);
-    useEffect(() => {
-        if (localIsShort === 'false' && localSearchValue) {
+
+        if (!isShort && localSearchValue) {
             setFilterMovies(JSON.parse(localStorage.getItem('filterMoviesByName')));
         }
-        if (localIsShort === 'true') {
+        if (isShort) {
             setFilterMovies(JSON.parse(localStorage.getItem('filterMoviesByDuration')));
         }
-        if (localIsShort === 'true' && localSearchValue) {
+        if (isShort && localSearchValue) {
             setFilterMovies(JSON.parse(localStorage.getItem('filterMoviesByAll')));
         }
     }, []);
+
     const handleChangeSearch = (e) => {
         const value = e.target.value;
         setSearchValue(value);
@@ -39,13 +36,12 @@ function Movies(props) {
     const handleChek = (e) => {
         const checked = e.target.checked;
         setIsShort(checked);
-        console.log('внутри handleChek' + '//' + checked)//выводит правильно
         localStorage.setItem("localIsShort", checked);
     };
+
     function searchMovies() {
         const movies = JSON.parse(localStorage.getItem("movies"));
-        console.log('внутри searchMovies()' + '//' +  isShort)//выводит неправильно true
-        if (isShort) {
+        if (!isShort) {
             const filterMoviesByDuration = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
             })
@@ -68,7 +64,7 @@ function Movies(props) {
                 setSearchError('Ничего не найдено');
             }
         }
-        if (isShort && searchValue) {
+        if (!isShort && searchValue) {
             const filterMoviesByAll = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40) &&
                     (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
