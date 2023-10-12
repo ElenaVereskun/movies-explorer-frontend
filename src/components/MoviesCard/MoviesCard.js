@@ -55,7 +55,8 @@ function MoviesCard({ onMovieSave, onMovieDelete, movie, isLike, isSaved, onLike
                     onClick={handleDeleteMovie}></button>
                 : <button className={savedButtonClassName}
                     onChange={handleLikeMovie}
-                    onClick={handleSavedClick}></button>
+                    onClick={handleSavedClick}>                        
+                    </button>
             }
         </li>
     )

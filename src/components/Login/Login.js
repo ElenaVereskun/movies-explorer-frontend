@@ -1,19 +1,13 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import logo from '../../images/logo.svg';
 import * as mainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../useForm/useForm';
 
-function Login({ setIsLoggedIn, isLoggedIn }) {
+function Login({ setIsLoggedIn}) {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const navigate = useNavigate();
     const [isFormError, setIsFormError] = useState('');
-    
-    useEffect(() => {
-        if (isLoggedIn) {
-            navigate("/movies", { replace: false });
-        }
-    }, [isLoggedIn]);
 
     function handleSubmit(e) {
         e.preventDefault();

@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Main from '../Main/Main';
 import moviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -57,7 +57,6 @@ function App() {
   }, [isLoggedIn]);
 
   function handleSavedClick(movie) {
-    console.log(movie);
     const isClicked = savedMovies.some((item) => item.movieId === movie.id);
     if (!isClicked) {
       saveMovie(movie);
@@ -72,10 +71,9 @@ function App() {
       .then((newSavedMovie) => {
         setSavedMovies([...savedMovies, newSavedMovie]);
       })
-      .then(() => {
-        setFilmsIsLike([...filmsIsLike, movie]);
-      }
-      )
+      /*      .then(() => {
+             setFilmsIsLike([...filmsIsLike, movie]);
+           }) */
       .catch((err) => console.log(`${err}`));
   };
 
@@ -85,22 +83,22 @@ function App() {
         const newDeleteMovie = savedMovies.filter((c) => c._id !== movie._id);
         setSavedMovies(newDeleteMovie);
       })
-      .then(() => {
-        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));
-      })
+      /*       .then(() => {
+              setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));
+            }) */
       .catch((err) => console.log(`${err}`))
   };
 
   function handleLikeClick(movie) {
-    /*     console.log('movie--------' + movie);
-        const isClicked = filmsIsLike.some((item) => item.movieId === movie.id);
-        console.log('isClicked-----------' + isClicked);
-        
-        if (!isClicked) {
-          setFilmsIsLike([...filmsIsLike, movie])
-        } else {
-          setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));
-        } */
+    console.log('movie--------' + movie);
+    const isClicked = filmsIsLike.some((item) => item.id === movie.id);
+    console.log('isClicked-----------' + isClicked);
+
+    if (!isClicked) {
+      setFilmsIsLike([...filmsIsLike, movie])
+    } else {
+      setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));
+    }
   };
 
   /* useEffect((movie) => {
@@ -174,6 +172,15 @@ function App() {
             setIsLoggedIn={setIsLoggedIn}
             isLoggedIn={isLoggedIn}
           />} />
+
+
+          {/*           <Route path="/signup" element={!isLoggedIn
+            ? <Register setIsLoggedIn={setIsLoggedIn} />
+            : <Navigate to={'/movies'} replace />} />
+         //при входе не срабатывают роуты
+          <Route path="/signin" element={!isLoggedIn
+            ? <Login setIsLoggedIn={setIsLoggedIn} />
+            : <Navigate to={'/movies'} replace />} /> */}
 
           <Route path='*' element={<Error404 />} />
         </Routes>
