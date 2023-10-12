@@ -13,10 +13,9 @@ function Movies(props) {
 
     const localSearchValue = localStorage.getItem('localSearchValue');
 
-    console.log(localStorage.getItem('localIsShort'));
+    console.log('внутри самой муви------' + localStorage.getItem('localIsShort'));
 
     useEffect(() => {
-
         if (!isShort && localSearchValue) {
             setFilterMovies(JSON.parse(localStorage.getItem('filterMoviesByName')));
         }
@@ -28,20 +27,10 @@ function Movies(props) {
         }
     }, []);
 
-    const handleChangeSearch = (e) => {
-        const value = e.target.value;
-        setSearchValue(value);
-        localStorage.setItem("localSearchValue", value);
-    };
-    const handleChek = (e) => {
-        const checked = e.target.checked;
-        setIsShort(checked);
-        localStorage.setItem("localIsShort", checked);
-    };
-
     function searchMovies() {
+        console.log('внутри searchMovies------' + isShort);
         const movies = JSON.parse(localStorage.getItem("movies"));
-        if (!isShort) {
+        if (isShort) {
             const filterMoviesByDuration = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
             })
@@ -64,7 +53,7 @@ function Movies(props) {
                 setSearchError('Ничего не найдено');
             }
         }
-        if (!isShort && searchValue) {
+        if (isShort && searchValue) {
             const filterMoviesByAll = movies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40) &&
                     (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -77,6 +66,17 @@ function Movies(props) {
                 setSearchError('Ничего не найдено');
             }
         }
+    };
+    function handleChangeSearch(e) {
+        const value = e.target.value;
+        setSearchValue(value);
+        localStorage.setItem("localSearchValue", value);
+    };
+    function handleChek(e) {
+        const isShort = e.target.checked;
+        setIsShort(isShort);
+        localStorage.setItem("localIsShort", isShort);
+        console.log('внутри handleChek------' + isShort)
     };
 
     return (

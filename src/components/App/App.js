@@ -118,6 +118,14 @@ function App() {
     tokenCheck();
   }, []);
 
+  const MOVIES_PAGE_URL = '/movies';
+
+  /*   useEffect(() => {
+      if (isLoggedIn) {
+        history.push(MOVIES_PAGE_URL);
+      }
+    }, [isLoggedIn]); */
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser} className="content" >
@@ -148,21 +156,22 @@ function App() {
           />}
             isLoggedIn={isLoggedIn} />} />
 
-          <Route path='/signin' element={<Login
+{/*           <Route path='/signin' element={<Login
             setIsLoggedIn={setIsLoggedIn}
           />} />
           <Route path='/signup' element={<Register
             setIsLoggedIn={setIsLoggedIn}
           />} />
+ */}
           <Route path='*' element={<Error404 />} />
-          
-        {/*   <Route path="/signup" element={!isLoggedIn
-            ? <Register setIsLoggedIn={() => { setIsLoggedIn(true) }} />
+
+          <Route path="/signup" element={!isLoggedIn
+            ? <Register setIsLoggedIn={setIsLoggedIn} replace />
             : <Navigate to={'/'} replace />} />
           <Route path="/signin" element={!isLoggedIn
-            ? <Login setIsLoggedIn={() => { setIsLoggedIn(true) }} />
-            : <Navigate to={'/'} replace />} /> */}
-            
+            ? <Login setIsLoggedIn={setIsLoggedIn} replace />
+            : <Navigate to={'/'} replace />} />
+
         </Routes>
       </CurrentUserContext.Provider>
     </>

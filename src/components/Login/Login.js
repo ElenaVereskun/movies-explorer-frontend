@@ -5,7 +5,7 @@ import * as mainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../useForm/useForm';
 
 function Login({ setIsLoggedIn }) {
-    const { values, handleChange, errors, isValid, setIsValid } = useFormWithValidation();
+    const { values, handleChange, errors, isValid } = useFormWithValidation();
     const navigate = useNavigate();
     const [isFormError, setIsFormError] = useState('');
 
@@ -78,8 +78,4 @@ function Login({ setIsLoggedIn }) {
 }
 export default Login;
 
-
-
-
-/* const [errorMessage, setErrorMesage] = useState(''); */
 
