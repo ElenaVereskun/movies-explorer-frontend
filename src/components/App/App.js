@@ -57,6 +57,7 @@ function App() {
   }, [isLoggedIn]);
 
   function handleSavedClick(movie) {
+    console.log(movie);
     const isClicked = savedMovies.some((item) => item.movieId === movie.id);
     if (!isClicked) {
       saveMovie(movie);
@@ -89,6 +90,22 @@ function App() {
       })
       .catch((err) => console.log(`${err}`))
   };
+
+  function handleLikeClick(movie) {
+    /*     console.log('movie--------' + movie);
+        const isClicked = filmsIsLike.some((item) => item.movieId === movie.id);
+        console.log('isClicked-----------' + isClicked);
+        
+        if (!isClicked) {
+          setFilmsIsLike([...filmsIsLike, movie])
+        } else {
+          setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));
+        } */
+  };
+
+  /* useEffect((movie) => {
+   handleLikeClick(movie);
+ }, [filmsIsLike]); */
 
   function handleUpdateUser({ name, email }) {
     mainApi.editUserInfo({ name, email })
@@ -131,6 +148,7 @@ function App() {
             serverError={serverError}
             filmsIsLike={filmsIsLike}
             isSaved={isSaved}
+            onLikeClick={handleLikeClick}
           />}
             isLoggedIn={isLoggedIn} />} />
 

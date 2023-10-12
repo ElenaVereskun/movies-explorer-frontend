@@ -11,7 +11,7 @@ function Login({ setIsLoggedIn, isLoggedIn }) {
     
     useEffect(() => {
         if (isLoggedIn) {
-            navigate("/movies");
+            navigate("/movies", { replace: false });
         }
     }, [isLoggedIn]);
 
@@ -22,13 +22,13 @@ function Login({ setIsLoggedIn, isLoggedIn }) {
             .then((data) => {
                 localStorage.setItem('jwt', data.token);
                 setIsLoggedIn(true);
-                navigate('/movies', { replace: true });
+                navigate('/movies', { replace: false });
             })
             .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
     }
 
     function handleRegister() {
-        navigate("/signup");
+        navigate("/signup", { replace: false });
     }
     return (
         <section className='login'>

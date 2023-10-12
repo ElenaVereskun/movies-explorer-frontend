@@ -10,7 +10,7 @@ function Register({ setIsLoggedIn, isLoggedIn }) {
     
     useEffect(() => {
         if (isLoggedIn) {
-            navigate("/movies");
+            navigate("/movies", { replace: false });
         }
     }, [isLoggedIn]);
 
@@ -28,7 +28,7 @@ function Register({ setIsLoggedIn, isLoggedIn }) {
 
     const navigate = useNavigate();
     function handleEnter() {
-        navigate("/signin");
+        navigate("/signin", { replace: false });
     }
     return (
         <section className='register'>

@@ -25,9 +25,6 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
         localStorage.removeItem('movies');
         localStorage.removeItem('localIsShort');
         localStorage.removeItem('localSearchValue');
-        localStorage.removeItem('filterMoviesByDuration');
-        localStorage.removeItem('filterMoviesByName');
-        localStorage.removeItem('filterMoviesByAll');
         navigate('/', { replace: false });
         setIsLoggedIn(false);
     };

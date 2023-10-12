@@ -1,7 +1,7 @@
 .error {
     color: #FFF;
     text-align: center;
-    font-family: Inter,Arial,sans-serif;
+    font-family: Inter, Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -34,6 +34,14 @@
     border: none;
     padding-top: 184px;
     padding-bottom: 60px;
+}
+
+.error__back:hover {
+    cursor: pointer;
+}
+
+.error__back:active {
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 1279px) {

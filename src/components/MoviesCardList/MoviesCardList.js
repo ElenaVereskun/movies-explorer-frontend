@@ -17,7 +17,8 @@ function MoviesCardList({
     isSaved,
     handleSavedClick,
     deleteMovie,
-    filmsIsLike }) {
+    filmsIsLike,
+    onLikeClick }) {
 
     const [moviesView, setMoviesView] = useState('');
 
@@ -76,6 +77,7 @@ function MoviesCardList({
                             <MoviesCard movie={movie}
                                 key={movie.id}
                                 onMovieSave={handleSavedClick}
+                                onLikeClick={onLikeClick}
                                 isLike={!!filmsIsLike && !!filmsIsLike.find((m) => m.id === movie.id)}
                             >
                             </MoviesCard>

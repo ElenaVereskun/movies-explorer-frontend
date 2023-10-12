@@ -79,6 +79,7 @@ function Movies(props) {
                         movies={filterMovies}
                         handleSavedClick={props.handleSavedClick}
                         filmsIsLike={props.filmsIsLike}
+                        onLikeClick={props.onLikeClick}
                     />
                 )}
             </main>
