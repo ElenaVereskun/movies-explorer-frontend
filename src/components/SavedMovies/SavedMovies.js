@@ -10,28 +10,19 @@ function SavedMovies({ isLoggedIn,
     deleteMovie }) {
 
     const [filterSavedMovies, setFilterSavedMovies] = useState([]);
-    const [isShort, setIsShort] = useState();
+    const [isShort, setIsShort] = useState(false);
     const [searchValue, setSearchValue] = useState();
 
     useEffect(() => {
+        searchMovies();
+    }, [isShort]);
+
+    useEffect(() => {
         setFilterSavedMovies(savedMovies);
-    }, [savedMovies]);//без зависимости удаляет карточки только после перезагрузки
-
-    const handleChange = (e) => {
-        const value = e.target.value;
-        setSearchValue(value);
-    }
-
-    const handleChek = (e) => {
-        const isShort = e.target.checked;
-        setIsShort(isShort);
-    };
+    }, [savedMovies]);
 
     function searchMovies() {
-        if (!isShort && searchValue === '') {
-            setFilterSavedMovies(savedMovies);
-        }
-        if (!isShort) {
+        if (isShort) {
             const filterMoviesByDuration = savedMovies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40)
             })
@@ -44,7 +35,7 @@ function SavedMovies({ isLoggedIn,
             });
             setFilterSavedMovies(filterMoviesByName);
         }
-        if (!isShort && searchValue) {
+        if (isShort && searchValue) {
             const filterMoviesByAll = savedMovies.filter((movie) => {
                 return (movie.duration === 40 || movie.duration < 40) &&
                     (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -54,6 +45,17 @@ function SavedMovies({ isLoggedIn,
         }
     }
 
+    function handleChangeSearch(e) {
+        const value = e.target.value;
+        setSearchValue(value);
+    }
+
+    function handleChek(e) {
+        const isShort = e.target.checked;
+        setIsShort(isShort);
+    };
+
+
     return (
         <div className='saved-movies'>
             <Header isLoggedIn={isLoggedIn} />
@@ -61,9 +63,10 @@ function SavedMovies({ isLoggedIn,
                 <SearchForm
                     onSearch={searchMovies}
                     searchValue={searchValue}
-                    handleChange={handleChange}                    
+                    handleChangeSearch={handleChangeSearch}
                     isShort={isShort}
-                    handleChek={handleChek}/>
+                    handleChek={handleChek}
+                    onClickCheckbox={searchMovies} />
                 <MoviesCardList
                     filterSavedMovies={filterSavedMovies}
                     isSaved={isSaved}

@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Main from '../Main/Main';
 import moviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -118,14 +118,6 @@ function App() {
     tokenCheck();
   }, []);
 
-  const MOVIES_PAGE_URL = '/movies';
-
-  /*   useEffect(() => {
-      if (isLoggedIn) {
-        history.push(MOVIES_PAGE_URL);
-      }
-    }, [isLoggedIn]); */
-
   return (
     <>
       <CurrentUserContext.Provider value={currentUser} className="content" >
@@ -156,22 +148,16 @@ function App() {
           />}
             isLoggedIn={isLoggedIn} />} />
 
-{/*           <Route path='/signin' element={<Login
+          <Route path='/signin' element={<Login
             setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
           />} />
           <Route path='/signup' element={<Register
             setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
           />} />
- */}
+
           <Route path='*' element={<Error404 />} />
-
-          <Route path="/signup" element={!isLoggedIn
-            ? <Register setIsLoggedIn={setIsLoggedIn} replace />
-            : <Navigate to={'/'} replace />} />
-          <Route path="/signin" element={!isLoggedIn
-            ? <Login setIsLoggedIn={setIsLoggedIn} replace />
-            : <Navigate to={'/'} replace />} />
-
         </Routes>
       </CurrentUserContext.Provider>
     </>
