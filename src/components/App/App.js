@@ -51,6 +51,8 @@ function App() {
       moviesApi.getMovies()
         .then((movies) => {
           localStorage.setItem("movies", JSON.stringify(movies));
+          console.log(filmsIsLike);//пустой массив
+          setFilmsIsLike(filmsIsLike);//тут пытаюсь вызвать все поставленные лайки, но не работает
         })
         .catch((err) => setServerError('Во время запроса произошла ошибка.Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
         .finally(setIsLoading(false));
@@ -71,9 +73,9 @@ function App() {
       .then((newSavedMovie) => {
         setSavedMovies([...savedMovies, newSavedMovie]);
       })
-      /*      .then(() => {
-             setFilmsIsLike([...filmsIsLike, movie]);
-           }) */
+      .then(() => {
+        setFilmsIsLike([...filmsIsLike, movie]);//постановка лайка
+      })
       .catch((err) => console.log(`${err}`));
   };
 
@@ -83,27 +85,11 @@ function App() {
         const newDeleteMovie = savedMovies.filter((c) => c._id !== movie._id);
         setSavedMovies(newDeleteMovie);
       })
-      /*       .then(() => {
-              setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));
-            }) */
+      .then(() => {
+        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));//снятие лайка
+      })
       .catch((err) => console.log(`${err}`))
   };
-
-  function handleLikeClick(movie) {
-    console.log('movie--------' + movie);
-    const isClicked = filmsIsLike.some((item) => item.id === movie.id);
-    console.log('isClicked-----------' + isClicked);
-
-    if (!isClicked) {
-      setFilmsIsLike([...filmsIsLike, movie])
-    } else {
-      setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));
-    }
-  };
-
-  /* useEffect((movie) => {
-   handleLikeClick(movie);
- }, [filmsIsLike]); */
 
   function handleUpdateUser({ name, email }) {
     mainApi.editUserInfo({ name, email })
@@ -132,7 +118,7 @@ function App() {
   useEffect(() => {
     tokenCheck();
   }, []);
-
+//сейчас страницы login и Register сейчас не зашищены 
   return (
     <>
       <CurrentUserContext.Provider value={currentUser} className="content" >
@@ -146,7 +132,6 @@ function App() {
             serverError={serverError}
             filmsIsLike={filmsIsLike}
             isSaved={isSaved}
-            onLikeClick={handleLikeClick}
           />}
             isLoggedIn={isLoggedIn} />} />
 
@@ -173,11 +158,10 @@ function App() {
             isLoggedIn={isLoggedIn}
           />} />
 
-
-          {/*           <Route path="/signup" element={!isLoggedIn
+{/*           <Route path="/signup" element={!isLoggedIn
             ? <Register setIsLoggedIn={setIsLoggedIn} />
             : <Navigate to={'/movies'} replace />} />
-         //при входе не срабатывают роуты
+
           <Route path="/signin" element={!isLoggedIn
             ? <Login setIsLoggedIn={setIsLoggedIn} />
             : <Navigate to={'/movies'} replace />} /> */}
