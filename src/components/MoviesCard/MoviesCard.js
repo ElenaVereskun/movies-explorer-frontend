@@ -1,5 +1,5 @@
 import { React } from 'react';
-function MoviesCard({ onMovieSave, onMovieDelete, movie, isLike, isSaved }) {
+function MoviesCard({ onMovieSave, onMovieDelete, movie, isLiked, isSaved }) {
     const {
         country,
         description,
@@ -23,11 +23,8 @@ function MoviesCard({ onMovieSave, onMovieDelete, movie, isLike, isSaved }) {
     function handleDeleteMovie() {
         onMovieDelete(movie);
     }
-  /*   function handleLikeMovie() {
-        onLikeClick(movie);
-    } */
     const savedButtonClassName = (
-        `movies-card__button-save ${isLike && 'movies-card__button-save_active'}`
+        `movies-card__button-save ${isLiked && 'movies-card__button-save_active'}`
     )
 
     return (
@@ -53,8 +50,8 @@ function MoviesCard({ onMovieSave, onMovieDelete, movie, isLike, isSaved }) {
                 ? <button className='movies-card__button-remove'
                     onClick={handleDeleteMovie}></button>
                 : <button className={savedButtonClassName}
-                    onClick={handleSavedClick}>                        
-                    </button>
+                    onClick={handleSavedClick}>
+                </button>
             }
         </li>
     )

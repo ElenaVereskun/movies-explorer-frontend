@@ -19,7 +19,7 @@ function Movies(props) {
         const movies = JSON.parse(localStorage.getItem("movies"));
         if (isShort) {
             const filterMoviesByDuration = movies.filter((movie) => {
-                return (movie.duration === 40 || movie.duration < 40)
+                return (movie.duration <= 40)
             })
             setFilterMovies(filterMoviesByDuration);
             setSearchError('');
@@ -40,7 +40,7 @@ function Movies(props) {
         }
         if (isShort && searchValue) {
             const filterMoviesByAll = movies.filter((movie) => {
-                return (movie.duration === 40 || movie.duration < 40) &&
+                return (movie.duration <= 40) &&
                     (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
                         movie.nameEN.toLowerCase().includes(searchValue.toLowerCase()));
             });
@@ -78,7 +78,7 @@ function Movies(props) {
                     <MoviesCardList
                         movies={filterMovies}
                         handleSavedClick={props.handleSavedClick}
-                        filmsIsLike={props.filmsIsLike}
+                        savedMovies={props.savedMovies} 
                     />
                 )}
             </main>

@@ -15,34 +15,29 @@ function SavedMovies({ isLoggedIn,
 
     useEffect(() => {
         searchMovies();
-    }, [isShort]);
-
-    useEffect(() => {
-        setFilterSavedMovies(savedMovies);
-    }, [savedMovies]);
+    }, [isShort, savedMovies ]);
 
     function searchMovies() {
+        let filterMovies = savedMovies;
         if (isShort) {
-            const filterMoviesByDuration = savedMovies.filter((movie) => {
-                return (movie.duration === 40 || movie.duration < 40)
-            })
-            setFilterSavedMovies(filterMoviesByDuration);
+            filterMovies = savedMovies.filter((movie) => {
+                return (movie.duration <= 40)
+            });
         }
         if (searchValue) {
-            const filterMoviesByName = savedMovies.filter((movie) => {
+            filterMovies = savedMovies.filter((movie) => {
                 return movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
                     movie.nameEN.toLowerCase().includes(searchValue.toLowerCase())
             });
-            setFilterSavedMovies(filterMoviesByName);
         }
         if (isShort && searchValue) {
-            const filterMoviesByAll = savedMovies.filter((movie) => {
-                return (movie.duration === 40 || movie.duration < 40) &&
+            filterMovies = savedMovies.filter((movie) => {
+                return (movie.duration <= 40) &&
                     (movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
                         movie.nameEN.toLowerCase().includes(searchValue.toLowerCase()));
-            });
-            setFilterSavedMovies(filterMoviesByAll);
+            });            
         }
+        setFilterSavedMovies(filterMovies);
     }
 
     function handleChangeSearch(e) {

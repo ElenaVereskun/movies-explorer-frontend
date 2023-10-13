@@ -16,10 +16,14 @@ function MoviesCardList({
     filterSavedMovies,
     isSaved,
     handleSavedClick,
-    deleteMovie,
-    filmsIsLike }) {
+    deleteMovie, 
+    savedMovies}) {
 
     const [moviesView, setMoviesView] = useState('');
+
+    function compareMovie(savedFilms, movie) {
+        return savedFilms.some((savedFilm) => savedFilm.movieId === movie.id);
+      }
 
     function moviesToOpen() {
         window.addEventListener('resize', moviesToOpen);
@@ -65,7 +69,7 @@ function MoviesCardList({
                         ?
                         filterSavedMovies.map((saveOwnerMovie) => (
                             <MoviesCard movie={saveOwnerMovie}
-                                key={saveOwnerMovie.id}
+                                key={saveOwnerMovie._id}
                                 onMovieDelete={deleteMovie}
                                 isSaved={isSaved}
                             >
@@ -76,7 +80,7 @@ function MoviesCardList({
                             <MoviesCard movie={movie}
                                 key={movie.id}
                                 onMovieSave={handleSavedClick}
-                                isLike={!!filmsIsLike && !!filmsIsLike.find((m) => m.id === movie.id)}
+                                isLiked={compareMovie(savedMovies, movie)}
                             >
                             </MoviesCard>
                         ))

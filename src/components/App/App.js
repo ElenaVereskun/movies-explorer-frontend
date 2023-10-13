@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Main from '../Main/Main';
 import moviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -17,7 +17,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isSaved, setIsSaved] = useState(true);
-  const [filmsIsLike, setFilmsIsLike] = useState([]);
   const [serverError, setServerError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,8 +50,6 @@ function App() {
       moviesApi.getMovies()
         .then((movies) => {
           localStorage.setItem("movies", JSON.stringify(movies));
-          console.log(filmsIsLike);//пустой массив
-          setFilmsIsLike(filmsIsLike);//тут пытаюсь вызвать все поставленные лайки, но не работает
         })
         .catch((err) => setServerError('Во время запроса произошла ошибка.Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
         .finally(setIsLoading(false));
@@ -71,10 +68,7 @@ function App() {
   function saveMovie(movie) {
     mainApi.savedMovie(movie)
       .then((newSavedMovie) => {
-        setSavedMovies([...savedMovies, newSavedMovie]);
-      })
-      .then(() => {
-        setFilmsIsLike([...filmsIsLike, movie]);//постановка лайка
+        setSavedMovies([newSavedMovie, ...savedMovies]);
       })
       .catch((err) => console.log(`${err}`));
   };
@@ -84,9 +78,6 @@ function App() {
       .then(() => {
         const newDeleteMovie = savedMovies.filter((c) => c._id !== movie._id);
         setSavedMovies(newDeleteMovie);
-      })
-      .then(() => {
-        setFilmsIsLike(filmsIsLike.filter((m) => m.id !== movie.movieId));//снятие лайка
       })
       .catch((err) => console.log(`${err}`))
   };
@@ -118,7 +109,7 @@ function App() {
   useEffect(() => {
     tokenCheck();
   }, []);
-//сейчас страницы login и Register сейчас не зашищены 
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser} className="content" >
@@ -130,8 +121,8 @@ function App() {
             handleSavedClick={handleSavedClick}
             isLoading={isLoading}
             serverError={serverError}
-            filmsIsLike={filmsIsLike}
             isSaved={isSaved}
+            savedMovies={savedMovies}
           />}
             isLoggedIn={isLoggedIn} />} />
 
@@ -157,15 +148,6 @@ function App() {
             setIsLoggedIn={setIsLoggedIn}
             isLoggedIn={isLoggedIn}
           />} />
-
-{/*           <Route path="/signup" element={!isLoggedIn
-            ? <Register setIsLoggedIn={setIsLoggedIn} />
-            : <Navigate to={'/movies'} replace />} />
-
-          <Route path="/signin" element={!isLoggedIn
-            ? <Login setIsLoggedIn={setIsLoggedIn} />
-            : <Navigate to={'/movies'} replace />} /> */}
-
           <Route path='*' element={<Error404 />} />
         </Routes>
       </CurrentUserContext.Provider>
