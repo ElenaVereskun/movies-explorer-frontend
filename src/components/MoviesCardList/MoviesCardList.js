@@ -92,7 +92,7 @@ function MoviesCardList({
                 :
                 movies.slice(moviesView).length !== 0
                     ? <MoviesCardListMore handleMoreClick={handleMoreClick} />
-                    : <div className='saved-movies__black-square'></div>
+                    : <div className='movies-list__black-square'></div>
             }
         </>
     )
