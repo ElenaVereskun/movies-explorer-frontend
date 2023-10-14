@@ -79,7 +79,7 @@ function Register({ setIsLoggedIn }) {
                     <div className="register__button-container">
                         <span className="register__form-error">{isFormError}</span>
                         <button className="register__button-register"
-                            onClick={setIsLoggedIn} disabled={!isValid}>Зарегистрироваться</button>
+                            disabled={!isValid}>Зарегистрироваться</button>
                     </div>
                 </div>
                 <div className='register__enter'>

@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 import * as mainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../useForm/useForm';
 
-function Login({ setIsLoggedIn}) {
+function Login({ setIsLoggedIn }) {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const navigate = useNavigate();
     const [isFormError, setIsFormError] = useState('');
@@ -20,7 +20,6 @@ function Login({ setIsLoggedIn}) {
             })
             .catch((err) => setIsFormError(`Нет пользователя с таким логином и паролем`));
     }
-
     function handleRegister() {
         navigate("/signup", { replace: false });
     }
@@ -63,7 +62,6 @@ function Login({ setIsLoggedIn}) {
                     <div className='login__button-container'>
                         <span className="register__form-error">{isFormError}</span>
                         <button className="login__button-login"
-                            onClick={setIsLoggedIn}
                             disabled={!isValid}>Войти</button>
                     </div>
                 </div>

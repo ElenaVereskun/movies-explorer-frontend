@@ -3,19 +3,12 @@ import Header from '../Header/Header';
 import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../useForm/useForm';
-import success from '../../images/success.svg';
-import fail from '../../images/fail.svg';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
-
 
 function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
     const currentUser = useContext(CurrentUserContext);
     const navigate = useNavigate();
     const [startEdit, setStartEdit] = useState(false);
     const { values, handleChange, errors, isValid, setValues, setIsValid } = useFormWithValidation();
-    const [errorText, setErrorText] = useState(' ');
-    const [infoTooltipOpen, setInfoTooltipOpen] = useState(false);
-    const [infoTooltipImg, setInfoTooltipImg] = useState();
 
     function onStartEdit() {
         setStartEdit(true);
@@ -34,36 +27,17 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
         const { name, email } = values;
         if (currentUser.name === values.name && currentUser.email === values.email) {
             setIsValid(!isValid);
-            infoTooltipFail();
         } else {
             onEditProfile({ name, email });
             setIsValid(!isValid);
-            infoTooltipSuccess();
         }
     };
 
     useEffect(() => {
         if (currentUser.name === values.name && currentUser.email === values.email) {
             setIsValid(false);
-        } else {
-            setIsValid(true);
         }
     }, [currentUser, values.name, values.email]);
-
-    function infoTooltipSuccess() {
-        setErrorText('Данные профиля обновлены успешно');
-        setInfoTooltipOpen(true);
-        setInfoTooltipImg(success);
-    }
-
-    function infoTooltipFail() {
-        setErrorText('Что-то пошло не так! Попробуйте ещё раз.');
-        setInfoTooltipOpen(true);
-        setInfoTooltipImg(fail);
-    }
-    function handleCloseButton() {
-        setInfoTooltipOpen(false);
-    }
 
     useEffect(() => {
         setValues(currentUser);
@@ -81,10 +55,6 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
 
     return (
         <div className='profile'>
-            <InfoTooltip infoTooltipOpen={infoTooltipOpen}
-                text={errorText}
-                onClickCloseButton={handleCloseButton}
-                infotooltipimg={infoTooltipImg} />
             <Header isLoggedIn={isLoggedIn} />
             <div className="profile__container">
                 <form className="profile__form" onSubmit={handleSubmit}>
@@ -123,7 +93,7 @@ function Profile({ isLoggedIn, setIsLoggedIn, onEditProfile }) {
                     <div className='profile__button-block'>
                         <span className='profile__error'></span>
                         <button className={startEdit ? "profile__button-save" : "profile__button-save_none"}
-                            disabled={!isValid} onClick={onEditProfile}>Сохранить</button>
+                            disabled={!isValid}>Сохранить</button>
                     </div>
                 </form>
                 <button className={startEdit ? "profile__button-edit_none" : "profile__button-edit"}

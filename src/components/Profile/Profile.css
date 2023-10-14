@@ -4,7 +4,6 @@
 }
 
 .profile__form {
-    /* padding-bottom: 70px; */
     background-color: #202020;
 }
 
@@ -44,6 +43,7 @@
     border: none;
     text-align: right;
     color: white;
+    width: 370px;
 }
 
 .profile__name {
@@ -51,18 +51,21 @@
     border: none;
     text-align: right;
     color: white;
+    width: 370px;
 }
 
 .profile__name-error {
     color: #EE3465;
     width: 410px;
     margin-top: -10px;
+    display: flex;
 }
 
 .profile__email-error {
     color: #EE3465;
     width: 410px;
     margin-top: -30px;
+    display: flex;
 }
 
 .profile__title-name {
@@ -79,7 +82,7 @@
     display: none;
 }
 
- .profile__error{
+.profile__error {
     display: flex;
     text-align: center;
     font-size: 11px;
@@ -89,17 +92,19 @@
     margin-top: 189px;
     margin-bottom: 20px;
 }
-.profile__button-block{
+
+.profile__button-block {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .profile__button-edit {
     display: flex;
     background-color: #202020;
     color: white;
-    border: none;   
+    border: none;
     font-size: 13px;
     margin-top: -33px;
     margin-bottom: 15px;
@@ -140,7 +145,6 @@
     width: 410px;
     height: 45px;
     padding: 13px 168px 15px 156px;
-    /* margin-top: 177px; */
     margin-bottom: 10px;
     color: #FFF;
     font-size: 14px;
@@ -203,12 +207,14 @@
     .profile__email-error {
         width: 260px;
     }
-    .profile__button-save:disabled{
+
+    .profile__button-save:disabled {
         font-size: 12px;
         padding: 13px 100px 15px 93px;
         width: 260px;
     }
-    .profile__button-save{
+
+    .profile__button-save {
         font-size: 12px;
         padding: 13px 100px 15px 93px;
         width: 260px;
@@ -221,5 +227,13 @@
     .profile__button-exit {
         font-size: 12px;
         font-weight: 500;
+    }
+
+    .profile__name {
+        width: 220px;
+    }
+
+    .profile__email {
+        width: 220px;
     }
 }

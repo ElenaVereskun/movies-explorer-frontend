@@ -1,5 +1,6 @@
 .movies{
-    background-color: #202020;    
+    background-color: #202020; 
+    height: 100vh;  
 }
 .movies__error{
     color: white;

@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Main from '../Main/Main';
 import moviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -11,6 +11,9 @@ import Login from '../Login/Login';
 import Error404 from '../Error/Error';
 import * as mainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoutes/ProtectedRoutes';
+import success from '../../images/success.svg';
+import fail from '../../images/fail.svg';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('jwt'));
@@ -19,6 +22,7 @@ function App() {
   const [isSaved, setIsSaved] = useState(true);
   const [serverError, setServerError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -82,15 +86,6 @@ function App() {
       .catch((err) => console.log(`${err}`))
   };
 
-  function handleUpdateUser({ name, email }) {
-    mainApi.editUserInfo({ name, email })
-      .then((data) => {
-        setCurrentUser({ name: data.name, email: data.email });
-        navigate('/profile', { replace: true });
-      })
-      .catch((err) => console.log(`Ошибка изменения данных пользователя: ${err}`));
-  };
-
   const tokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
     const path = location.pathname;
@@ -110,9 +105,41 @@ function App() {
     tokenCheck();
   }, []);
 
+  function handleUpdateUser({ name, email }) {
+    mainApi.editUserInfo({ name, email })
+      .then((data) => {
+        setCurrentUser(data);
+        infoTooltipSuccess();
+      })
+      .catch(() => infoTooltipFail());
+  };
+
+  const [errorText, setErrorText] = useState(' ');
+  const [infoTooltipOpen, setInfoTooltipOpen] = useState(false);
+  const [infoTooltipImg, setInfoTooltipImg] = useState();
+
+  function infoTooltipSuccess() {
+    setErrorText('Данные профиля обновлены успешно');
+    setInfoTooltipOpen(true);
+    setInfoTooltipImg(success);
+  }
+
+  function infoTooltipFail() {
+    setErrorText('Что-то пошло не так! Попробуйте ещё раз.');
+    setInfoTooltipOpen(true);
+    setInfoTooltipImg(fail);
+  }
+  function handleCloseButton() {
+    setInfoTooltipOpen(false);
+  }
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser} className="content" >
+        <InfoTooltip infoTooltipOpen={infoTooltipOpen}
+          text={errorText}
+          onClickCloseButton={handleCloseButton}
+          infotooltipimg={infoTooltipImg} />
         <Routes>
           <Route path="/" element={<Main
             isLoggedIn={isLoggedIn} />} />
@@ -140,14 +167,14 @@ function App() {
           />}
             isLoggedIn={isLoggedIn} />} />
 
-          <Route path='/signin' element={<Login
-            setIsLoggedIn={setIsLoggedIn}
-            isLoggedIn={isLoggedIn}
-          />} />
-          <Route path='/signup' element={<Register
-            setIsLoggedIn={setIsLoggedIn}
-            isLoggedIn={isLoggedIn}
-          />} />
+          <Route path="/signup" element={!isLoggedIn
+            ? <Register setIsLoggedIn={setIsLoggedIn} />
+            : <Navigate to={'/movies'} replace />} />
+
+          <Route path="/signin" element={!isLoggedIn
+            ? <Login setIsLoggedIn={setIsLoggedIn} />
+            : <Navigate to={'/movies'} replace />} />
+
           <Route path='*' element={<Error404 />} />
         </Routes>
       </CurrentUserContext.Provider>

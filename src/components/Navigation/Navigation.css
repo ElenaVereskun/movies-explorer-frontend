@@ -158,6 +158,14 @@
         background-color: inherit;
     }
 
+    .navigation__menu_active:active {
+        opacity: 0.8;
+    }
+
+    .navigation__menu_active:hover {
+        cursor: pointer;
+    }
+
     .navigation__menu_open {
         border: #3DDC84;
     }

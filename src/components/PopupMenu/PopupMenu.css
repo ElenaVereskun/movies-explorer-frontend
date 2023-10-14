@@ -1,6 +1,7 @@
-.popup-menu__{
+.popup-menu__ {
     background-size: 1024px;
 }
+
 .popup-menu {
     display: flex;
     position: fixed;
@@ -117,6 +118,14 @@
     background-size: 25px 25px;
     border: none;
     z-index: 2;
+}
+
+.popup-menu__close-button:hover {
+    cursor: pointer;
+}
+
+.popup-menu__close-button:active {
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 767px) {
