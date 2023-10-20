@@ -1,7 +1,7 @@
 .login {
     background-color: #202020;
     height: 100vh;
-    font-family: Inter,Arial,sans-serif;
+    font-family: Inter, Arial, sans-serif;
     font-style: normal;
     line-height: normal;
 }
@@ -53,11 +53,28 @@
     color: white;
     margin: 0;
     padding: 0;
+    width: 396px;
+}
+
+.login__email-error {
+    color: #EE3465;
+    margin-top: -20px;
+}
+
+.login__password-error {
+    color: #EE3465;
+    margin-top: -7px;
+}
+
+.login__form-error {
+    color: #EE3465;
 }
 
 .login__password {
     background-color: #202020;
     border: none;
+    color: white;
+    width: 396px;
 }
 
 .login__title-email {
@@ -76,6 +93,11 @@
     margin: 0;
 }
 
+.login__button-container {
+    margin-top: 134px;
+    margin-bottom: 16px;
+}
+
 .login__button-login {
     font-size: 14px;
     font-weight: 500;
@@ -85,15 +107,31 @@
     padding: 15px 178px 15px 176px;
     border-radius: 3px;
     border: none;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.login__button-login:disabled {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    background-color: #c0c3c862;
+    padding: 15px 178px 15px 176px;
+    border-radius: 3px;
+    border: none;
     margin-top: 217px;
     margin-bottom: 16px;
 }
-.login__button-login:active{
+
+.login__button-login:active {
     opacity: 0.8;
 }
-.login__button-login:hover{
+
+.login__button-login:hover {
     cursor: pointer;
 }
+
 .login__enter {
     display: flex;
     justify-content: center;
@@ -115,9 +153,11 @@
     font-size: 14px;
     font-weight: 400;
 }
+
 .login__button-enter:hover {
     cursor: pointer;
 }
+
 .login__button-enter:active {
     opacity: 0.7;
 }
@@ -164,11 +204,22 @@
         padding-bottom: 10px;
     }
 
+    .login__button-container {
+        margin-top: 223px;
+    }
+
     .login__button-login {
         font-size: 12px;
         font-weight: 500;
         padding: 15px 113px 15px 110px;
-        margin-top: 304px;
+    }
+
+    .login__button-login:disabled {
+        font-size: 12px;
+        background-color: #c0c3c862;
+        font-weight: 500;
+        padding: 15px 113px 15px 110px;
+        margin-top: 0px;
     }
 
     .login__enter-text {
@@ -179,5 +230,11 @@
     .login__button-enter {
         font-size: 12px;
         font-weight: 400;
+    }
+    .login__email {
+        width: 260px;
+    }
+    .login__password{
+        width: 260px;
     }
 }

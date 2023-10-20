@@ -1,6 +1,6 @@
 .footer {
     background-color: #202020;
-    font-family: Inter,Arial,sans-serif;
+    font-family: Inter, Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -41,6 +41,16 @@
 
 .footer__item {
     margin: 0;
+    color: #FFF;
+    text-decoration: none;
+}
+
+.footer__item:hover {
+    cursor: pointer;
+}
+
+.footer__item:active {
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 1279px) {

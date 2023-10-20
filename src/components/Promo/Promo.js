@@ -3,6 +3,7 @@ import promoLogo from '../../images/promo-logo.svg';
 import NavTab from '../NavTab/NavTab';
 
 function Promo() {
+    
     return (
         <section className='promo'>
             <div className='promo__container'>
@@ -14,7 +15,7 @@ function Promo() {
                         чтобы узнать больше про этот проект и его создателя.</p>
                 </div>
             </div>
-            <NavTab />
+            <NavTab/>
         </section>
     )
 }

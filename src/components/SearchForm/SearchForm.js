@@ -1,16 +1,34 @@
-import React from 'react';
+import { React } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm() {
+function SearchForm({ onSearch,
+    searchValue,
+    handleChangeSearch,
+    isShort,
+    handleChek,
+    onClickCheckbox }) {
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        onSearch();
+    };
     return (
         <section>
-            <form className='search-form'>
+            <form className='search-form' onSubmit={handleSubmit}>
                 <div className='search-form__quest'>
-                    <input className='search-form__input' placeholder="Фильм" />
+                    <input className='search-form__input'
+                        value={searchValue}
+                        name="search"
+                        onChange={handleChangeSearch}
+                        placeholder="Фильм" />
+                    <span ></span>
                     <button className='search-form__button'>Поиск</button>
                 </div>
                 <div className='search-form__short'>
-                    <FilterCheckbox />
+                    <FilterCheckbox
+                        onClickCheckbox={onClickCheckbox}
+                        isShort={isShort}
+                        handleChek={handleChek} />
                     <p className='search-form__short-text'>Короткометражки</p>
                 </div>
             </form>

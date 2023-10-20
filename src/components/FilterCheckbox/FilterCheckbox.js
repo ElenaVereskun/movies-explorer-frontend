@@ -1,11 +1,18 @@
-import React from 'react';
+import { React } from 'react';
 
-function FilterCheckbox() {
+function FilterCheckbox({ onClickCheckbox, isShort, handleChek }) {
+ 
     return (
         <>
-            <label class="filter-checkbox">
-                <input class="filter-checkbox__input" type="checkbox"/>
-                    <span class="filter-checkbox__slider"></span>
+            <label className="filter-checkbox">
+                <div className='filter-checkbox__container'>
+                    <input className="filter-checkbox__input"
+                        onClick={onClickCheckbox}
+                        onChange={handleChek}
+                        checked={isShort}
+                        type="checkbox" />
+                    <span className="filter-checkbox__slider"></span>
+                </div>
             </label>
         </>
     )

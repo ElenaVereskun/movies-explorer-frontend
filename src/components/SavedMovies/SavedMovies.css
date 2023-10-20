@@ -1,8 +1,10 @@
 .saved-movies{
     background-color: #202020;
+    height: 100vh;
 }
 .saved-movies__black-square{
     height: 219px;
+    background-color: #202020;
 }
 @media screen and (max-width: 1279px) {
     .saved-movies__black-square{

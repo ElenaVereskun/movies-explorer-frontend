@@ -1,3 +1,13 @@
 .movies{
-    background-color: #202020;    
+    background-color: #202020; 
+    height: 100vh;  
+}
+.movies__error{
+    color: white;
+    margin: 0 auto;
+    font-family: Inter,Arial,sans-serif;
+    font-style: normal;
+    text-align: center;
+    margin: 50px;
+    font-size: 20px;
 }

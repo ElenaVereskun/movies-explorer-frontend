@@ -26,7 +26,7 @@
 }
 
 .register__header {
-    display: flex;    
+    display: flex;
     align-items: flex-start;
     flex-direction: column;
 }
@@ -59,6 +59,7 @@
     color: white;
     margin: 0;
     padding: 0;
+    width: 396px;
 }
 
 .register__name {
@@ -68,11 +69,33 @@
     color: white;
     margin: 0;
     padding: 0;
+    width: 396px;
+}
+
+.register__name-error {
+    color: #EE3465;
+    margin-top: -20px;
+}
+
+.register__email-error {
+    color: #EE3465;
+    margin-top: -20px;
+}
+
+.register__password-error {
+    color: #EE3465;
+    margin-top: -7px;
+}
+
+.register__form-error {
+    color: #EE3465;
 }
 
 .register__password {
     background-color: #202020;
     border: none;
+    color: white;
+    width: 396px;
 }
 
 .register__title-name {
@@ -101,11 +124,9 @@
     margin: 0;
 }
 
-.register__mistake {
-    color: #EE3465;
-    font-size: 10px;
-    font-weight: 400;
-    margin: 0;
+.register__button-container {
+    margin-top: 134px;
+    margin-bottom: 16px;
 }
 
 .register__button-register {
@@ -117,8 +138,21 @@
     padding: 15px 126px 15px 124px;
     border-radius: 3px;
     border: none;
-    margin-top: 134px;
-    margin-bottom: 16px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.register__button-register:disabled {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    background-color: #c0c3c862;
+    padding: 15px 126px 15px 124px;
+    border-radius: 3px;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 .register__button-register:active {
@@ -137,7 +171,6 @@
 .register__enter-text {
     font-size: 14px;
     color: #8B8B8B;
-    ;
     text-align: center;
     padding: 0;
     margin: 0;
@@ -199,6 +232,15 @@
 
     .register__name {
         font-size: 14px;
+        width: 260px;
+    }
+
+    .register__email {
+        width: 260px;
+    }
+
+    .register__password {
+        width: 260px;
     }
 
     .register__title-name {
@@ -210,11 +252,20 @@
         padding-bottom: 10px;
     }
 
+    .register__button-container {
+        margin-top: 223px;
+    }
+
     .register__button-register {
         font-size: 12px;
         font-weight: 500;
         padding: 15px 68px 15px 67px;
-        margin-top: 223px;
+    }
+
+    .register__button-register:disabled {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 15px 68px 15px 67px;
     }
 
     .register__enter-text {
@@ -226,6 +277,7 @@
         font-size: 12px;
         font-weight: 400;
     }
+
     .register__header {
         align-items: center;
         margin: 0 auto;
